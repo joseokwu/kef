@@ -1,0 +1,28 @@
+.btn {
+  height: 60px;
+  display: grid;
+  place-content: center;
+  padding: 20px 39px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  white-space: nowrap;
+  background-color: #fcac0d;
+  line-height: 19.5px;
+
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+
+  &--outlined {
+    border: 2px solid #fcac0d;
+    background-color: transparent;
+  }
+}
+
+.yellow-shadow {
+  box-shadow: 0px 18px 44px rgba(252, 172, 13, 0.55);
+}
