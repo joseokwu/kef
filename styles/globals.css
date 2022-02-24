@@ -44,7 +44,7 @@ a {
 
 .CircularProgressbar-text {
   fill: black;
-  font-size: 26px !important;
+  /* font-size: 26px !important; */
   font-weight: 700;
   line-height: 31px;
 }
