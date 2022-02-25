@@ -6,7 +6,7 @@ const SideBar = ({ activePage, setActivePage }) => {
   // const [active, setActive] = useState("Dashboard");
   return (
     <div className="w-[37rem] h-screen px-[4.7rem] py-[4.9rem] flex flex-col bg-[#010101] text-white bg-sidebar">
-      <img className="mb-[11rem]"></img>
+      <img src="/kef-logo.svg" className="mb-[5.1rem] w-[11.3rem] mx-auto"></img>
       <ul className="bg-r whitespace-nowrap">
         {pages.map((page, i) => {
           return (

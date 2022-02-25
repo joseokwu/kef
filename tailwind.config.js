@@ -4,6 +4,7 @@ module.exports = {
     extend: {},
     backgroundImage: {
       sidebar: "url('/sidebar-image.jpg')",
+      flare: "url(/flare.jpg)",
       party: "url('/bg-party.jpg')",
       "footer-texture": "url('/img/footer-texture.png')",
     },

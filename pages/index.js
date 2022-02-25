@@ -22,7 +22,7 @@ export default function Home() {
       </Head>
       <SideBar activePage={activePage} setActivePage={setActivePage} />
       <main className={"bg-[#FBFAFA] bg-slate-400 h-full flex-grow px-[5.2rem] py-[6.4rem] overflow-y-scroll"}>
-        <Header></Header>
+        <Header title={activePage}></Header>
         {activePage == "Dashboard" && <Dashboard></Dashboard>}
         {activePage == "Raffle Tickets" && <RaffleTickets></RaffleTickets>}
         {activePage == "Rewards" && <Rewards></Rewards>}

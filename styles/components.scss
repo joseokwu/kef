@@ -2,7 +2,7 @@
   height: 60px;
   display: grid;
   place-content: center;
-  padding: 20px 39px;
+  padding: 2rem 2.25rem;
   border-radius: 10px;
   border: 2px solid transparent;
   white-space: nowrap;
@@ -34,4 +34,93 @@
 
 .default-shadow {
   box-shadow: -10px 4px 40px rgba(0, 0, 0, 0.05);
+}
+
+// Auth Components
+.auth-form {
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    font-family: Montserrat;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 2.6rem;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #8e8e8e;
+    margin-bottom: 0.8rem;
+  }
+  input {
+    background: #f8f9fd;
+    border: 1px solid #bebdbd;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    padding: 2rem 4.5rem;
+
+    &::placeholder {
+      font-family: Montserrat;
+      font-size: 1.6rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 2rem;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.auth-container {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(44px);
+  max-width: 62.4rem;
+  margin: 0 auto;
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 2rem;
+  padding: 5.6rem 7.4rem;
+
+  h3 {
+    font-family: Montserrat;
+    font-size: 3.2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 3.9rem;
+    letter-spacing: 0em;
+    text-align: left;
+    color: white;
+    margin-bottom: 1.3rem;
+  }
+
+  p {
+    font-family: Montserrat;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 500 !important;
+    line-height: 2.6rem;
+    letter-spacing: 0em;
+    text-align: left;
+    color: white;
+
+    // font-family: Montserrat;
+    // font-size: 16px;
+    // font-style: normal;
+    // font-weight: 500;
+    // line-height: 26px;
+    // letter-spacing: 0em;
+    // text-align: left;
+  }
+}
+
+// MUI UI styles
+// Dialog
+.MuiPaper-root {
+  border-radius: 2rem;
 }

@@ -19,3 +19,31 @@
   letter-spacing: 0em;
   text-align: left;
 }
+
+// PopUp box
+.popup-box {
+  p {
+    color: rgba(130, 127, 127, 1);
+    font-family: Montserrat;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 2.6rem;
+    letter-spacing: 0em;
+    text-align: left;
+    max-width: 45.1rem;
+    margin-bottom: 5.1rem;
+  }
+
+  h3 {
+    color: rgba(0, 0, 0, 1);
+    font-family: Montserrat;
+    font-size: 3.2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 3.9rem;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 1.3rem;
+  }
+}
