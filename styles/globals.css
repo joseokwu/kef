@@ -2,6 +2,9 @@
 @tailwind base;
 @tailwind utilities;
 
+:root {
+  --color-primary: #FCAC0D;
+}
 
 html,
 body {

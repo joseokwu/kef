@@ -4,10 +4,11 @@ import Activate from "../Cards/Activate";
 import Stats from "../Cards/Stats";
 import PoweredBy from "../Cards/PoweredBy";
 import LatestWinnerCard from "../Cards/LatestWinnerCard";
+import TableV1 from "../Tables/TableV1";
 
 const Dashboard = () => {
   return (
-    <div className=" max-w-[130rem]">
+    <div className=" max-w-[108.3rem]">
       {/* First Section */}
       <div className="flex flex-wrap">
         {" "}
@@ -19,27 +20,40 @@ const Dashboard = () => {
 
       <div className="flex flex-wrap">
         {/* <Stats title={"15 Raffle Tickets"} text={"Total Number of Raffle Tickets"} color="#F0F0F0" img={"/3d-ticket.png"} /> */}
-        <Stats title={"2 Rewards"} text={"Total Number of Rewards"} color="#FFF7E7" img={"/3d-ticket.svg"} />
-        <Stats title={"2 Rewards"} text={"Total Number of Rewards"} color="#FFF7E7" img={"/3d-ticket.svg"} />
-        <Stats title={"2 Rewards"} text={"Total Number of Rewards"} color="#FFF7E7" img={"/3d-ticket.svg"} />
+        <div className={`px-[2.8rem] py-[3.6rem] rounded-[2rem] bg-[#F0F0F0] relative mr-[2.5rem] last:mr-0 mb-[3.2rem] min-w-[300px] flex-1`}>
+          <h3 className="h3 mb-[.4rem] mr-[11.0rem]">0 Raffle Tickets</h3>
+          <p className="text-[1.2rem] text-[#717171] leading-[1.46rem] font-semibold">Total Number of Raffle Tickets</p>
+          <img className="absolute right-[2.6rem] bottom-0 w-[93px]" src={"/3d-ticket.svg"}></img>
+        </div>
+        <div className={`px-[2.8rem] py-[3.6rem] rounded-[2rem] bg-[#FFF7E7] relative mr-[2.5rem] last:mr-0 mb-[3.2rem] min-w-[300px] overflow-hidden flex-1`}>
+          <h3 className="h3 mb-[.4rem] mr-[11.0rem] text-[#FCAC0D]">0 Rewards</h3>
+          <p className="text-[1.2rem] text-[#717171] leading-[1.46rem] font-semibold">Total Number of Rewards</p>
+          <img className="absolute right-[2.6rem] bottom-0 w-[15.2rem] translate-x-6 " src={"/3d-trophy.svg"}></img>
+        </div>
+        <div className={`px-[2.8rem] py-[3.6rem] rounded-[2rem] bg-[#F0F0F0] relative mr-[2.5rem] last:mr-0 mb-[3.2rem] min-w-[300px] overflow-hidden flex-1`}>
+          <h3 className="h3 mb-[.4rem] mr-[11.0rem]">0 Event Tickets</h3>
+          <p className="text-[1.2rem] text-[#717171] leading-[1.46rem] font-semibold">Total Number of Event Tickets</p>
+          <img className="absolute right-[2.6rem] bottom-0 w-[15.2rem] translate-x-6" src={"/3d-ticket-1.png"}></img>
+        </div>
+        {/* <Stats title={"2 Rewards"} text={"Total Number of Rewards"} color="#FFF7E7" img={"/3d-ticket.svg"} /> */}
         {/* <Stats title={"15 Raffle Tickets"} text={"Total Number of Raffle Tickets"} color="#F0F0F0" img={"/3d-ticket.png"} /> */}
       </div>
 
       {/* Third Section: Latest Winner Section */}
       <section className="flex flex-wrap">
         {/* div-1 */}
-        <div className="mr-[2.4rem]">
-          <div className="relative">
+        <div className="mr-[2.4rem] flex-1">
+          {/* <div className="relative">
             <LatestWinnerCard />
-          </div>
-          <div className="py-[2.7rem] px-[4.2rem] flex items-center justify-between default-shadow bg-white rounded-[2rem] mt-[3.2rem] mb-[1.3rem]">
+          </div> */}
+          {/* <div className="py-[2.7rem] px-[4.2rem] flex items-center justify-between default-shadow bg-white rounded-[2rem] mb-[1.3rem]">
             <h3 className="text-[2.1rem] font-bold">Transaction History</h3>
             <a href="#" className="text-[#FCAC0D] text-[1.4rem] font-bold underline">
               View all
             </a>
-          </div>
+          </div> */}
 
-          <div className=" px-[4.2rem] bg-white rounded-[2rem] mb-[1.3rem] default-shadow">
+          {/* <div className=" px-[4.2rem] bg-white rounded-[2rem] mb-[1.3rem] default-shadow">
             <div className="row flex items-center justify-between text-[#CF0C0F] text-[1.6rem] font-semibold py-[2.4rem] leading-[1.9rem] cursor-pointer border-b">
               <p>Purchase Raffle Ticket</p>
               <p>#5,000</p>
@@ -50,7 +64,8 @@ const Dashboard = () => {
               <p>#5,000</p>
               <p>22 Oct, 2022</p>
             </div>
-          </div>
+          </div> */}
+          <TableV1></TableV1>
         </div>
 
         {/* div-2 */}

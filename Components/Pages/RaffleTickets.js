@@ -14,10 +14,11 @@ const RaffleTickets = () => {
             {/* Raffle Tickets */}
             <div className="flex-1 py-[3.1rem] px-[3.6rem] bg-[#F0F0F0] rounded-[20px] min-w-[34.5rem] mr-[2.4rem] relative mb-[3.2rem] max-h-[29.2rem]">
               <p className="mb-[.8rem] font-semibold text-[1.2rem] leading-[1.43rem] text-[#717171] whitespace-nowrap">Total Number of Raffle Tickets</p>
-              <h2 className="f font-bold text-[2.8rem] leading-[3.4rem] w-[12.6rem]">15 Raffle Tickets</h2>
-              <button className="btn btn--outlined !border-[black] mt-[5.6rem] mr-[17.5rem]">View Tickets</button>
+              <h2 className="f font-bold text-[2.8rem] leading-[3.4rem] mr-[17.5rem] w-[12.6rem]">15 Raffle Tickets</h2>
+              {/* <button className="btn btn--outlined !border-[black] mt-[5.6rem] mr-[17.5rem]">View Tickets</button> */}
               <img className="absolute bottom-0 right-[1.7rem] w-[40%] object-cover" src="/3d-ticket.svg"></img>
             </div>
+
             {/* Merchannt Ticket Purchase */}
             <div className=" flex-1 py-[2.7rem] px-[3.6rem] bg-[#FFF6E4] rounded-[2rem]  min-h-[29.2rem] mb-[3.2rem] text-[#3C3E42] leading-[2.9rem]">
               <h2 className="text-[2.4rem] leading-[2.9rem] font-bold w-[22rem] mb-[1.2rem]">Merchant Ticket Purchase</h2>
@@ -60,7 +61,7 @@ const RaffleTickets = () => {
             </div>
           </div>
         </section>
-        <section>
+        <section className="flex-1">
           <div className="px-[3.9rem] py-[3.56rem] bg-[#F0F0F0] rounded-[2rem] relative overflow-hidden">
             <h3 className="h3 !text-[3.4rem] !leading-[4.1rem] !w-[20.7rem] mb-[1.9rem]">Next Raffle Draw</h3>
             <p className="font font-normal text-[1.4rem] leading-[2rem] w-[23.1rem] mb-[17rem]">
@@ -83,11 +84,11 @@ const RaffleTickets = () => {
             </div>
             {/* Table Body */}
             <div className="body  px-[4.2rem] py-[3rem]">
-              <div className="row flex justify-between py-[2.2rem] px-[2.5rem] text-[#706C6C] bg-[#FFF6E4] rounded-[2rem] leading-[2.1rem] text-[1.8rem] mb-[.8rem]">
+              <div className="row flex justify-between py-[2.2rem] px-[2.5rem] text-[#706C6C] bg-[rgba(255,246,228,0.31)] rounded-[2rem] leading-[2.1rem] text-[1.8rem] mb-[.8rem]">
                 <span className="font-normal">Category 1</span>
                 <span className="font-semibold">#500 - #10,000</span>
               </div>
-              <div className="row flex justify-between py-[2.2rem] px-[2.5rem] text-[#706C6C] bg-[#F0F0F0] rounded-[2rem] leading-[2.1rem] text-[1.8rem]">
+              <div className="row flex justify-between py-[2.2rem] px-[2.5rem] text-[#706C6C] bg-[rgba(240,240,240,0.31)] rounded-[2rem] leading-[2.1rem] text-[1.8rem]">
                 <span className="font-normal">Category 1</span>
                 <span className="font-semibold">#500 - #10,000</span>
               </div>
@@ -96,7 +97,28 @@ const RaffleTickets = () => {
         </div>
 
         {/* div-2 */}
-        <PoweredBy></PoweredBy>
+        <div className=" min-w-[52.4rem] flex-1">
+          {/*  Table*/}
+          <div className="rounded-[2rem] bg-white">
+            {/* Table Head */}
+            <div className=" px-[4.2rem] py-[3rem] border-b">
+              <h3 className="font-bold text-black text-[2.1rem] leading-[2.1rem]">Ticket Numbers</h3>
+            </div>
+            {/* Table Body */}
+            <div className="body  px-[4.2rem] py-[3rem]">
+              <div className="row flex justify-between py-[2.2rem] px-[2.5rem] text-[#706C6C] bg-[rgba(255,246,228,0.31)] rounded-[2rem] leading-[2.1rem] text-[1.8rem] mb-[.8rem]">
+                <span className="font-normal">Ticket 1</span>
+                <span className="font-semibold">#1223345ABG</span>
+              </div>
+              <div className="row flex justify-between py-[2.2rem] px-[2.5rem] text-[#706C6C] bg-[rgba(240,240,240,0.31)] rounded-[2rem] leading-[2.1rem] text-[1.8rem]">
+                <span className="font-normal">Ticket 2</span>
+                <span className="font-semibold">#1223345ABG</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* <PoweredBy></PoweredBy> */}
       </div>
     </div>
   );

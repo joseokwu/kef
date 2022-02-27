@@ -21,7 +21,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <SideBar activePage={activePage} setActivePage={setActivePage} />
-      <main className={"bg-[#FBFAFA] bg-slate-400 h-full flex-grow px-[5.2rem] py-[6.4rem] overflow-y-scroll"}>
+      <main className={"bg-[#FBFAFA] h-full flex-grow px-[5.2rem] py-[6.4rem] overflow-y-scroll"}>
         <Header title={activePage}></Header>
         {activePage == "Dashboard" && <Dashboard></Dashboard>}
         {activePage == "Raffle Tickets" && <RaffleTickets></RaffleTickets>}

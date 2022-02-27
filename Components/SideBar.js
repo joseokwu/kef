@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 const SideBar = ({ activePage, setActivePage }) => {
-  const pages = ["Dashboard", "Raffle Tickets", "Rewards", "Livestream Event", "Transactions"];
-  const icons = ["Dashboard", "Raffle-Tickets", "Rewards", "Livestream-Event", "Transactions"];
+  const pages = ["Dashboard", "Raffle Tickets", "Rewards", "Livestream Event"];
+  const icons = ["Dashboard", "Raffle-Tickets", "Rewards", "Livestream-Event"];
   // const [active, setActive] = useState("Dashboard");
   return (
     <div className="w-[37rem] h-screen px-[4.7rem] py-[4.9rem] flex flex-col bg-[#010101] text-white bg-sidebar">

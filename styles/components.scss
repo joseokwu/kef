@@ -124,3 +124,106 @@
 .MuiPaper-root {
   border-radius: 2rem;
 }
+
+.MuiDialog-container .MuiPaper-root {
+  max-width: max-content;
+  columns: yellow;
+}
+
+// Radio
+.MuiRadio-root {
+  padding: 0;
+  color: black;
+
+  &.Mui-checked {
+    .MuiSvgIcon-root {
+      &:nth-child(2) {
+        color: var(--color-primary);
+      }
+    }
+  }
+}
+
+.MuiRadio-root .MuiSvgIcon-root {
+  font-size: 2rem;
+}
+
+.MuiSvgIcon-root {
+  color: rgba(0, 0, 0, 0.849);
+}
+
+// Popup Forms
+.popup-form {
+  label {
+    color: #8e8e8e;
+    font-family: Montserrat;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 2.6rem;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  input {
+    background: #f8f9fd;
+    outline: 1px solid #bebdbd;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    padding: 2rem 5.4rem;
+
+    font-family: Montserrat;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 2rem;
+    letter-spacing: 0em;
+    text-align: left;
+    color: black;
+
+    &:focus {
+      outline: 2px solid #fcac0d;
+    }
+    &::placeholder {
+      color: #d5d6d8;
+      font-family: Montserrat;
+      font-size: 1.6rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 2rem;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+  }
+
+  select {
+    background: #f8f9fd;
+    outline: 1px solid #bebdbd;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    padding: 2rem 5.4rem;
+
+    font-family: Montserrat;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 2rem;
+    letter-spacing: 0em;
+    text-align: left;
+    color: black;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7' /%3E%3C/svg%3E");
+    background-position: 90%;
+    background-size: 2.1rem;
+    background-repeat: no-repeat;
+    &:focus {
+      outline: 2px solid #fcac0d;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 2.4rem;
+    display: flex;
+    flex-direction: column;
+  }
+}
