@@ -21,8 +21,8 @@ const Rewards = () => {
       <Dialog open={show} onClose={toggle}>
         {activeModal == "ClaimReward" && <ClaimReward onClaimReward={onClaimReward}></ClaimReward>}
       </Dialog>
-      <div className="flex">
-        <section className="mr-[2.4rem]">
+      <div className="flex flex-wrap gap-10">
+        <section className="flex-1">
           {/* You Won */}
           <div className="bg-[#FFF6E4] rounded-[2rem] px-[5.1rem] py-[3.9rem] min-w-[52rem] max-h-[29.9rem] relative mb-[3.2rem]">
             <h3 className="font-bold text-[3.2rem] leading-[3.9rem] text-[#3C3E42]">Your Ticket Won</h3>
@@ -44,7 +44,7 @@ const Rewards = () => {
         </section>
 
         {/*  */}
-        <section>
+        <section className="flex-1">
           <LatestWinnerCard />
           <PoweredBy />
         </section>

@@ -18,7 +18,7 @@ const TableV1 = ({ data }) => {
           <div className="row flex justify-between items-center pb-[1.6rem] text-[#706C6C] rounded-[2rem] leading-[2.1rem] text-[1.8rem]">
             <img className="h-[4.2rem] w-[4.2rem] object-cover rounded-full" src="/user-img.jpg" />
             <span className="ml-[1.8rem] font-normal text-[1.3rem] mr-auto">#12345678BG</span>
-            <span className="f text-[1.3rem] font-semibold">Category 1</span>
+            <span className="f text-[1.3rem] font-semibold mr-auto 2xl:mr-[0]">Category 1</span>
             <span className="text-[#717171] font-bold text-[1.7rem] ml-[5.3rem]">N100,000</span>
           </div>
           {/* end row */}
@@ -26,7 +26,7 @@ const TableV1 = ({ data }) => {
           <div className="row flex justify-between items-center pb-[1.6rem] text-[#706C6C] rounded-[2rem] leading-[2.1rem] text-[1.8rem]">
             <img className="h-[4.2rem] w-[4.2rem] object-cover rounded-full" src="/user-img.jpg" />
             <span className="ml-[1.8rem] font-normal text-[1.3rem] mr-auto">#12345678BG</span>
-            <span className="f text-[1.3rem] font-semibold">Category 1</span>
+            <span className="f text-[1.3rem] font-semibold mr-auto 2xl:mr-[0]">Category 2</span>
             <span className="text-[#717171] font-bold text-[1.7rem] ml-[5.3rem]">N100,000</span>
           </div>
           {/* end row */}

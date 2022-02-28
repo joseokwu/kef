@@ -2,25 +2,26 @@ import React from "react";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import PoweredBy from "../Cards/PoweredBy";
+import Container from "../Layout/Container";
 
 const RaffleTickets = () => {
   return (
-    <div className="max-w-[114rem]">
+    <Container>
       {" "}
-      <div className="flex ">
+      <div className="flex flex-wrap gap-10 mb-[3.2rem]">
         {/* Section 1 */}
-        <section className="min-w-[71.4rem]  mr-[2.4rem]">
-          <div className="flex">
+        <section className="min-w-[30.4rem] flex-grow">
+          <div className="flex gap-10 flex-wrap mb-[3.2rem]">
             {/* Raffle Tickets */}
-            <div className="flex-1 py-[3.1rem] px-[3.6rem] bg-[#F0F0F0] rounded-[20px] min-w-[34.5rem] mr-[2.4rem] relative mb-[3.2rem] max-h-[29.2rem]">
+            <div className="flex-1 py-[3.1rem] px-[3.6rem] bg-[#F0F0F0] rounded-[20px] min-w-[34.5rem] relative max-h-[29.2rem]">
               <p className="mb-[.8rem] font-semibold text-[1.2rem] leading-[1.43rem] text-[#717171] whitespace-nowrap">Total Number of Raffle Tickets</p>
               <h2 className="f font-bold text-[2.8rem] leading-[3.4rem] mr-[17.5rem] w-[12.6rem]">15 Raffle Tickets</h2>
               {/* <button className="btn btn--outlined !border-[black] mt-[5.6rem] mr-[17.5rem]">View Tickets</button> */}
-              <img className="absolute bottom-0 right-[1.7rem] w-[40%] object-cover" src="/3d-ticket.svg"></img>
+              <img className="absolute bottom-0 right-[1.7rem] xl:w-[40%] w-[14.7rem] object-cover" src="/3d-ticket.svg"></img>
             </div>
 
             {/* Merchannt Ticket Purchase */}
-            <div className=" flex-1 py-[2.7rem] px-[3.6rem] bg-[#FFF6E4] rounded-[2rem]  min-h-[29.2rem] mb-[3.2rem] text-[#3C3E42] leading-[2.9rem]">
+            <div className=" flex-1 py-[2.7rem] px-[3.6rem] bg-[#FFF6E4] rounded-[2rem]  min-h-[29.2rem]  text-[#3C3E42] leading-[2.9rem]">
               <h2 className="text-[2.4rem] leading-[2.9rem] font-bold w-[22rem] mb-[1.2rem]">Merchant Ticket Purchase</h2>
               <p className="text-[#717171] font-normal leading-[1.6rem] text-[1rem] w-[23.2rem] mb-[2.4rem]">Check your progress points based on your purchase from merchants</p>
               <div className="flex items-center">
@@ -48,13 +49,13 @@ const RaffleTickets = () => {
               </div>
             </div>
           </div>
-          <div className="flex">
-            <div className={`flex-1 px-[2.8rem] py-[3.6rem] rounded-[2rem] bg-white relative mr-[2.5rem] last:mr-0 mb-[3.2rem] min-w-[345px] border-[#CECCCC] border`}>
+          <div className="flex gap-10 flex-wrap">
+            <div className={`flex-1 px-[2.8rem] py-[3.6rem] rounded-[2rem] bg-white relative min-w-[345px] border-[#CECCCC] border`}>
               <h3 className="h3 mb-[.4rem] mr-[11.0rem]">5 Used</h3>
               <p className="text-[1.2rem] text-[#717171] leading-[1.46rem] font-semibold">Total Number of Tickets Used</p>
               <img className="absolute right-[2.6rem] bottom-0 w-[93px]" src="/3d-tickets-used.svg"></img>
             </div>
-            <div className={`flex-1 px-[2.8rem] py-[3.6rem] rounded-[2rem] bg-white relative mr-[2.5rem] last:mr-0 mb-[3.2rem] min-w-[345px] border-[#CECCCC] border`}>
+            <div className={`flex-1 px-[2.8rem] py-[3.6rem] rounded-[2rem] bg-white relative min-w-[345px] border-[#CECCCC] border`}>
               <h3 className="h3 mb-[.4rem] mr-[11.0rem] !text-[#FCAC0D]">2 Tickets Won</h3>
               <p className="text-[1.2rem] text-[#717171] leading-[1.46rem] font-semibold">Total Number of Tickets Used</p>
               <img className="absolute right-[.8rem] bottom-0 w-[93px] w-[12.9rem]" src="/3d-trophy.svg"></img>
@@ -73,9 +74,9 @@ const RaffleTickets = () => {
         </section>
         {/* Section 2 */}
       </div>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap gap-10">
         {/* div-1 */}
-        <div className="mr-[2.4rem] min-w-[52.4rem] flex-1">
+        <div className="min-w-[52.4rem] flex-1">
           {/*  Table*/}
           <div className="rounded-[2rem] bg-white">
             {/* Table Head */}
@@ -120,7 +121,7 @@ const RaffleTickets = () => {
 
         {/* <PoweredBy></PoweredBy> */}
       </div>
-    </div>
+    </Container>
   );
 };
 
