@@ -24,7 +24,14 @@ const OTP = ({ action }) => {
             <input className="!px-5" placeholder="Ex. Jonathan" />
           </div>
 
-          <button className="btn col-span-5 mt-[6.8rem]">Verify OTP</button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+            className="btn col-span-5 mt-[6.8rem]"
+          >
+            Verify OTP
+          </button>
         </div>
       </form>
     </div>

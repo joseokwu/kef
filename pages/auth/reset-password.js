@@ -2,7 +2,7 @@ import { useState } from "react";
 import GotMail from "../../Components/Auth/GotMail";
 import OTP from "../../Components/Auth/OTP";
 
-const resetPassword = () => {
+const ResetPassword = () => {
   const [active, setActive] = useState("form");
 
   return (
@@ -66,7 +66,7 @@ const resetPassword = () => {
         {active == "otp" && (
           <OTP
             action={() => {
-              setActive("otp");
+              setActive("form");
             }}
           />
         )}
@@ -75,4 +75,4 @@ const resetPassword = () => {
   );
 };
 
-export default resetPassword;
+export default ResetPassword;
