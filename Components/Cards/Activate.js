@@ -9,6 +9,8 @@ import PopupStatus from "../PopUps/PopUpStatus";
 import CardAddress from "../PopUps/CardAddress";
 import ActivateCard from "../PopUps/ActivateCard";
 import ClaimReward from "../PopUps/ClaimReward";
+import CardColor from "../PopUps/CardColor";
+import VerifyBVN from "../PopUps/VerifyBVN";
 
 const Activate = () => {
   const [visible, setVisible] = useState(false);
@@ -24,6 +26,12 @@ const Activate = () => {
     setActiveModal("CardAddress");
   }
   function onFillCardAddress() {
+    setActiveModal("CardColor");
+  }
+  function onSelectColor() {
+    setActiveModal("VerifyBVN");
+  }
+  function onInputBVN() {
     setActiveModal("PaymentOptions");
   }
   function onSelectPayOption() {
@@ -37,6 +45,8 @@ const Activate = () => {
         {activeModal == "CardAddress" && <CardAddress onFillCardAddress={onFillCardAddress}></CardAddress>}
         {activeModal == "ActivateCard" && <ActivateCard onActivate={onActivate}></ActivateCard>}
         {activeModal == "PaymentOptions" && <PaymentOptions onSelectPayOption={onSelectPayOption}></PaymentOptions>}
+        {activeModal == "CardColor" && <CardColor onSelectColor={onSelectColor}></CardColor>}
+        {activeModal == "VerifyBVN" && <VerifyBVN onInputBVN={onInputBVN}></VerifyBVN>}
       </Dialog>
 
       <div className="py-[5.4rem] px-[5.2rem] rounded-[2rem] flex-1 bgGrad text-white relative overflow-hidden min-h-[30rem] flex-grow min-w-max mb-[3.2rem]">

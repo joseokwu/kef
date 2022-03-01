@@ -9,7 +9,7 @@ const Popup = ({ children, actionText, action, footer = true }) => {
       {/* Footer */}
       {footer && (
         <div className="py-[6.1rem] px-[7.4rem] flex items-center justify-end">
-          <button className="btn btn--outlined ml-[auto] !px-[3.8rem] !py-[2rem] !text-[#4C4D50] !border-[#4C4D50]">Cancle</button>
+          <button className="btn btn--outlined ml-[auto] !px-[3.8rem] !py-[2rem] !text-[#4C4D50] !border-[#4C4D50]">Cancel</button>
           <button
             onClick={() => {
               action();

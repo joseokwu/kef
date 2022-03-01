@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const signUp = () => {
+const signIn = () => {
   return (
     <div className=" w-full h-screen bg-flare bg-no-repeat bg-cover overflow-y-auto">
       <header className="flex items-center px-[12.5rem] py-[5.6rem]">
@@ -12,32 +12,24 @@ const signUp = () => {
       <main>
         <div className="auth-container !mb-[10rem]">
           <form className="auth-form">
-            <h3>Sign up</h3>
+            <h3>Sign In</h3>
             <p className="mb-[7.4rem]">
-              Hey there! Not yet a member fill the form below to register. Already a member?{" "}
-              <Link href="/auth/sign-in">
-                <a className="text-[#FCAC0D]">Sign In</a>
+              Hey there! Welcome back. Not yet a member?{" "}
+              <Link href="/auth/sign-up">
+                <a className="text-[#FCAC0D]">Sign Up</a>
               </Link>
             </p>
 
             <div className="grid grid-cols-2 gap-5 gap-y-[2.4rem]">
-              <div className="form-group">
-                <label>First Name</label>
-                <input placeholder="Ex. Jonathan" />
-              </div>
-              <div className="form-group">
-                <label>Last Name</label>
+              <div className="form-group col-span-2">
+                <label>Username or Phone Number</label>
                 <input placeholder="Ex. Jonathan" />
               </div>
               <div className="form-group col-span-2">
-                <label>Email</label>
+                <label>Password</label>
                 <input placeholder="Ex. Jonathan" />
               </div>
-              <div className="form-group col-span-2">
-                <label>Phone Number</label>
-                <input placeholder="Ex. Jonathan" />
-              </div>
-              <button className="btn col-span-2 mt-[6.8rem]">Sign Up</button>
+              <button className="btn col-span-2 mt-[6.8rem]">Log In</button>
             </div>
           </form>
         </div>
@@ -46,4 +38,4 @@ const signUp = () => {
   );
 };
 
-export default signUp;
+export default signIn;
