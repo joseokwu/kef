@@ -76,7 +76,7 @@ const RaffleTickets = () => {
       </div>
       <div className="flex flex-wrap gap-10">
         {/* div-1 */}
-        <div className="min-w-[52.4rem] flex-1">
+        <div className="min-w-[33rem] flex-1">
           {/*  Table*/}
           <div className="rounded-[2rem] bg-white">
             {/* Table Head */}
@@ -98,7 +98,7 @@ const RaffleTickets = () => {
         </div>
 
         {/* div-2 */}
-        <div className=" min-w-[52.4rem] flex-1">
+        <div className=" min-w-[33rem] flex-1">
           {/*  Table*/}
           <div className="rounded-[2rem] bg-white">
             {/* Table Head */}

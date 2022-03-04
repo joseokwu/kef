@@ -40,8 +40,42 @@ const Header = ({ title }) => {
         {activeModal == "AmountOfTickets" && <AmountOfTickets onSelected={onSelected}></AmountOfTickets>}
         {activeModal == "VerifyPayment" && <VerifyPayment onVerify={onVerify}></VerifyPayment>}
       </Dialog>
-      <div className="flex items-center mb-[8.4rem] w-full">
+      <div className="flex items-center mb-[4.5rem] hdr:mb-[8.4rem] w-full">
         <h1 className="h1">{title}</h1>
+        <div className="flex flex-wrap ml-auto">
+          {/* Buttons */}
+          <div className="flex-none hidden items-center ml-auto hdr:flex ">
+            <button
+              onClick={() => {
+                setActiveModal("VerifyPayment");
+                setShow(true);
+              }}
+              className="btn ml-auto !bg-[#F0F0F0]"
+            >
+              Verify Payment
+            </button>
+            <button
+              onClick={() => {
+                setActiveModal("AmountOfTickets");
+                setShow(true);
+              }}
+              className="btn ml-[1.6rem]"
+            >
+              Buy Raffle Ticket
+            </button>
+          </div>
+          {/* User Profile */}
+          <div className="flex items-center ml-auto">
+            <div className=" w-[42px] h-[42px] rounded-full grid place-items-center bg-[#FFF7E7] ml-[59px] mr-[16px]">
+              <i className="icon icon-notification text-[1.7rem]"></i>
+            </div>
+            <div className="b border-l">
+              <img className="h-[4.2rem] w-[4.2rem] object-cover rounded-full ml-[16px] yellow-shadow" src="/user-img.jpg" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex items-center ml-auto hdr:hidden mb-[4.5rem] overflow-scroll">
         <button
           onClick={() => {
             setActiveModal("VerifyPayment");
@@ -60,12 +94,6 @@ const Header = ({ title }) => {
         >
           Buy Raffle Ticket
         </button>
-        <div className=" w-[42px] h-[42px] rounded-full grid place-items-center bg-[#FFF7E7] ml-[59px] mr-[16px]">
-          <i className="icon icon-notification text-[1.7rem]"></i>
-        </div>
-        <div className="b border-l">
-          <img className="h-[4.2rem] w-[4.2rem] object-cover rounded-full ml-[16px] yellow-shadow" src="/user-img.jpg" />
-        </div>
       </div>
     </>
   );
