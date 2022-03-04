@@ -58,7 +58,7 @@ const Activate = () => {
               setActiveModal("ActivateCard");
               setShow(true);
             }}
-            className="btn !bg-white white-shadow !text-black mr-[29rem] mt-[3.7rem]"
+            className="btn !bg-white white-shadow !text-black mr-[29rem] mt-[3.7rem] z-10"
           >
             Activate
           </button>

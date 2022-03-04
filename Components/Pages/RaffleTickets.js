@@ -21,7 +21,7 @@ const RaffleTickets = () => {
             </div>
 
             {/* Merchannt Ticket Purchase */}
-            <div className=" flex-1 py-[2.7rem] px-[3.6rem] bg-[#FFF6E4] rounded-[2rem]  min-h-[29.2rem]  text-[#3C3E42] leading-[2.9rem]">
+            <div className=" flex-1 wrap justify-center py-[2.7rem] px-[3.6rem] bg-[#FFF6E4] rounded-[2rem]  min-h-[29.2rem]  text-[#3C3E42] leading-[2.9rem]">
               <h2 className="text-[2.4rem] leading-[2.9rem] font-bold w-[22rem] mb-[1.2rem]">Merchant Ticket Purchase</h2>
               <p className="text-[#717171] font-normal leading-[1.6rem] text-[1rem] w-[23.2rem] mb-[2.4rem]">Check your progress points based on your purchase from merchants</p>
               <div className="flex items-center">
@@ -40,7 +40,7 @@ const RaffleTickets = () => {
                     })}
                   />
                 </div>
-                <div>
+                <div className="text-center">
                   <span className="text-[#BFBDBD] font-medium text-[1rem] mb-[1rem] leading-[1.2rem]">Your Progress</span>
                   <p className="font font-bold text-[1.8rem] leading-[2.1rem] w-[18.5rem]">
                     <span className="!text-[#FCAC0D]">N1,000</span> more to get a raffle ticket

@@ -17,13 +17,13 @@ const PaymentOptions = ({ onSelectPayOption }) => {
           <p className="">Choose a payment option to complete purchase of raffle tickets</p>
 
           {/* Payment options */}
-          <div className="grid grid-flow-col gap-x-[1.6rem] ">
-            <div className="rounded-[2rem] bg-white px-[4.1rem] py-[4.7rem] flex items-center default-shadow">
-              <img className="mr-[6rem]" src="/paystack.svg" />
+          <div className="flex flex-wrap gap-4 justify-center">
+            <div className="rounded-[2rem] flex-grow bg-white px-[4.1rem] py-[4.7rem] flex justify-between items-center default-shadow">
+              <img className="mr-[1rem] w-[19.2rem]" src="/paystack.svg" />
               <Radio checked={selectedValue === "paystack"} onChange={handleChange} value="paystack" name="radio-buttons" inputProps={{ "aria-label": "paystack" }} />
             </div>
-            <div className="rounded-[2rem]  bg-white px-[4.1rem] py-[4.7rem] flex items-center default-shadow">
-              <img className="mr-[6rem]" src="/flutterwave.svg" />
+            <div className="rounded-[2rem] flex-grow bg-white px-[4.1rem] py-[4.7rem] flex items-center justify-between default-shadow">
+              <img className="mr-[1rem] w-[19.2rem]" src="/flutterwave.svg" />
               <Radio checked={selectedValue === "flutterwave"} onChange={handleChange} value="flutterwave" name="radio-buttons" inputProps={{ "aria-label": "flutterwave" }} />
             </div>
           </div>

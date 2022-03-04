@@ -6,7 +6,7 @@ const VerifyBVN = ({ onInputBVN }) => {
     <PopupLayout action={onInputBVN} actionText={"Continue"}>
       <div className="popup-box">
         <h3>Verify BVN</h3>
-        <p className="mr-[33rem] w-[45.2rem]">Provide your Bank Verification Number to help us create your card</p>
+        <p className=" max-w-[45.2rem]">Provide your Bank Verification Number to help us create your card</p>
       </div>
       <form className="popup-form grid grid-cols-2 gap-x-[2.6rem] ">
         <div className="form-group col-span-2">

@@ -23,6 +23,18 @@
   }
 }
 
+// Utils
+.scroll_hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll_hide {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
 // Shadows
 .yellow-shadow {
   box-shadow: 0px 18px 44px rgba(252, 172, 13, 0.55);
@@ -150,6 +162,10 @@
 
 .MuiSvgIcon-root {
   color: rgba(0, 0, 0, 0.849);
+}
+
+.MuiModal-root .MuiDialog-container .MuiPaper-root {
+  margin: 16px !important;
 }
 
 // Popup Forms

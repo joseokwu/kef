@@ -4,7 +4,7 @@ import PopupLayout from "../Layout/Popup";
 const PopupStatus = ({ status, title, text, link = "/", linkText = "Link text", action }) => {
   return (
     <PopupLayout footer={false}>
-      <div className="grid place-items-center text-center px-[23.2rem] pb-[7.2rem] pt-[10.8rem]">
+      <div className="grid place-items-center text-center px-[1.2rem] sidebar:px-[10.2rem] pb-[3.2rem] pt-[2.8rem]">
         {status == "success" && <img src="/success.svg" className="mb-[7rem]"></img>}
         {status == "failed" && <img src="/failed.svg" className="mb-[7rem]"></img>}
         <h3 className="text-[3.2rem] text-black leading-[3.9rem] font-bold mb-[1.4rem]">{title}</h3>

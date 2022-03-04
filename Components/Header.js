@@ -75,7 +75,7 @@ const Header = ({ title }) => {
           </div>
         </div>
       </div>
-      <div className="flex items-center ml-auto hdr:hidden mb-[4.5rem] overflow-scroll">
+      <div className="flex items-center ml-auto hdr:hidden mb-[4.5rem] overflow-scroll scroll_hide">
         <button
           onClick={() => {
             setActiveModal("VerifyPayment");
