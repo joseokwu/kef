@@ -27,7 +27,24 @@ const SideBar = ({ activePage, setActivePage }) => {
         </ul>
         <button className="btn btn--outlined mt-auto mb-[57px]">Buy Reward Ticket</button>
       </div>
-      <div className="fixed bottom-0 right-0 h-[8rem] bg-black w-screen z-50 flex sidebar:hidden"></div>
+      <div className="fixed bottom-0 right-0 h-[8rem] bg-black w-screen z-50 flex justify-between sidebar:hidden py-[2.23rem] px-[2.8rem]">
+        <ul className="bg-r whitespace-nowrap flex justify-between w-full">
+          {pages.map((page, i) => {
+            return (
+              <li
+                className={`flex items-center mb-[4.2rem] cursor-pointer flex-col ${page == activePage ? "  text-[#FCAC0D]" : "text-white"}`}
+                key={i}
+                onClick={() => {
+                  setActivePage(page);
+                }}
+              >
+                <i className={`icon icon-${icons[i]} text-[1.8rem] ${icons[i] == "Dashboard" ? " text-[1.8rem]" : ""} `}></i>
+                <span className="mt-[1rem]">{page}</span>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </>
   );
 };
