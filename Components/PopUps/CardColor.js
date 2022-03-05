@@ -4,7 +4,7 @@ import PopupLayout from "../Layout/Popup";
 
 const CardColor = ({ onSelectColor }) => {
   const [active, setActive] = useState("#FA5932");
-  const colors = ["#0150F1", "#5F4BB6", "#FA5932", "#5F4BB6"];
+  const colors = ["red", "#0150F1", "yellow", "#5F4BB6"];
   return (
     <div>
       {" "}
@@ -14,19 +14,19 @@ const CardColor = ({ onSelectColor }) => {
           <p className="max-w-[45rem]">Customize you card color by choosing any color from our pallete to suite your taste.</p>
 
           {/* Colors */}
-          <div className="flex items-center gap-[5.8rem]">
+          <div className="grid grid-flow-col items-center gap-[3rem] mobile:gap-[5.8rem] overflow-x-scroll h-[19rem] scroll_hide">
             {/* <span className="w-[12.9rem] h-[12.9rem] rounded-full bg-[#0150F1] text-[#0150F1]  hover:outline-offset-4 hover:outline transition-all outline-current"></span> */}
             {colors.map((color, i) => {
               return (
-                <span
+                <div
                   key={i}
                   onClick={() => {
                     setActive(color);
                   }}
-                  className={`w-[12.9rem] cursor-pointer h-[12.9rem] rounded-full bg-[${color}] text-[${color}] hover:outline-offset-4 hover:outline transition-all outline-current ${
-                    active == color ? "ring-offset-8 outline-offset-8 outline cursor-pointer hover:outline-offset-4 transition-all" : ""
+                  className={`mobile:w-[12.9rem] w-[10.9rem] cursor-pointer h-[10.9rem] mobile:h-[12.9rem] rounded-full bg-[${color}] text-[${color}] hover:outline-offset-4 hover:outline transition-all outline-current ${
+                    active == color ? "ring-offset-8 outline-offset-[4px] outline cursor-pointer hover:outline-offset-4 transition-all" : ""
                   } `}
-                ></span>
+                ></div>
               );
             })}
           </div>

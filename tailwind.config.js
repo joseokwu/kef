@@ -18,6 +18,7 @@ module.exports = {
         "3xl": "1181px",
         hdr: "1164px",
         sidebar: "752px",
+        mobile: "395px",
         // => @media (min-width: 1536px) { ... }
       },
       backgroundImage: {

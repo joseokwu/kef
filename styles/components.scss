@@ -16,6 +16,10 @@
   line-height: 2rem;
   letter-spacing: 0em;
   text-align: left;
+  @media (max-width: 434px) {
+    font-size: 1.4rem;
+    padding: 2rem 2rem;
+  }
 
   &--outlined {
     border: 2px solid #fcac0d;
