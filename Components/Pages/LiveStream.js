@@ -53,14 +53,14 @@ const LiveStream = () => {
         </Dialog>
 
         {!showLiveStream && (
-          <div className="flex flex-wrap">
+          <div className="flex flex-wrap gap-10">
             <div
               onClick={() => {
                 setShow(true);
                 setActiveModal("PaymentOptions");
                 setAccessType("Pay-Per-View");
               }}
-              className="relative bg-[#F0F0F0] rounded-[2rem] max-w-[59.1rem] py-[3.9rem] px-[3.5rem] text-[1rem] flex-1 mr-4 hover:scale-[1.01] hover:shadow-sm cursor-pointer"
+              className="relative bg-[#F0F0F0] rounded-[2rem] max-w-[59.1rem] py-[3.9rem] px-[3.5rem] text-[1rem] min-w-[27rem] flex-1 hover:scale-[1.01] hover:shadow-sm cursor-pointer"
             >
               <h3 className="font-bold text-[2.9rem] leading-[3.5rem] max-w-[21.4rem]">Pay-Per-View to Get Access</h3>
               <p className="text-[1.4rem] text-[#717171] font-normal leading-[2rem] max-w-[18.9rem] mt-[1.6rem] mb-[11rem]">Watch the event as you go by buying the event ticket.</p>
@@ -72,7 +72,7 @@ const LiveStream = () => {
                 setActiveModal("PaymentOptions");
                 setAccessType("Data Bundle");
               }}
-              className="relative bg-[#FFF6E4] rounded-[2rem] max-w-[59.1rem] py-[3.9rem] px-[3.5rem] flex-1 hover:scale-[1.01] hover:shadow-sm cursor-pointer"
+              className="relative bg-[#FFF6E4] min-w-[27rem] rounded-[2rem] max-w-[59.1rem] py-[3.9rem] px-[3.5rem] flex-1 hover:scale-[1.01] hover:shadow-sm cursor-pointer"
             >
               <h3 className="font-bold text-[2.9rem] leading-[3.5rem] max-w-[26.4rem]">Buy Data Bundle to Get Access</h3>
               <p className="text-[1.4rem] text-[#717171] font-normal leading-[2rem] max-w-[18.9rem] mt-[1.6rem] mb-[11rem]">Buy data bundles to get tickets to the event.</p>
@@ -83,7 +83,7 @@ const LiveStream = () => {
 
         {/* LiveStream && Count down */}
         {showLiveStream && (
-          <section className=" bg-[#FFF6E4] w-full h-[36vw] rounded-[2rem] grid place-items-center place-content-center text-center">
+          <section className="px-[2rem] bg-[#FFF6E4] w-full h-[100vw] mobile:h-[64vw] md:h-[36vw] rounded-[2rem] grid place-items-center place-content-center text-center">
             <p className=" font-bold text-[2.9rem] leading-[3.5rem]">Livestream of Easter fiesta</p>
             <LSCountDown time={1000000}></LSCountDown>
           </section>
