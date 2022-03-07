@@ -3,8 +3,11 @@ import Link from "next/link";
 
 const signIn = () => {
   return (
-    <div className=" w-full h-screen bg-flare bg-no-repeat bg-cover overflow-y-auto">
-      <header className="flex items-center px-[12.5rem] py-[5.6rem]">
+    <div className=" w-full h-screen bg-flare bg-no-repeat bg-cover overflow-y-auto relative bg-black ">
+      {/* <video autoPlay muted loop id="myVideo" className="fixed top-0 left-0 h-screen w-full object-cover z-0 opacity-40">
+        <source src="/fire.mp4" type="video/mp4" />
+      </video> */}
+      <header className="flex items-center px-[12.5rem] py-[5.6rem] z-50 relative">
         <img className="w-[8.9rem]" src="/kef-logo.svg"></img>
         <button className="btn ml-auto">Buy Event Ticket</button>
         <button className="btn btn--outlined text-white ml-[2.4rem]">Verify Ticket</button>

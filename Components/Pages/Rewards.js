@@ -45,7 +45,7 @@ const Rewards = () => {
 
         {/*  */}
         <section className="flex-1">
-          <LatestWinnerCard />
+          {/* <LatestWinnerCard /> */}
           <PoweredBy />
         </section>
       </div>

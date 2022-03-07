@@ -106,7 +106,7 @@ const RaffleTickets = () => {
               <h3 className="font-bold text-black text-[2.1rem] leading-[2.1rem]">Ticket Numbers</h3>
             </div>
             {/* Table Body */}
-            <div className="body px-[2.2rem] sidebar:px-[4.2rem] py-[3rem] ">
+            <div className="body px-[2.2rem] sidebar:px-[4.2rem] py-[3rem]">
               <div className="row flex justify-between py-[2.2rem] px-[2.5rem] text-[#706C6C] bg-[rgba(255,246,228,0.31)] rounded-[2rem] leading-[2.1rem] text-[1.8rem] mb-[.8rem]">
                 <span className="font-normal">Ticket 1</span>
                 <span className="font-semibold">#1223345ABG</span>

@@ -24,6 +24,7 @@ module.exports = {
       backgroundImage: {
         sidebar: "url('/sidebar-image.jpg')",
         flare: "url(/flare.jpg)",
+        fire: "url(/fire.mp4)",
         party: "url('/bg-party.jpg')",
         "footer-texture": "url('/img/footer-texture.png')",
       },

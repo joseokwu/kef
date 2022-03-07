@@ -4,14 +4,14 @@ import PopupLayout from "../Layout/Popup";
 
 const CardColor = ({ onSelectColor }) => {
   const [active, setActive] = useState("#FA5932");
-  const colors = ["red", "#0150F1", "yellow", "#5F4BB6"];
+  const [colors, setColors] = useState(["red", "#0150F1", "yellow", "#5F4BB6"]);
   return (
     <div>
       {" "}
       <PopupLayout action={onSelectColor} actionText={"Continue"}>
         <div className="popup-box">
           <h3>Customize Card Color</h3>
-          <p className="max-w-[45rem] !mb-[2rem]">Customize you card color by choosing any color from our pallete to suite your taste.</p>
+          <p className="max-w-[45rem] mobile:!mb-[2rem]">Customize you card color by choosing any color from our pallete to suite your taste.</p>
 
           {/* Colors */}
           <div className="grid grid-flow-col mb-[8rem] items-center gap-[3rem] mobile:gap-[5.8rem] overflow-x-scroll h-[10rem] mobile:h-[19rem] scroll_hide">
