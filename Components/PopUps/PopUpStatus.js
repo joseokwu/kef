@@ -1,5 +1,6 @@
 import React from "react";
 import PopupLayout from "../Layout/Popup";
+import Link from "next/link";
 
 const PopupStatus = ({ status, title, text, link = "/", linkText = "Link text", action }) => {
   return (
@@ -15,9 +16,11 @@ const PopupStatus = ({ status, title, text, link = "/", linkText = "Link text", 
             Your ticket numbers has been used. Please check the number and try again or contact merchant.
           </p>
         )}
-        <a onClick={action} className="text-[1.7rem] font-bold text-[#FCAC0D] underline cursor-pointer ">
-          {linkText}
-        </a>
+        <Link href="/">
+          <a onClick={action} className="text-[1.7rem] font-bold text-[#FCAC0D] underline cursor-pointer ">
+            {linkText}
+          </a>
+        </Link>
       </div>
     </PopupLayout>
   );

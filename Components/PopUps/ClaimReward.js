@@ -12,13 +12,7 @@ const ClaimReward = ({ onClaimReward }) => {
             <span className="mr-[14.5rem] text-[2.8rem] font-medium text-[#747474] z-10">
               You won <span className="font-bold">N100,000!!</span>
             </span>
-            <img className="absolute bottom-0 right-10" src="/3d-trophy.svg" />
-          </div>
-          <div className="px-[5.9rem] h-[12.1rem] rounded-[2rem] flex items-center justify-between default-shadow">
-            <span className="mr-[14.5rem] text-[2.8rem] font-medium text-[#747474]">
-              You won <span className="font-bold">N100,000!!</span>
-            </span>
-            <img src="/3d-trophy.svg" />
+            <img className="absolute bottom-0 right-10 w-[12rem] sidebar:w-[14.8rem]" src="/3d-trophy.svg" />
           </div>
         </div>
       </PopupLayout>

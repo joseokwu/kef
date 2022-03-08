@@ -53,7 +53,7 @@ const LiveStream = () => {
         </Dialog>
 
         {!showLiveStream && (
-          <div className="flex flex-wrap gap-10">
+          <div className="flex flex-wrap gap-16">
             <div
               onClick={() => {
                 setShow(true);

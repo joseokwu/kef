@@ -26,7 +26,7 @@ const Rewards = () => {
           {/* You Won */}
           <div className="bg-[#FFF6E4] rounded-[2rem] px-[3rem] mobile:px-[5.1rem] py-[3rem] mobile:py-[3.9rem] min-w-[33rem] relative mb-[3.2rem]">
             <h3 className="font-bold text-[3.2rem] leading-[3.9rem] text-[#3C3E42]">Your Ticket Won</h3>
-            <p className="font-normal text-[1.4rem] leading-[2rem] text-[#717171] w-[25.9rem] mt-[1rem]">Congratulations! Your ticket won the raffle draw for this week.</p>
+            <p className="font-normal text-[1.4rem] leading-[2rem] text-[#717171] w-[25.9rem] mt-[1rem] z-20">Congratulations! Your ticket won the raffle draw for this week.</p>
             <button
               onClick={() => {
                 setShow(true);
@@ -36,7 +36,7 @@ const Rewards = () => {
             >
               Claim Reward
             </button>
-            <img src="/3d-trophy.svg" className="bottom-0 right-0 absolute h-[17rem] mobile:h-[19.8rem]"></img>
+            <img src="/3d-trophy.svg" className="bottom-0 right-0 absolute h-[17rem] sidebar:h-[19.8rem]"></img>
           </div>
           {/* Top Winners */}
 

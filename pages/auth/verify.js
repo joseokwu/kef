@@ -8,7 +8,7 @@ const Verify = () => {
       <header className="flex items-center px-[12.5rem] py-[5.6rem]">
         <img className="w-[8.9rem]" src="/kef-logo.svg"></img>
         <button className="btn ml-auto">Buy Event Ticket</button>
-        <button className="btn btn--outlined text-white ml-[2.4rem]">Verify Ticket</button>
+        <button className="btn btn--outlined text-white ml-[2.4rem]">Sign Up</button>
       </header>
       <main>
         <div className="auth-container !mb-[10rem]">
@@ -20,11 +20,11 @@ const Verify = () => {
               <div className="grid grid-cols-2 gap-5 gap-y-[2.4rem]">
                 <div className="form-group col-span-2">
                   <label>Reference number</label>
-                  <input placeholder="Ex. Jonathan" />
+                  <input placeholder="Ex. 1234567890" />
                 </div>
                 <div className="form-group col-span-2">
                   <label>Phone number</label>
-                  <input placeholder="Ex. Jonathan" />
+                  <input placeholder="Ex. 1234567890" />
                 </div>
                 <button
                   onClick={(e) => {

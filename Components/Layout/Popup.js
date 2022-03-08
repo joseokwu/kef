@@ -2,7 +2,7 @@ import React from "react";
 
 const Popup = ({ children, actionText, action, footer = true }) => {
   return (
-    <div className="bg-white rounded-[2rem]">
+    <div className="bg-white rounded-[2rem] scroll_hide">
       {/* Body */}
       <div className="border-b py-[4rem] sidebar:py-[5.5rem] pb-[3.3rem] px-[3.5rem] sidebar:px-[5.4rem]">{children}</div>
 

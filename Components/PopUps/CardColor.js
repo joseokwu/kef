@@ -4,7 +4,7 @@ import PopupLayout from "../Layout/Popup";
 
 const CardColor = ({ onSelectColor }) => {
   const [active, setActive] = useState("#FA5932");
-  const [colors, setColors] = useState(["red", "#0150F1", "yellow", "#5F4BB6"]);
+  const [colors, setColors] = useState(["red", "yellow", "#0150F1", "#5F4BB6"]);
   return (
     <div>
       {" "}

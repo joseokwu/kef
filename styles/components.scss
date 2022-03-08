@@ -182,6 +182,16 @@
 
 .MuiModal-root .MuiDialog-container .MuiPaper-root {
   margin: 16px !important;
+  max-height: fit-content;
+
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 // Popup Forms

@@ -32,7 +32,9 @@ const Header = ({ title }) => {
   return (
     <>
       <Dialog open={show} onClose={toggle}>
-        {activeModal == "Status" && <PopupStatus title={"Purchase Order Success"} text={"Your purchase order for 20 tickets was successful"} status={"success"}></PopupStatus>}
+        {activeModal == "Status" && (
+          <PopupStatus action={toggle} title={"Purchase Order Success"} link="/" linkText="Go to dashboard" text={"Your purchase order for 20 tickets was successful"} status={"success"}></PopupStatus>
+        )}
         {/* <CardAddress></CardAddress> */}
         {/* <ActivateCard></ActivateCard> */}
         {/* <ClaimReward></ClaimReward> */}

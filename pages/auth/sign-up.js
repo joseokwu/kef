@@ -27,15 +27,15 @@ const signUp = () => {
               </div>
               <div className="form-group">
                 <label>Last Name</label>
-                <input placeholder="Ex. Jonathan" />
+                <input placeholder="Ex. Fredwell" />
               </div>
               <div className="form-group col-span-2">
                 <label>Email</label>
-                <input placeholder="Ex. Jonathan" />
+                <input placeholder="Enter email" />
               </div>
               <div className="form-group col-span-2">
                 <label>Phone Number</label>
-                <input placeholder="Ex. Jonathan" />
+                <input placeholder="Ex. 1234567890" />
               </div>
               <button className="btn col-span-2 mt-[6.8rem]">Sign Up</button>
             </div>
