@@ -27,6 +27,18 @@
   }
 }
 
+.kef-link {
+  color: #fcac0d;
+  font-family: Montserrat;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.5rem;
+  letter-spacing: 0em;
+  text-align: left;
+  text-decoration: underline;
+}
+
 // Utils
 .scroll_hide::-webkit-scrollbar {
   display: none;
@@ -268,5 +280,31 @@
     margin-bottom: 2.4rem;
     display: flex;
     flex-direction: column;
+  }
+}
+
+// Profile Forms
+.profile-form {
+  label {
+    color: #575757;
+    font-family: Montserrat;
+    font-size: 1.8rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 2.2rem;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 0.8rem;
+  }
+
+  span {
+    color: #969696;
+    font-family: Montserrat;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.2rem;
+    letter-spacing: 0em;
+    text-align: left;
   }
 }

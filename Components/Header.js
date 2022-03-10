@@ -8,7 +8,7 @@ import CardAddress from "./PopUps/CardAddress";
 import ActivateCard from "./PopUps/ActivateCard";
 import ClaimReward from "./PopUps/ClaimReward";
 
-const Header = ({ title }) => {
+const Header = ({ title, setActivePage }) => {
   // const VerifyPaymentProcess = ["VerifyPayment", "Status"];
   const [activeModal, setActiveModal] = useState("");
 
@@ -72,7 +72,13 @@ const Header = ({ title }) => {
               <i className="icon icon-notification text-[1.7rem]"></i>
             </div>
             <div className="b border-l">
-              <img className="h-[4.2rem] w-[4.2rem] object-cover rounded-full ml-[16px] yellow-shadow" src="/user-img.jpg" />
+              <img
+                onClick={() => {
+                  setActivePage("Profile");
+                }}
+                className="h-[4.2rem] cursor-pointer w-[4.2rem] object-cover rounded-full ml-[16px] yellow-shadow"
+                src="/user-img.jpg"
+              />
             </div>
           </div>
         </div>
