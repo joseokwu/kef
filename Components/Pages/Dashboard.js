@@ -21,17 +21,17 @@ const Dashboard = () => {
 
       <div className="flex flex-wrap gap-10  mb-[3.2rem]">
         {/* <Stats title={"15 Raffle Tickets"} text={"Total Number of Raffle Tickets"} color="#F0F0F0" img={"/3d-ticket.png"} /> */}
-        <div className={`px-[2.8rem] py-[3.6rem] rounded-[2rem] bg-[#F0F0F0] relative  min-w-[300px] flex-1`}>
+        <div className={`px-[2.8rem] py-[3.6rem] rounded-[2rem] bg-[#F0F0F0] relative  min-w-[30rem] flex-1`}>
           <h3 className="h3 mb-[.4rem] mr-[11.0rem]">0 Raffle Tickets</h3>
           <p className="text-[1.2rem] text-[#717171] leading-[1.46rem] font-semibold">Total Number of Raffle Tickets</p>
           <img className="absolute right-[2.6rem] bottom-0 w-[93px]" src={"/3d-ticket.svg"}></img>
         </div>
-        <div className={`px-[2.8rem] py-[3.6rem] rounded-[2rem] bg-[#FFF7E7] relative  min-w-[300px] overflow-hidden flex-1`}>
+        <div className={`px-[2.8rem] py-[3.6rem] rounded-[2rem] bg-[#FFF7E7] relative  min-w-[30rem] overflow-hidden flex-1`}>
           <h3 className="h3 mb-[.4rem] mr-[11.0rem] text-[#FCAC0D]">0 Rewards</h3>
           <p className="text-[1.2rem] text-[#717171] leading-[1.46rem] font-semibold">Total Number of Rewards</p>
           <img className="absolute right-[2.6rem] bottom-0 w-[15.2rem] translate-x-6 " src={"/3d-trophy.svg"}></img>
         </div>
-        <div className={`px-[2.8rem] py-[3.6rem] rounded-[2rem] bg-[#F0F0F0] relative  min-w-[300px] overflow-hidden flex-1`}>
+        <div className={`px-[2.8rem] py-[3.6rem] rounded-[2rem] bg-[#F0F0F0] relative  min-w-[30rem] overflow-hidden flex-1`}>
           <h3 className="h3 mb-[.4rem] mr-[11.0rem]">0 Event Tickets</h3>
           <p className="text-[1.2rem] text-[#717171] leading-[1.46rem] font-semibold">Total Number of Event Tickets</p>
           <img className="absolute right-[2.6rem] bottom-0 w-[15.2rem] translate-x-6" src={"/3d-ticket-1.png"}></img>

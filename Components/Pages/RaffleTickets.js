@@ -13,7 +13,7 @@ const RaffleTickets = () => {
         <section className="min-w-[30.4rem] flex-grow">
           <div className="flex gap-10 flex-wrap mb-[3.2rem]">
             {/* Raffle Tickets */}
-            <div className="flex-1 py-[3.1rem] px-[3.6rem] bg-[#F0F0F0] rounded-[20px] min-w-[34.5rem] relative max-h-[29.2rem]">
+            <div className="flex-1 py-[3.1rem] px-[3.6rem] bg-[#F0F0F0] rounded-[20px] min-w-[30.5rem] relative max-h-[29.2rem]">
               <p className="mb-[.8rem] font-semibold text-[1.2rem] leading-[1.43rem] text-[#717171] whitespace-nowrap">Total Number of Raffle Tickets</p>
               <h2 className="f font-bold text-[2.8rem] leading-[3.4rem] mr-[17.5rem] w-[12.6rem]">15 Raffle Tickets</h2>
               {/* <button className="btn btn--outlined !border-[black] mt-[5.6rem] mr-[17.5rem]">View Tickets</button> */}
@@ -50,12 +50,12 @@ const RaffleTickets = () => {
             </div>
           </div>
           <div className="flex gap-10 flex-wrap">
-            <div className={`flex-1 px-[2.8rem] py-[3.6rem] rounded-[2rem] bg-white relative min-w-[33.5rem] border-[#CECCCC] border`}>
+            <div className={`flex-1 px-[2.8rem] py-[3.6rem] rounded-[2rem] bg-white relative min-w-[30.5rem] border-[#CECCCC] border`}>
               <h3 className="h3 mb-[.4rem] mr-[11.0rem]">5 Used</h3>
               <p className="text-[1.2rem] text-[#717171] leading-[1.46rem] font-semibold">Total Number of Tickets Used</p>
               <img className="absolute right-[2.6rem] bottom-0 w-[93px]" src="/3d-tickets-used.svg"></img>
             </div>
-            <div className={`flex-1 px-[2.8rem] py-[3.6rem] rounded-[2rem] bg-white relative min-w-[33.5rem] border-[#CECCCC] border`}>
+            <div className={`flex-1 px-[2.8rem] py-[3.6rem] rounded-[2rem] bg-white relative min-w-[30.5rem] border-[#CECCCC] border`}>
               <h3 className="h3 mb-[.4rem] mr-[11.0rem] !text-[#FCAC0D]">2 Tickets Won</h3>
               <p className="text-[1.2rem] text-[#717171] leading-[1.46rem] font-semibold">Total Number of Tickets Used</p>
               <img className="absolute right-[.8rem] bottom-0 w-[93px] w-[12.9rem]" src="/3d-trophy.svg"></img>
@@ -85,11 +85,11 @@ const RaffleTickets = () => {
             </div>
             {/* Table Body */}
             <div className="body px-[2.2rem] sidebar:px-[4.2rem] py-[3rem]">
-              <div className="row flex justify-between py-[2.2rem] px-[2.5rem] text-[#706C6C] bg-[rgba(255,246,228,0.31)] rounded-[2rem] leading-[2.1rem] text-[1.8rem] mb-[.8rem]">
+              <div className="row flex justify-between py-[2.2rem] px-[2.5rem] text-[#706C6C] bg-[rgba(255,246,228,0.31)] rounded-[2rem] leading-[2.1rem] text-[1.4rem] mobile:text-[1.8rem] mb-[.8rem]">
                 <span className="font-normal">Category 1</span>
                 <span className="font-semibold">#500 - #10,000</span>
               </div>
-              <div className="row flex justify-between py-[2.2rem] px-[2.5rem] text-[#706C6C] bg-[rgba(240,240,240,0.31)] rounded-[2rem] leading-[2.1rem] text-[1.8rem]">
+              <div className="row flex justify-between py-[2.2rem] px-[2.5rem] text-[#706C6C] bg-[rgba(240,240,240,0.31)] rounded-[2rem] leading-[2.1rem] text-[1.4rem] mobile:text-[1.8rem]">
                 <span className="font-normal">Category 1</span>
                 <span className="font-semibold">#500 - #10,000</span>
               </div>
@@ -107,11 +107,11 @@ const RaffleTickets = () => {
             </div>
             {/* Table Body */}
             <div className="body px-[2.2rem] sidebar:px-[4.2rem] py-[3rem]">
-              <div className="row flex justify-between py-[2.2rem] px-[2.5rem] text-[#706C6C] bg-[rgba(255,246,228,0.31)] rounded-[2rem] leading-[2.1rem] text-[1.8rem] mb-[.8rem]">
+              <div className="row flex justify-between py-[2.2rem] px-[2.5rem] text-[#706C6C] bg-[rgba(255,246,228,0.31)] rounded-[2rem] leading-[2.1rem] text-[1.4rem] mobile:text-[1.8rem] mb-[.8rem]">
                 <span className="font-normal">Ticket 1</span>
                 <span className="font-semibold">#1223345ABG</span>
               </div>
-              <div className="row flex justify-between py-[2.2rem] px-[2.5rem] text-[#706C6C] bg-[rgba(240,240,240,0.31)] rounded-[2rem] leading-[2.1rem] text-[1.8rem]">
+              <div className="row flex justify-between py-[2.2rem] px-[2.5rem] text-[#706C6C] bg-[rgba(240,240,240,0.31)] rounded-[2rem] leading-[2.1rem] text-[1.4rem] mobile:text-[1.8rem]">
                 <span className="font-normal">Ticket 2</span>
                 <span className="font-semibold">#1223345ABG</span>
               </div>

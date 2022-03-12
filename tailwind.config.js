@@ -19,6 +19,7 @@ module.exports = {
         hdr: "1164px",
         sidebar: "752px",
         mobile: "395px",
+        table: "419px",
         // => @media (min-width: 1536px) { ... }
       },
       backgroundImage: {

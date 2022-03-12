@@ -10,8 +10,8 @@ const Progress = () => {
       <div className="flex items-center">
         <div className="w-[87px] h-[87px]  mr-[2.4rem]">
           <CircularProgressbar
-            value={77}
-            text={77}
+            value={0}
+            text={"0"}
             styles={buildStyles({
               pathColor: "#FFE4AE",
               strokeLinecap: "butt",
@@ -19,7 +19,8 @@ const Progress = () => {
               textColor: "Black",
               pathTransitionDuration: 0.5,
               textSize: "26px",
-              trailColor: "#d6d6d6",
+              // trailColor: "#d6d6d6",
+              trailColor: "black",
             })}
           />
         </div>

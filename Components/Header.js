@@ -7,6 +7,7 @@ import PopupStatus from "./PopUps/PopUpStatus";
 import CardAddress from "./PopUps/CardAddress";
 import ActivateCard from "./PopUps/ActivateCard";
 import ClaimReward from "./PopUps/ClaimReward";
+import { Tooltip } from "@mui/material";
 
 const Header = ({ title, setActivePage }) => {
   // const VerifyPaymentProcess = ["VerifyPayment", "Status"];
@@ -54,7 +55,7 @@ const Header = ({ title, setActivePage }) => {
               }}
               className="btn ml-auto !bg-[#F0F0F0]"
             >
-              Verify Payment
+              Self Checkout
             </button>
             <button
               onClick={() => {
@@ -68,17 +69,19 @@ const Header = ({ title, setActivePage }) => {
           </div>
           {/* User Profile */}
           <div className="flex items-center ml-auto">
-            <div className=" w-[42px] h-[42px] rounded-full grid place-items-center bg-[#FFF7E7] ml-[59px] mr-[16px]">
+            <div className=" w-[42px] h-[42px] rounded-full grid place-items-center bg-[#FFF7E7] ml-auto mobile:ml-[59px] mr-[16px]">
               <i className="icon icon-notification text-[1.7rem]"></i>
             </div>
             <div className="b border-l">
-              <img
-                onClick={() => {
-                  setActivePage("Profile");
-                }}
-                className="h-[4.2rem] cursor-pointer w-[4.2rem] object-cover rounded-full ml-[16px] yellow-shadow"
-                src="/user-img.jpg"
-              />
+              <Tooltip title="Profile" leaveDelay={200}>
+                <img
+                  onClick={() => {
+                    setActivePage("Profile");
+                  }}
+                  className="h-[4.2rem] cursor-pointer w-[4.2rem] object-cover rounded-full ml-[16px] yellow-shadow"
+                  src="/user-img.jpg"
+                />
+              </Tooltip>
             </div>
           </div>
         </div>

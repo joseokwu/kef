@@ -28,10 +28,10 @@ const profile = () => {
       <div className="mt-[4.8rem] ">
         {formEls.map((el, i) => {
           return (
-            <div key={i} className="flex justify-between items-center mb-[3.2rem]">
-              <p className="flex flex-col">
+            <div key={i} className="flex justify-between items-center mb-[3.2rem] flex-wrap">
+              <p className="flex flex-col min-w-[22.8rem] mr-[2rem]">
                 <label>{el.label}</label>
-                <span>{el.span}</span>
+                <span className="mb-[1.3rem]">{el.span}</span>
               </p>
               <input
                 className=" max-w-[36.4rem] w-full placeholder:text-[#D5D6D8] px-[3.2rem] text-[1.6rem] font-medium py-[1.7rem] rounded-[1rem] outline outline-[#C4C4C4] outline-1"
