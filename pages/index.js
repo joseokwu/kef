@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Head from "next/head";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import SideBar from "../Components/SideBar";
@@ -19,12 +20,29 @@ import Snackbar from "@mui/material/Snackbar";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getMessage, getStatus, toggleSnackbar } from "../store/snackbar";
+import { login } from "../store/user";
+import { getPage } from "../store/pages";
+import { setActivePage as setGlobalPage } from "../store/pages";
+import UseIsLoggedIn from "../hooks/UseIsLoggedIn";
 
 export default function Home() {
-  const [activePage, setActivePage] = useState("Dashboard");
+  // const [activePage, setActivePage] = useState("Dashboard");
+  const activePage = useSelector(getPage);
+  const isLoggedIn = UseIsLoggedIn();
   const open = useSelector(getStatus);
   const snbMsg = useSelector(getMessage);
   const dispatch = useDispatch();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.push("/auth/sign-up");
+    }
+  }, []);
+
+  const setActivePage = (page) => {
+    dispatch(setGlobalPage(page));
+  };
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {

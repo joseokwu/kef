@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import AuthLayout from "../../Components/Layout/AuthLayout";
+import GotMail from "../../Components/Auth/GotMail";
 
-const signUp = () => {
+const SignUp = () => {
+  const [gotMail, setGotMail] = useState(false);
   return (
-    <div className=" w-full h-screen bg-flare bg-no-repeat bg-cover overflow-y-auto">
-      <header className="flex items-center px-[12.5rem] py-[5.6rem]">
-        <img className="w-[8.9rem]" src="/kef-logo.svg"></img>
-        <button className="btn ml-auto">Buy Event Ticket</button>
-        <button className="btn btn--outlined text-white ml-[2.4rem]">Verify Ticket</button>
-      </header>
-      <main>
+    <>
+      {!gotMail && (
         <div className="auth-container !mb-[10rem]">
-          <form className="auth-form">
+          <form
+            className="auth-form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              setGotMail(true);
+            }}
+          >
             <h3>Sign up</h3>
             <p className="mb-[7.4rem]">
               Hey there! Not yet a member fill the form below to register. Already a member?{" "}
@@ -41,9 +45,12 @@ const signUp = () => {
             </div>
           </form>
         </div>
-      </main>
-    </div>
+      )}
+      {gotMail && <GotMail link={"/auth/verify-otp"}></GotMail>}
+    </>
   );
 };
 
-export default signUp;
+SignUp.Layout = AuthLayout;
+
+export default SignUp;

@@ -10,7 +10,13 @@ function MyApp({ Component, pageProps }) {
   return (
     <StyledEngineProvider injectFirst>
       <AppProvider>
-        <Component {...pageProps} />
+        {Component.Layout ? (
+          <Component.Layout>
+            <Component {...pageProps} />
+          </Component.Layout>
+        ) : (
+          <Component {...pageProps} />
+        )}
       </AppProvider>
     </StyledEngineProvider>
   );
