@@ -10,10 +10,12 @@ import { getMessage, getStatus, toggleSnackbar } from "../../store/snackbar";
 import { login } from "../../store/user";
 import { getPage } from "../../store/pages";
 import { setActivePage as setGlobalPage } from "../../store/pages";
+// import useIsLoggedIn from "../../hooks/useIsLoggedIn";
 import useIsLoggedIn from "../../hooks/useIsLoggedIn";
 
 const BaseLayout = ({ children }) => {
   const activePage = useSelector(getPage);
+
   const isLoggedIn = useIsLoggedIn();
   const open = useSelector(getStatus);
   const snbMsg = useSelector(getMessage);
