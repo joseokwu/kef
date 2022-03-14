@@ -10,7 +10,7 @@ const OTP = ({ action }) => {
   const router = useRouter();
   const onSuccess = () => {
     dispatch(setLoginStatus(true));
-    router.replace("/");
+    router.replace("/dashboard");
   };
   return (
     <>

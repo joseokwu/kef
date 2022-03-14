@@ -23,6 +23,7 @@ module.exports = {
         // => @media (min-width: 1536px) { ... }
       },
       backgroundImage: {
+        homepage: "url('/bg-home-min.png')",
         sidebar: "url('/sidebar-image.jpg')",
         flare: "url(/flare.jpg)",
         fire: "url(/fire.mp4)",

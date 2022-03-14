@@ -8,6 +8,8 @@ import CardAddress from "./PopUps/CardAddress";
 import ActivateCard from "./PopUps/ActivateCard";
 import ClaimReward from "./PopUps/ClaimReward";
 import { Tooltip } from "@mui/material";
+import SelfCheckOut from "./PopUps/SelfCheckOut";
+import ReviewCheckOut from "./PopUps/ReviewCheckOut";
 
 const Header = ({ title, setActivePage }) => {
   // const VerifyPaymentProcess = ["VerifyPayment", "Status"];
@@ -20,6 +22,13 @@ const Header = ({ title, setActivePage }) => {
   }
 
   function onVerify() {
+    setActiveModal("Status");
+  }
+  function onCheckOut() {
+    setActiveModal("ReviewCheckOut");
+  }
+
+  function onReview() {
     setActiveModal("Status");
   }
   function onSelected() {
@@ -42,6 +51,9 @@ const Header = ({ title, setActivePage }) => {
         {activeModal == "PaymentOptions" && <PaymentOptions onSelectPayOption={onSelectPayOption}></PaymentOptions>}
         {activeModal == "AmountOfTickets" && <AmountOfTickets onSelected={onSelected}></AmountOfTickets>}
         {activeModal == "VerifyPayment" && <VerifyPayment onVerify={onVerify}></VerifyPayment>}
+        {activeModal == "SelfCheckOut" && <SelfCheckOut onCheckOut={onCheckOut}></SelfCheckOut>}
+        {activeModal == "ReviewCheckOut" && <ReviewCheckOut onReview={onReview}></ReviewCheckOut>}
+        {/* {activeModal == "VerifyPayment" && <VerifyPayment onVerify={onVerify}></VerifyPayment>} */}
       </Dialog>
       <div className="flex items-center mb-[4.5rem] hdr:mb-[8.4rem] w-full">
         <h1 className="h1">{title}</h1>
@@ -50,7 +62,7 @@ const Header = ({ title, setActivePage }) => {
           <div className="flex-none hidden items-center ml-auto hdr:flex ">
             <button
               onClick={() => {
-                setActiveModal("VerifyPayment");
+                setActiveModal("SelfCheckOut");
                 setShow(true);
               }}
               className="btn ml-auto !bg-[#F0F0F0]"
