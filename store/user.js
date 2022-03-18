@@ -4,6 +4,7 @@ const initialState = {
   user: null,
   error: { status: false, message: "" },
   loggedIn: false,
+  processsing: false,
 };
 
 // Reducer
@@ -17,6 +18,8 @@ export const AuthReducer = (state = initialState, action) => {
       return { ...state, user: null };
     case "setLoginStatus":
       return { ...state, loggedIn: action?.status };
+    case "setUser":
+      return { ...state, user: action?.user };
     default:
       return { ...state };
   }
@@ -49,9 +52,24 @@ export const login = ({ username, password }) => {
   };
 };
 
+export const setUser = (user) => {
+  return {
+    type: "setUser",
+    user,
+  };
+};
+
 export const setLoginStatus = (status) => {
   return {
     type: "setLoginStatus",
     status,
   };
 };
+
+export const signUp = (user) => {
+  return async (dispatch, state) => {};
+};
+
+export const verifyOtp = () => {};
+
+export const createAccount = () => {};

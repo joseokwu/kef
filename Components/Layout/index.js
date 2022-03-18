@@ -12,18 +12,21 @@ import { getPage } from "../../store/pages";
 import { setActivePage as setGlobalPage } from "../../store/pages";
 // import useIsLoggedIn from "../../hooks/useIsLoggedIn";
 import useIsLoggedIn from "../../hooks/useIsLoggedIn";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const BaseLayout = ({ children }) => {
   const activePage = useSelector(getPage);
+  const { isLoggedIn } = useLocalStorage();
 
-  const isLoggedIn = useIsLoggedIn();
+  // const isLoggedIn = useIsLoggedIn();
   const open = useSelector(getStatus);
   const snbMsg = useSelector(getMessage);
   const dispatch = useDispatch();
   const router = useRouter();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    console.log("is logged in useEffect", isLoggedIn());
+    if (!isLoggedIn()) {
       router.push("/auth/sign-up");
     }
   }, []);

@@ -84,10 +84,11 @@
   }
   input {
     background: #f8f9fd;
-    border: 1px solid #bebdbd;
+    border: 2px solid transparent;
     box-sizing: border-box;
     border-radius: 1rem;
     padding: 2rem 4.5rem;
+    transition: all 0.2s;
 
     @media (max-width: 400px) {
       padding: 2rem 2rem;
@@ -113,6 +114,7 @@
 
     &:focus {
       outline: none;
+      border: 2px solid #fcac0d;
     }
   }
 }
@@ -167,7 +169,6 @@
 
 .MuiDialog-container .MuiPaper-root {
   max-width: max-content;
-  columns: yellow;
 }
 
 // Radio
@@ -189,7 +190,7 @@
 }
 
 .MuiSvgIcon-root {
-  color: rgba(0, 0, 0, 0.849);
+  // color: rgba(0, 0, 0, 0.849);
 }
 
 .MuiModal-root .MuiDialog-container .MuiPaper-root {

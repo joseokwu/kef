@@ -24,11 +24,11 @@ const SideBar = ({ activePage, setActivePage }) => {
                 ></div>
                 <i
                   className={`icon icon-${icons[i]} mr-[1.7rem] text-[1.8rem] ${icons[i] == "Dashboard" ? " text-[2.8rem]" : ""}  ${page == activePage ? "  text-[#FCAC0D]" : ""}
-                  ${page == "Dashboard" && activePage == "Profile" ? " text-[#FCAC0D]" : ""}`}
+                  ${page == "Dashboard" && activePage == "Profile" ? " !text-[#FCAC0D]" : ""}`}
                 ></i>
                 <span
-                  className={`transition-all duration-200 font-normal text-[1.6rem] text-white ${page == activePage ? " text-[#FCAC0D] !font-bold text-[2rem]" : ""}  
-                  ${page == "Dashboard" && activePage == "Profile" ? " text-[#FCAC0D] !font-bold text-[2rem]" : ""}`}
+                  className={`transition-all duration-200 font-normal text-[1.6rem]  ${page == activePage ? " text-[#FCAC0D] !font-bold text-[2rem]" : "text-white"}  
+                  ${page == "Dashboard" && activePage == "Profile" ? " !text-[#FCAC0D] !font-bold text-[2rem]" : ""}`}
                 >
                   {page}
                 </span>

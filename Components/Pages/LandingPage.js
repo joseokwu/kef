@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import useLoading from "../../hooks/useLoading";
 
 const Container = ({ children }) => {
   return <div className="max-w-[142rem] mx-auto w-full px-[4rem] sidebar:px-[10rem]">{children}</div>;
@@ -7,6 +8,14 @@ const Container = ({ children }) => {
 
 const LandingPage = () => {
   const [show, setShow] = useState(false);
+  const { toggleLoad } = useLoading();
+
+  const onSignUp = () => {
+    toggleLoad();
+    setTimeout(() => {
+      toggleLoad();
+    }, 1000);
+  };
   return (
     <div className=" bg-homepage flex flex-col h-screen justify-between">
       <Container>
@@ -25,7 +34,14 @@ const LandingPage = () => {
             <Link href={"/auth/sign-up"}>
               <button className="btn btn--outlined text-white !px-[6rem]">Sign Up</button>
             </Link>
-            <button className="btn btn--outlined text-white ml-[2.4rem]">Self Checkout</button>
+            <button
+              onClick={() => {
+                onSignUp();
+              }}
+              className="btn btn--outlined text-white ml-[2.4rem]"
+            >
+              Self Checkout
+            </button>
           </div>
 
           {/* Burger Menu */}

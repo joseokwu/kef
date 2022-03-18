@@ -5,8 +5,6 @@ import { getPage } from "../store/pages";
 import LandingPage from "../Components/Pages/LandingPage";
 
 export default function Home() {
-  const activePage = useSelector(getPage);
-
   return (
     <>
       <LandingPage />

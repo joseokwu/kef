@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Progress from "../Cards/Progress";
 import Activate from "../Cards/Activate";
 import Stats from "../Cards/Stats";
@@ -6,8 +6,18 @@ import PoweredBy from "../Cards/PoweredBy";
 import LatestWinnerCard from "../Cards/LatestWinnerCard";
 import TableV1 from "../Tables/TableV1";
 import Container from "../Layout/Container";
+import { useSelector } from "react-redux";
+import { getUser } from "../../store/user";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const Dashboard = () => {
+  const user = useSelector(getUser);
+  const { getLocalStorage, isLoggedIn } = useLocalStorage();
+  useEffect(() => {
+    console.log("user is ...", user);
+    console.log("token is ", getLocalStorage("token"));
+    isLoggedIn();
+  }, []);
   return (
     <Container>
       {/* First Section */}
