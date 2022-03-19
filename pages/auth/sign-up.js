@@ -4,9 +4,11 @@ import AuthLayout from "../../Components/Layout/AuthLayout";
 import GotMail from "../../Components/Auth/GotMail";
 import { baseInstanceAPI } from "../../axios";
 import useLoading from "../../hooks/useLoading";
+import useShowAlert from "../../hooks/useShowAlert";
 
 const SignUp = () => {
   const { isLoading, toggleLoad } = useLoading();
+  const toggleAlertBar = useShowAlert();
   const [gotMail, setGotMail] = useState(false);
   const [error, setError] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -24,12 +26,16 @@ const SignUp = () => {
     try {
       console.log("submited user is", JSON.stringify(user));
       const response = await baseInstanceAPI.post("account/initiate", JSON.stringify(user));
+      toggleAlertBar("Email verification email sent.", "success", 5000);
       console.log(response);
       setGotMail(true);
       toggleLoad();
     } catch (error) {
       toggleLoad();
-      if (!error.response) return console.log("No response from the server");
+      if (!error.response) {
+        toggleAlertBar("No response from the server. Pls check your internet connection", "fail", 10000);
+        return console.log("No response from the server");
+      }
 
       if (typeof error.response.data.message == "object") {
         setPhoneErrror(error.response.data.message[0]);
@@ -39,6 +45,8 @@ const SignUp = () => {
       if (error.response.data.message.includes("email")) {
         setEmailError(error.response.data.message);
         // console.log("email eroro");
+      } else {
+        toggleAlertBar("Something went wrong! Pls try again later.", "fail", 10000);
       }
       // toggleLoad();
       // console.log("AN error has occured", error.response);
