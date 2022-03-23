@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { setLoginStatus } from "../../store/user";
 import { baseInstanceAPI } from "../../axios";
 import useLoading from "../../hooks/useLoading";
+import useShowAlert from "../../hooks/useShowAlert";
 
 const OTP = ({ action }) => {
   const inputAmount = [1, 2, 3, 4, 5, 6];
@@ -14,6 +15,7 @@ const OTP = ({ action }) => {
   const [showStatus, setShowStatus] = useState(false);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
+  const toggleAlertBar = useShowAlert();
   const router = useRouter();
   const onSuccess = () => {
     dispatch(setLoginStatus(true));
@@ -33,6 +35,7 @@ const OTP = ({ action }) => {
     try {
       const response = await baseInstanceAPI.post("account/verify-otp", JSON.stringify(data));
       console.log(response);
+      toggleAlertBar("OTP verified successfully!", "success", true);
       router.push(`/auth/create-account/${response.data.verifiedToken}`);
     } catch (error) {
       if (!error.response) {

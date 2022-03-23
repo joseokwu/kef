@@ -19,7 +19,21 @@ const SignUp = () => {
     email: "",
     phone: "",
   });
+
+  function emailValidation() {
+    const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (!user.email || regex.test(user.email) === false) {
+      setEmailError("Email is not valid");
+      return false;
+    }
+    return true;
+  }
+
   const onSignUp = async (user) => {
+    if (!emailValidation()) {
+      console.log("Email is not valid");
+      return;
+    }
     console.log("base url is", process.env.NEXT_PUBLIC_DEVELOPMENT_URL);
     toggleLoad();
 
@@ -37,14 +51,15 @@ const SignUp = () => {
         return console.log("No response from the server");
       }
 
-      if (typeof error.response.data.message == "object") {
+      if (error.response.data.message[0].includes("phone")) {
         setPhoneErrror(error.response.data.message[0]);
         console.log(error.response);
         console.log("Phone error error...", error.response.data.message[0]);
         return;
       }
-      if (error.response.data.message.includes("email")) {
-        setEmailError(error.response.data.message);
+      if (error.response.data.message[0].includes("email")) {
+        // setEmailError(error.response.data.message);
+        setEmailError("Email is not valid");
         return;
         // console.log("email eroro");
       } else {

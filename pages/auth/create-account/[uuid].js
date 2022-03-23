@@ -169,6 +169,7 @@ const CreateAccount = () => {
               <input
                 className={`w-full ${passError ? " !border-red-500 !border-[2px]" : ""}`}
                 ref={passRef}
+                minLength={8}
                 onChange={(e) => {
                   setPassError("");
                   setConfError("");
@@ -203,6 +204,7 @@ const CreateAccount = () => {
               <input
                 ref={passConfRef}
                 className={`w-full ${confError ? " !border-red-500 !border-[2px]" : ""}`}
+                minLength={8}
                 onChange={(e) => {
                   setCanSubmit(true);
                   setPassError("");
