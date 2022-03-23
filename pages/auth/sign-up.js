@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import AuthLayout from "../../Components/Layout/AuthLayout";
 import GotMail from "../../Components/Auth/GotMail";
@@ -26,7 +26,7 @@ const SignUp = () => {
     try {
       console.log("submited user is", JSON.stringify(user));
       const response = await baseInstanceAPI.post("account/initiate", JSON.stringify(user));
-      toggleAlertBar("Email verification email sent.", "success", 5000);
+      toggleAlertBar("Verification email sent.", "success", 5000);
       console.log(response);
       setGotMail(true);
       toggleLoad();
@@ -41,12 +41,14 @@ const SignUp = () => {
         setPhoneErrror(error.response.data.message[0]);
         console.log(error.response);
         console.log("Phone error error...", error.response.data.message[0]);
+        return;
       }
       if (error.response.data.message.includes("email")) {
         setEmailError(error.response.data.message);
+        return;
         // console.log("email eroro");
       } else {
-        toggleAlertBar("Something went wrong! Pls try again later.", "fail", 10000);
+        toggleAlertBar("Something went wrong! Pls try again later.", "fail", 20000);
       }
       // toggleLoad();
       // console.log("AN error has occured", error.response);
@@ -54,6 +56,13 @@ const SignUp = () => {
     console.log("end of try catch");
     // toggleLoad();
   };
+  useEffect(() => {
+    // return () => {
+    //   if (isLoading) {
+    //     toggleLoad();
+    //   }
+    // };
+  }, []);
 
   return (
     <>

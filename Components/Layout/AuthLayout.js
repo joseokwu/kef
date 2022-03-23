@@ -9,7 +9,7 @@ const AuthLayout = ({ children }) => {
         <title>Kennis Music Fiesta | Authentication</title>
         <meta name="description" content="Kennis Music Fiesta" />
         <link rel="icon" href="/favicon.ico" />
-        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
+        {/* <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta> */}
       </Head>
       <AuthHeader />
       <main className="mt-[19rem]">{children}</main>

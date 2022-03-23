@@ -12,6 +12,10 @@ const useLocalStorage = () => {
 
   const isLoggedIn = () => {
     const token = localStorage.getItem("token");
+    if (!token) {
+      console.log("No token available...", token);
+      return false;
+    }
     var decoded = jwt_decode(token);
     const isExp = new Date(decoded.exp * 1000) > new Date(Date.now());
     console.log("date now", new Date(Date.now()));
