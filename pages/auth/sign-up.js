@@ -57,12 +57,13 @@ const SignUp = () => {
         console.log("Phone error error...", error.response.data.message[0]);
         return;
       }
-      if (error.response.data.message[0].includes("email")) {
+      if (error.response.data.message.includes("email")) {
         // setEmailError(error.response.data.message);
-        setEmailError("Email is not valid");
+        setEmailError(error.response.data.message);
         return;
         // console.log("email eroro");
       } else {
+        console.log("error is", error.response);
         toggleAlertBar("Something went wrong! Pls try again later.", "fail", 20000);
       }
       // toggleLoad();
