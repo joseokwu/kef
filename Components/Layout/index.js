@@ -13,6 +13,7 @@ import { setActivePage as setGlobalPage } from "../../store/pages";
 // import useIsLoggedIn from "../../hooks/useIsLoggedIn";
 import useIsLoggedIn from "../../hooks/useIsLoggedIn";
 import useLocalStorage from "../../hooks/useLocalStorage";
+import Container from "./Container";
 
 const BaseLayout = ({ children }) => {
   const activePage = useSelector(getPage);
@@ -54,7 +55,10 @@ const BaseLayout = ({ children }) => {
       <SideBar activePage={activePage} setActivePage={setActivePage} />
       <Snackbar anchorOrigin={{ vertical: "bottom", horizontal: "right" }} open={open} autoHideDuration={6000} onClose={handleClose} message={snbMsg} />
       <main className={"bg-[#FBFAFA] h-full flex-grow px-[2.2rem] !pb-[11.4rem] sidebar:pb-[5.2rem] sidebar:px-[5.2rem] py-[2.9rem]  sidebar:py-[6.4rem] overflow-y-scroll scroll_hide"}>
-        <Header title={activePage} setActivePage={setActivePage}></Header>
+        <Container>
+          {" "}
+          <Header title={activePage} setActivePage={setActivePage}></Header>
+        </Container>
         {children}
         {/* <div className="w-full h-full grid place-items-center text-3xl">🚧 Under Construction...</div> */}
       </main>
