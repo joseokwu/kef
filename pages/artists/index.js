@@ -1,0 +1,60 @@
+import Image from "next/image";
+import React from "react";
+import Link from "next/link";
+import LandPageLayout from "../../Components/Layout/LandPageLayout";
+
+const Index = () => {
+  const artists = [
+    {
+      name: "Artist",
+      img: "/user-artist.jpg",
+      id: "1",
+    },
+    {
+      name: "Adele",
+      img: "/adele.jpg",
+      id: "2",
+    },
+    {
+      name: "Artist",
+      img: "/user-artist.jpg",
+      id: "3",
+    },
+    {
+      name: "Adele",
+      img: "/adele.jpg",
+      id: "4",
+    },
+  ];
+  return (
+    <div className="text-center">
+      <h3 className=" font-bold text-[3.5rem] leading-[4.2rem] text-[#FCAC0D] mb-[5.6rem]">Meet the Artists</h3>
+      <main className="flex flex-wrap gap-36 items-center justify-center mb-40">
+        {artists.map((el, i) => {
+          return (
+            <Link href={`/artists/${el.id}`} key={i}>
+              <a>
+                <div className="flex flex-col">
+                  <div className="-skew-y-12 rounded-2xl h-[34.7rem] w-[23.4rem] hover:scale-105 transition-all hover:yellow-shadow overflow-hidden cursor-pointer flex yellow-shadow-hover">
+                    <div
+                      style={{ backgroundImage: `url(${el.img})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "top" }}
+                      className=" h-full w-full skew-y-12 scale-[1.18] "
+                    >
+                      {/* <Image className="object-cover overflow-hidden !skew-y-12" layout="fixed" width={234} height={347} src={el.img} alt={el.name}></Image> */}
+                    </div>
+                  </div>
+                  <span className=" font-bold text-[2.5rem] leading-[3rem] mt-[4.6rem] text-white">
+                    0{++i}. {el.name}
+                  </span>
+                </div>
+              </a>
+            </Link>
+          );
+        })}
+      </main>
+    </div>
+  );
+};
+
+Index.Layout = LandPageLayout;
+export default Index;
