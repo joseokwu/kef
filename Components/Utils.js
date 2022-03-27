@@ -39,11 +39,17 @@ const Utils = ({ children }) => {
     }
   }, [showAlert]);
 
+  useEffect(() => {
+    console.log("is loading chage", isLoading);
+  }, [isLoading]);
+
   return (
     <div>
       <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isLoading}>
         <CircularProgress color="inherit" />
       </Backdrop>
+
+      {/* Alert Global */}
       <div
         className={`fixed transition-all duration-500  ${showAlert ? "opacity-100 top-0" : "opacity-0 -top-full"} left-0 w-screen h-[5.5rem] ${
           alertStatus == "success" ? "bg-green-800" : "bg-red-800"

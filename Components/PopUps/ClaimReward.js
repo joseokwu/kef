@@ -1,10 +1,10 @@
 import React from "react";
 import PopupLayout from "../Layout/Popup";
 
-const ClaimReward = ({ onClaimReward }) => {
+const ClaimReward = ({ onClaimReward, onCancel }) => {
   return (
     <div>
-      <PopupLayout action={onClaimReward} actionText={"Claim Reward"}>
+      <PopupLayout cancelAction={onCancel} action={onClaimReward} actionText={"Claim Reward"}>
         <div className="popup-box">
           <h3>Claim Reward</h3>
           <p className="">Congratulations on winning this weeks raffle draw. Here are all your winnings for this week.</p>

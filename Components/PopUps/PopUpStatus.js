@@ -2,7 +2,7 @@ import React from "react";
 import PopupLayout from "../Layout/Popup";
 import Link from "next/link";
 
-const PopupStatus = ({ status, title, text, link = "/dashboard", linkText = "Link text", action }) => {
+const PopupStatus = ({ status, title, text, link = "/dashboard", linkText = "Link text", action = () => {} }) => {
   return (
     <PopupLayout footer={false}>
       <div className="grid place-items-center text-center px-[1.2rem] sidebar:px-[10.2rem] pb-[3.2rem] pt-[2.8rem]">

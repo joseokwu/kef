@@ -1,10 +1,10 @@
 import React from "react";
 import PopupLayout from "../Layout/Popup";
 
-const SelfCheckOut = ({ onCheckOut }) => {
+const SelfCheckOut = ({ onCheckOut, onCancel }) => {
   return (
     <div>
-      <PopupLayout action={onCheckOut} actionText={"Continue"}>
+      <PopupLayout cancelAction={onCancel} action={onCheckOut} actionText={"Continue"}>
         <div className="popup-box">
           <h3>Self Checkout</h3>
           <p className="">Provide your purchase details and purchase location and confirm your payment</p>

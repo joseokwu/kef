@@ -11,7 +11,7 @@ const MyActDetails = () => {
   const dispatch = useDispatch();
   const onCopyDetails = () => {
     dispatch(toggleSnackbar({ open: true, message: "Copied Successfully!" }));
-    toggle();
+    // toggle();
   };
 
   function toggle() {
@@ -21,7 +21,7 @@ const MyActDetails = () => {
   return (
     <>
       <Dialog open={show} onClose={toggle}>
-        {<ActDetails action={onCopyDetails}></ActDetails>}
+        {<ActDetails cancelAction={toggle} action={onCopyDetails}></ActDetails>}
       </Dialog>
       <div className="flex items-center">
         <div className="mr-[12rem] flex flex-col">

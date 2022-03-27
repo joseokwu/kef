@@ -55,11 +55,11 @@ const Header = ({ title, setActivePage }) => {
         {/* <CardAddress></CardAddress> */}
         {/* <ActivateCard></ActivateCard> */}
         {/* <ClaimReward></ClaimReward> */}
-        {activeModal == "PaymentOptions" && <PaymentOptions onSelectPayOption={onSelectPayOption}></PaymentOptions>}
-        {activeModal == "AmountOfTickets" && <AmountOfTickets onSelected={onSelected}></AmountOfTickets>}
-        {activeModal == "VerifyPayment" && <VerifyPayment onVerify={onVerify}></VerifyPayment>}
-        {activeModal == "SelfCheckOut" && <SelfCheckOut onCheckOut={onCheckOut}></SelfCheckOut>}
-        {activeModal == "ReviewCheckOut" && <ReviewCheckOut onReview={onReview}></ReviewCheckOut>}
+        {activeModal == "PaymentOptions" && <PaymentOptions onCancel={toggle} onSelectPayOption={onSelectPayOption}></PaymentOptions>}
+        {activeModal == "AmountOfTickets" && <AmountOfTickets onCancel={toggle} onSelected={onSelected}></AmountOfTickets>}
+        {activeModal == "VerifyPayment" && <VerifyPayment onCancel={toggle} onVerify={onVerify}></VerifyPayment>}
+        {activeModal == "SelfCheckOut" && <SelfCheckOut onCancel={toggle} onCheckOut={onCheckOut}></SelfCheckOut>}
+        {activeModal == "ReviewCheckOut" && <ReviewCheckOut onCancel={toggle} onReview={onReview}></ReviewCheckOut>}
         {/* {activeModal == "VerifyPayment" && <VerifyPayment onVerify={onVerify}></VerifyPayment>} */}
       </Dialog>
       <div className="flex items-center mb-[4.5rem] hdr:mb-[8.4rem] w-full">

@@ -41,7 +41,15 @@ const Activate = () => {
   return (
     <>
       <Dialog open={show} onClose={toggle}>
-        {activeModal == "Status" && <PopupStatus title={"Purchase Order Success"} text={"Your purchase order for 20 tickets was successful"} status={"success"}></PopupStatus>}
+        {activeModal == "Status" && (
+          <PopupStatus
+            action={toggle}
+            title={"Card Activation successful"}
+            linkText="Go to dashboard"
+            text={"Your card has been successfully activated and now ready for use."}
+            status={"success"}
+          ></PopupStatus>
+        )}
         {activeModal == "CardAddress" && <CardAddress onFillCardAddress={onFillCardAddress}></CardAddress>}
         {activeModal == "ActivateCard" && <ActivateCard onActivate={onActivate}></ActivateCard>}
         {activeModal == "PaymentOptions" && <PaymentOptions onSelectPayOption={onSelectPayOption}></PaymentOptions>}

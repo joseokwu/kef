@@ -6,7 +6,7 @@ const initialState = {
 
 export const LoadingReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "toggle": {
+    case "toggleLoading": {
       return { ...state, isLoading: !state.isLoading };
     }
     default:
@@ -21,5 +21,5 @@ export const getLoading = (state) => {
 
 // Actions
 export const toggleLoading = () => {
-  return { type: "toggle" };
+  return { type: "toggleLoading" };
 };

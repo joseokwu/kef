@@ -20,7 +20,7 @@ const Rewards = () => {
   return (
     <>
       <Dialog open={show} onClose={toggle}>
-        {activeModal == "ClaimReward" && <ClaimReward onClaimReward={onClaimReward}></ClaimReward>}
+        {activeModal == "ClaimReward" && <ClaimReward onCancel={toggle} onClaimReward={onClaimReward}></ClaimReward>}
       </Dialog>
       <Container>
         <div className="flex flex-wrap gap-10">

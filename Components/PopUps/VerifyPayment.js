@@ -1,10 +1,10 @@
 import React from "react";
 import PopupLayout from "../Layout/Popup";
 
-const VerifyPayment = ({ onVerify }) => {
+const VerifyPayment = ({ onVerify, onCancel }) => {
   return (
     <div>
-      <PopupLayout action={onVerify} actionText={"Verify Ticket"}>
+      <PopupLayout cancelAction={onCancel} action={onVerify} actionText={"Verify Ticket"}>
         <div className="popup-box">
           <h3>Verify Payment</h3>
           <p className="!mb-[7.4rem]">Enter reference number on the receipt print out to verify purchase</p>

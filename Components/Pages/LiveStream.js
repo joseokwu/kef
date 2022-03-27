@@ -48,7 +48,7 @@ const LiveStream = () => {
             <PopupStatus title={statusTitle} text={statusText} status={status} linkText={statusLinkText} action={onGoLiveStream}></PopupStatus>
           </div>
           <div className={`transition-all ${activeModal == "PaymentOptions" ? "visible" : "hidden"}`}>
-            <PaymentOptions onSelectPayOption={onSelectPayOption}></PaymentOptions>
+            <PaymentOptions onCancel={toggle} onSelectPayOption={onSelectPayOption}></PaymentOptions>
           </div>
         </Dialog>
 
@@ -83,7 +83,7 @@ const LiveStream = () => {
 
         {/* LiveStream && Count down */}
         {showLiveStream && (
-          <section className="px-[2rem] bg-[#FFF6E4] w-full h-[100vw] mobile:h-[64vw] md:h-[36vw] rounded-[2rem] grid place-items-center place-content-center text-center">
+          <section className="px-[2rem] bg-[#FFF6E4] w-full h-[100vw] mobile:h-[72vw] md:!h-[36vw] rounded-[2rem] grid place-items-center place-content-center text-center">
             <p className=" font-bold text-[2.9rem] leading-[3.5rem]">Livestream of Easter fiesta</p>
             <LSCountDown time={1000000}></LSCountDown>
           </section>

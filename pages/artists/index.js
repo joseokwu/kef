@@ -12,18 +12,19 @@ const Index = () => {
     },
     {
       name: "Adele",
-      img: "/adele.jpg",
+      img: "/user-artist.jpg",
+      // img: "/adele.jpg",
       id: "2",
+    },
+    {
+      name: "Adele",
+      img: "/user-grad (1).jpg",
+      id: "4",
     },
     {
       name: "Artist",
       img: "/user-artist.jpg",
       id: "3",
-    },
-    {
-      name: "Adele",
-      img: "/adele.jpg",
-      id: "4",
     },
   ];
   return (
@@ -35,13 +36,13 @@ const Index = () => {
             <Link href={`/artists/${el.id}`} key={i}>
               <a>
                 <div className="flex flex-col">
-                  <div className="-skew-y-12 rounded-2xl h-[34.7rem] w-[23.4rem] hover:scale-105 transition-all hover:yellow-shadow overflow-hidden cursor-pointer flex yellow-shadow-hover">
-                    <div
+                  <div className=" -skew-y-12 rounded-2xl h-[34.7rem] w-[23.4rem] hover:scale-105 transition-all yellow-shadow-hover overflow-hidden cursor-pointer flex">
+                    {/* <div
                       style={{ backgroundImage: `url(${el.img})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "top" }}
                       className=" h-full w-full skew-y-12 scale-[1.18] "
-                    >
-                      {/* <Image className="object-cover overflow-hidden !skew-y-12" layout="fixed" width={234} height={347} src={el.img} alt={el.name}></Image> */}
-                    </div>
+                    > */}
+                    <Image className="object-cover overflow-hidden !skew-y-12 scale-[1.18]" layout="fixed" width={234} height={347} src={el.img} alt={el.name}></Image>
+                    {/* </div> */}
                   </div>
                   <span className=" font-bold text-[2.5rem] leading-[3rem] mt-[4.6rem] text-white">
                     0{++i}. {el.name}

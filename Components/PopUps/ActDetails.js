@@ -2,9 +2,9 @@ import React from "react";
 
 import PopupLayout from "../Layout/Popup";
 
-const ActDetails = ({ action }) => {
+const ActDetails = ({ action, cancelAction = () => {} }) => {
   return (
-    <PopupLayout actionText={"Copy Details"} action={action}>
+    <PopupLayout cancelAction={cancelAction} actionText={"Copy Details"} action={action}>
       <div className="popup-box ">
         <h3>Account Details</h3>
         <p className="!mb-[4rem]">This is the account details attached to your back account.</p>

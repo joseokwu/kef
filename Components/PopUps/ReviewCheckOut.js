@@ -2,9 +2,9 @@ import React from "react";
 
 import PopupLayout from "../Layout/Popup";
 
-const ReviewCheckOut = ({ onReview }) => {
+const ReviewCheckOut = ({ onReview, onCancel }) => {
   return (
-    <PopupLayout actionText={"Continue"} action={onReview}>
+    <PopupLayout cancelAction={onCancel} actionText={"Continue"} action={onReview}>
       <div className="popup-box ">
         <h3>Review Checkout</h3>
         <p className="!mb-[4rem]">Provide your purchase details and purchase location and confirm your payment</p>

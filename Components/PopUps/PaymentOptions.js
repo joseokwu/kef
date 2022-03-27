@@ -2,7 +2,7 @@ import React from "react";
 import PopupLayout from "../Layout/Popup";
 import Radio from "@mui/material/Radio";
 
-const PaymentOptions = ({ onSelectPayOption }) => {
+const PaymentOptions = ({ onSelectPayOption, onCancel }) => {
   const [selectedValue, setSelectedValue] = React.useState("a");
 
   const handleChange = (event) => {
@@ -11,7 +11,7 @@ const PaymentOptions = ({ onSelectPayOption }) => {
 
   return (
     <div>
-      <PopupLayout action={onSelectPayOption} actionText={"Continue"}>
+      <PopupLayout cancelAction={onCancel} action={onSelectPayOption} actionText={"Continue"}>
         <div className="popup-box">
           <h3>Payment Option</h3>
           <p className="">Choose a payment option to complete purchase of raffle tickets</p>
