@@ -16,7 +16,13 @@ const useLocalStorage = () => {
       console.log("No token available...", token);
       return false;
     }
-    var decoded = jwt_decode(token);
+
+    var decoded;
+    try {
+      decoded = jwt_decode(token);
+    } catch (error) {
+      return false;
+    }
     const isExp = new Date(decoded.exp * 1000) > new Date(Date.now());
     console.log("date now", new Date(Date.now()));
     console.log("Exp datae", new Date(decoded.exp * 1000));

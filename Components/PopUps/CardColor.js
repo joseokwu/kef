@@ -2,13 +2,13 @@ import { color } from "@mui/system";
 import React, { useState } from "react";
 import PopupLayout from "../Layout/Popup";
 
-const CardColor = ({ onSelectColor }) => {
+const CardColor = ({ onSelectColor, onCancel }) => {
   const [active, setActive] = useState("#FA5932");
   const [colors, setColors] = useState(["#0150F1", "#5F4BB6", "#FA5932"]);
   return (
     <div>
       {" "}
-      <PopupLayout action={onSelectColor} actionText={"Continue"}>
+      <PopupLayout cancelAction={onCancel} action={onSelectColor} actionText={"Continue"}>
         <div className="popup-box">
           <h3>Customize Card Color</h3>
           <p className="max-w-[45rem] mobile:!mb-[2rem]">Customize you card color by choosing any color from our pallete to suite your taste.</p>
@@ -24,10 +24,11 @@ const CardColor = ({ onSelectColor }) => {
                     setActive(color);
                   }}
                   style={{
-                    background: `${color}`,
+                    "--color": `${color}`,
+                    // background: `${color}`,
                     color: `${color}`,
                   }}
-                  className={`mobile:w-[12.9rem] w-[8.2rem] cursor-pointer h-[8.2rem] mobile:h-[12.9rem] rounded-full bg-[${color}] text-[${color}] hover:outline-offset-4 hover:outline transition-all outline-current ${
+                  className={`mobile:w-[12.9rem] w-[8.2rem] cursor-pointer h-[8.2rem] mobile:h-[12.9rem] rounded-full bg-[color:var(--color)]  text-[${color}] hover:outline-offset-4 hover:outline transition-all outline-current ${
                     active == color ? "ring-offset-8 outline-offset-[4px] outline cursor-pointer hover:outline-offset-4 transition-all" : ""
                   } `}
                 ></div>

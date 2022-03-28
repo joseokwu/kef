@@ -14,6 +14,9 @@ import ReviewCheckOut from "./PopUps/ReviewCheckOut";
 const Header = ({ title, setActivePage }) => {
   // const VerifyPaymentProcess = ["VerifyPayment", "Status"];
   const [activeModal, setActiveModal] = useState("");
+  const [statusTitle, setStatusTitle] = useState();
+  const [linkText, setLinkText] = useState();
+  const [text, setText] = useState();
 
   const [show, setShow] = useState(false);
   function toggle() {
@@ -29,6 +32,9 @@ const Header = ({ title, setActivePage }) => {
   }
 
   function onReview() {
+    setLinkText("View Receipt");
+    setStatusTitle("Purchase Successful");
+    setText("Your purchase order is successful and your account has been credited.");
     setActiveModal("Status");
   }
   function onSelected() {
@@ -36,22 +42,16 @@ const Header = ({ title, setActivePage }) => {
   }
 
   function onSelectPayOption() {
+    setLinkText("Go to dashboard");
+    setStatusTitle("Purchase Order Success");
+    setText("Your purchase order for 20 tickets was successful");
     setActiveModal("Status");
   }
 
   return (
     <>
       <Dialog open={show} onClose={toggle}>
-        {activeModal == "Status" && (
-          <PopupStatus
-            action={toggle}
-            title={"Purchase Order Success.."}
-            link="/dashboard"
-            linkText="Go to dashboard"
-            text={"Your purchase order for 20 tickets was successful"}
-            status={"success"}
-          ></PopupStatus>
-        )}
+        {activeModal == "Status" && <PopupStatus action={toggle} title={statusTitle} link={`/dashboard`} linkText={linkText} text={text} status={"success"}></PopupStatus>}
         {/* <CardAddress></CardAddress> */}
         {/* <ActivateCard></ActivateCard> */}
         {/* <ClaimReward></ClaimReward> */}

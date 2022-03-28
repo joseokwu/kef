@@ -2,7 +2,7 @@ import React from "react";
 import PopupLayout from "../Layout/Popup";
 import Radio from "@mui/material/Radio";
 
-const ActivateCard = ({ onActivate }) => {
+const ActivateCard = ({ onActivate, onCancel }) => {
   const [selectedValue, setSelectedValue] = React.useState("a");
 
   const handleChange = (event) => {
@@ -11,7 +11,7 @@ const ActivateCard = ({ onActivate }) => {
   return (
     <div>
       {" "}
-      <PopupLayout action={onActivate} actionText={"Continue"}>
+      <PopupLayout cancelAction={onCancel} action={onActivate} actionText={"Continue"}>
         <div className="popup-box">
           <h3>Activate Card</h3>
           <p className="max-w-[45rem]">

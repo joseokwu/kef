@@ -1,9 +1,9 @@
 import React from "react";
 import PopupLayout from "../Layout/Popup";
 
-const VerifyBVN = ({ onInputBVN }) => {
+const VerifyBVN = ({ onInputBVN, onCancel }) => {
   return (
-    <PopupLayout action={onInputBVN} actionText={"Continue"}>
+    <PopupLayout cancelAction={onCancel} action={onInputBVN} actionText={"Continue"}>
       <div className="popup-box">
         <h3>Verify BVN</h3>
         <p className=" max-w-[45.2rem]">Provide your Bank Verification Number to help us create your card</p>

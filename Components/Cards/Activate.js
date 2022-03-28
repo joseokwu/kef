@@ -50,11 +50,11 @@ const Activate = () => {
             status={"success"}
           ></PopupStatus>
         )}
-        {activeModal == "CardAddress" && <CardAddress onFillCardAddress={onFillCardAddress}></CardAddress>}
-        {activeModal == "ActivateCard" && <ActivateCard onActivate={onActivate}></ActivateCard>}
-        {activeModal == "PaymentOptions" && <PaymentOptions onSelectPayOption={onSelectPayOption}></PaymentOptions>}
-        {activeModal == "CardColor" && <CardColor onSelectColor={onSelectColor}></CardColor>}
-        {activeModal == "VerifyBVN" && <VerifyBVN onInputBVN={onInputBVN}></VerifyBVN>}
+        {activeModal == "CardAddress" && <CardAddress onCancel={toggle} onFillCardAddress={onFillCardAddress}></CardAddress>}
+        {activeModal == "ActivateCard" && <ActivateCard onCancel={toggle} onActivate={onActivate}></ActivateCard>}
+        {activeModal == "PaymentOptions" && <PaymentOptions onCancel={toggle} onSelectPayOption={onSelectPayOption}></PaymentOptions>}
+        {activeModal == "CardColor" && <CardColor onCancel={toggle} onSelectColor={onSelectColor}></CardColor>}
+        {activeModal == "VerifyBVN" && <VerifyBVN onCancel={toggle} onInputBVN={onInputBVN}></VerifyBVN>}
       </Dialog>
 
       <div className="py-[5.4rem] px-[3.2rem] mobile:px-[5.2rem] rounded-[2rem] flex-1 bgGrad text-white relative overflow-hidden min-h-[30rem] flex-grow min-w-[30rem] mb-[3.2rem]">

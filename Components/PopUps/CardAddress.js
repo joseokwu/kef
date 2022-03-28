@@ -1,9 +1,9 @@
 import React from "react";
 import PopupLayout from "../Layout/Popup";
 
-const CardAddress = ({ onFillCardAddress }) => {
+const CardAddress = ({ onFillCardAddress, onCancel }) => {
   return (
-    <PopupLayout action={onFillCardAddress} actionText={"Continue"}>
+    <PopupLayout cancelAction={onCancel} action={onFillCardAddress} actionText={"Continue"}>
       <div className="popup-box">
         <h3>Card Holder Address</h3>
         <p className="">Provide an address that your card will be delivered to when it’s ready</p>

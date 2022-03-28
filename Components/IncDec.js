@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const IncDec = ({ min = 1, max = 5, defaultValue = 1, onCange = (type, value) => {} }) => {
+const IncDec = ({ min = 1, max = 500000, defaultValue = 1, onCange = (type, value) => {} }) => {
   const [value, setValue] = useState(defaultValue);
 
   const onDec = () => {
