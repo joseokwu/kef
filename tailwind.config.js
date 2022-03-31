@@ -22,6 +22,9 @@ module.exports = {
         table: "419px",
         // => @media (min-width: 1536px) { ... }
       },
+      flex: {
+        2: "2 2 50%",
+      },
       backgroundImage: {
         homepage: "url('/bg-home-min.png')",
         sidebar: "url('/sidebar-image.jpg')",

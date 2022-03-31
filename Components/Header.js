@@ -10,6 +10,7 @@ import ClaimReward from "./PopUps/ClaimReward";
 import { Tooltip } from "@mui/material";
 import SelfCheckOut from "./PopUps/SelfCheckOut";
 import ReviewCheckOut from "./PopUps/ReviewCheckOut";
+import { useRouter } from "next/router";
 
 const Header = ({ title, setActivePage }) => {
   // const VerifyPaymentProcess = ["VerifyPayment", "Status"];
@@ -17,6 +18,7 @@ const Header = ({ title, setActivePage }) => {
   const [statusTitle, setStatusTitle] = useState();
   const [linkText, setLinkText] = useState();
   const [text, setText] = useState();
+  const router = useRouter();
 
   const [show, setShow] = useState(false);
   function toggle() {
@@ -66,26 +68,28 @@ const Header = ({ title, setActivePage }) => {
         <h1 className="h1">{title}</h1>
         <div className="flex flex-wrap ml-auto">
           {/* Buttons */}
-          <div className="flex-none hidden items-center ml-auto hdr:flex ">
-            <button
-              onClick={() => {
-                setActiveModal("SelfCheckOut");
-                setShow(true);
-              }}
-              className="btn ml-auto !bg-[#F0F0F0]"
-            >
-              Self Checkout
-            </button>
-            <button
-              onClick={() => {
-                setActiveModal("AmountOfTickets");
-                setShow(true);
-              }}
-              className="btn ml-[1.6rem]"
-            >
-              Buy Raffle Ticket
-            </button>
-          </div>
+          {!router.route.includes("admin") && (
+            <div className="flex-none hidden items-center ml-auto hdr:flex ">
+              <button
+                onClick={() => {
+                  setActiveModal("SelfCheckOut");
+                  setShow(true);
+                }}
+                className="btn ml-auto !bg-[#F0F0F0]"
+              >
+                Self Checkout
+              </button>
+              <button
+                onClick={() => {
+                  setActiveModal("AmountOfTickets");
+                  setShow(true);
+                }}
+                className="btn ml-[1.6rem]"
+              >
+                Buy Raffle Ticket
+              </button>
+            </div>
+          )}
           {/* User Profile */}
           <div className="flex items-center ml-auto">
             <div className=" w-[42px] h-[42px] rounded-full grid place-items-center bg-[#FFF7E7] ml-auto mobile:ml-[59px] mr-[16px]">

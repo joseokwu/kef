@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import "../styles/style.css";
 import "../styles/components.scss";
 import "../styles/typography.scss";
+import "../styles/mui.scss";
 
 import { StyledEngineProvider } from "@mui/material/styles";
 import AppProvider from "../store";
