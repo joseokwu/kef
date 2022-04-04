@@ -4,6 +4,7 @@ import Container from "../../Layout/Container";
 import Pagination from "@mui/material/Pagination";
 import NavV1 from "../../NavPill/V1";
 import SearchAdmin from "../../Form/searchAdmin";
+import AdminDatePicker from "../../Form/AdminDatePicker";
 
 const TransactionsAdmin = () => {
   const [page, setPage] = useState(1);
@@ -16,7 +17,7 @@ const TransactionsAdmin = () => {
   ];
   return (
     <Container>
-      <section className="flex flex-wrap gap-6">
+      <section className="grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] gap-[2.6rem]">
         <StatV2 value={"1,000"} title={"Total Users"}></StatV2>
         <StatV2 value={"1,000"} title={"Total Users"}></StatV2>
         <StatV2 value={"1,000"} title={"Total Users"}></StatV2>
@@ -34,6 +35,7 @@ const TransactionsAdmin = () => {
           }}
         />
         <SearchAdmin></SearchAdmin>
+        <AdminDatePicker></AdminDatePicker>
       </section>
 
       {/* Table */}

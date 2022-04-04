@@ -58,8 +58,8 @@ const BaseLayout = ({ children }) => {
         <Container>
           {" "}
           <Header title={activePage} setActivePage={setActivePage}></Header>
+          {children}
         </Container>
-        {children}
         {/* <div className="w-full h-full grid place-items-center text-3xl">🚧 Under Construction...</div> */}
       </main>
     </div>

@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import StatV2 from "../../Cards/Stats-v2";
 import Container from "../../Layout/Container";
 import Pagination from "@mui/material/Pagination";
 import NavV1 from "../../NavPill/V1";
 import SearchAdmin from "../../Form/searchAdmin";
+import AdminDatePicker from "../../Form/AdminDatePicker";
 
 const Users = () => {
+  const dateRef = useRef();
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(10);
   const [active, setActive] = useState("All users");
@@ -16,7 +18,7 @@ const Users = () => {
   ];
   return (
     <Container>
-      <section className="flex gap-4">
+      <section className="grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] xl:!grid-cols-[repeat(auto-fit,_minmax(28rem,_32rem))] gap-[2.6rem]">
         <StatV2 value={"1,000"} title={"Total Users"}></StatV2>
         <StatV2 value={"1,000"} title={"Total Users"}></StatV2>
       </section>
@@ -31,6 +33,7 @@ const Users = () => {
           }}
         />
         <SearchAdmin></SearchAdmin>
+        <AdminDatePicker></AdminDatePicker>
       </section>
 
       {/* Table */}

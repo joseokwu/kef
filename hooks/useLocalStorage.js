@@ -1,6 +1,9 @@
 import jwt_decode from "jwt-decode";
+import { setUser } from "../store/user";
+import { useDispatch } from "react-redux";
 
 const useLocalStorage = () => {
+  const dispatch = useDispatch();
   const setLocalStorage = (key, value) => {
     console.log("setting local storage");
     localStorage.setItem(`${key}`, value);
@@ -38,7 +41,13 @@ const useLocalStorage = () => {
     return isExp;
   };
 
-  return { setLocalStorage, getLocalStorage, isLoggedIn };
+  const logOut = () => {
+    const token = localStorage.getItem("token");
+    localStorage.setItem("token", "");
+    dispatch(setUser(null));
+  };
+
+  return { setLocalStorage, getLocalStorage, isLoggedIn, logOut };
 };
 
 export default useLocalStorage;

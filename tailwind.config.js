@@ -22,6 +22,15 @@ module.exports = {
         table: "419px",
         // => @media (min-width: 1536px) { ... }
       },
+      gridTemplateColumns: {
+        // Simple 16 column grid
+        16: "repeat(16, minmax(0, 1fr))",
+
+        // Complex site-specific column configuration
+        footer: "200px minmax(900px, 1fr) 100px",
+
+        raffDraw: "repeat(auto-fit, minmax(28rem, 1fr))",
+      },
       flex: {
         2: "2 2 50%",
       },

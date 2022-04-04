@@ -4,6 +4,7 @@ import Container from "../../Layout/Container";
 import Pagination from "@mui/material/Pagination";
 import NavV1 from "../../NavPill/V1";
 import SearchAdmin from "../../Form/searchAdmin";
+import AdminDatePicker from "../../Form/AdminDatePicker";
 
 const Cards = () => {
   const [page, setPage] = useState(1);
@@ -19,7 +20,7 @@ const Cards = () => {
   ];
   return (
     <Container>
-      <section className="flex gap-4">
+      <section className="grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] xl:!grid-cols-[repeat(auto-fit,_minmax(28rem,_32rem))] gap-[2.6rem]">
         <StatV2 value={"1,000"} title={"Total Cards"}></StatV2>
         <StatV2 value={"300"} title={"Total Cards Won"}></StatV2>
       </section>
@@ -34,6 +35,7 @@ const Cards = () => {
           }}
         />
         <SearchAdmin></SearchAdmin>
+        <AdminDatePicker></AdminDatePicker>
       </section>
 
       {/* Table */}
