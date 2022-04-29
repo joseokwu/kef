@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.5.3",
     "axios": "^0.26.1",
+    "babel-plugin-styled-components": "^2.0.7",
     "jwt-decode": "^3.1.2",
     "next": "12.1.0",
     "react": "17.0.2",
@@ -22,7 +23,8 @@
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
-    "sass": "^1.49.8"
+    "sass": "^1.49.8",
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",

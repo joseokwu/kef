@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import Snackbar from "@mui/material/Snackbar";
-import Header from "../Header";
-import SideBar from "../SideBar";
+import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import Snackbar from '@mui/material/Snackbar';
+import Header from '../Header';
+import SideBar from '../SideBar';
 
-import { useDispatch, useSelector } from "react-redux";
-import { getMessage, getStatus, toggleSnackbar } from "../../store/snackbar";
-import { login } from "../../store/user";
-import { getPage } from "../../store/pages";
-import { setActivePage as setGlobalPage } from "../../store/pages";
+import { useDispatch, useSelector } from 'react-redux';
+import { getMessage, getStatus, toggleSnackbar } from '../../store/snackbar';
+import { login } from '../../store/user';
+import { getPage } from '../../store/pages';
+import { setActivePage as setGlobalPage } from '../../store/pages';
 // import useIsLoggedIn from "../../hooks/useIsLoggedIn";
-import useIsLoggedIn from "../../hooks/useIsLoggedIn";
-import useLocalStorage from "../../hooks/useLocalStorage";
-import Container from "./Container";
+import useIsLoggedIn from '../../hooks/useIsLoggedIn';
+import useLocalStorage from '../../hooks/useLocalStorage';
+import Container from './Container';
 
 const BaseLayout = ({ children }) => {
   const activePage = useSelector(getPage);
@@ -25,19 +25,19 @@ const BaseLayout = ({ children }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  useEffect(() => {
-    console.log("is logged in useEffect", isLoggedIn());
-    if (!isLoggedIn()) {
-      router.push("/auth/sign-up");
-    }
-  }, []);
+  // useEffect(() => {
+  //   console.log('is logged in useEffect', isLoggedIn());
+  //   if (!isLoggedIn()) {
+  //     router.push('/auth/sign-up');
+  //   }
+  // }, []);
 
   const setActivePage = (page) => {
     dispatch(setGlobalPage(page));
   };
 
   const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
+    if (reason === 'clickaway') {
       return;
     }
     dispatch(toggleSnackbar({ open: false }));
@@ -45,18 +45,31 @@ const BaseLayout = ({ children }) => {
   };
 
   return (
-    <div className="w-full h-screen flex">
+    <div className='w-full h-screen flex'>
       <Head>
         <title>Kennis Music Fiesta | Home</title>
-        <meta name="description" content="Kennis Music Fiesta" />
-        <link rel="icon" href="/favicon.ico" />
-        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
+        <meta name='description' content='Kennis Music Fiesta' />
+        <link rel='icon' href='/favicon.ico' />
+        <meta
+          httpEquiv='Content-Security-Policy'
+          content='upgrade-insecure-requests'
+        ></meta>
       </Head>
       <SideBar activePage={activePage} setActivePage={setActivePage} />
-      <Snackbar anchorOrigin={{ vertical: "bottom", horizontal: "right" }} open={isopen} autoHideDuration={6000} onClose={handleClose} message={snbMsg} />
-      <main className={"bg-[#FBFAFA] h-full flex-grow px-[2.2rem] !pb-[11.4rem] sidebar:pb-[5.2rem] sidebar:px-[5.2rem] py-[2.9rem]  sidebar:py-[6.4rem] overflow-y-scroll scroll_hide"}>
+      <Snackbar
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        open={isopen}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message={snbMsg}
+      />
+      <main
+        className={
+          'bg-[#FBFAFA] h-full flex-grow px-[2.2rem] !pb-[11.4rem] sidebar:pb-[5.2rem] sidebar:px-[5.2rem] py-[2.9rem]  sidebar:py-[6.4rem] overflow-y-scroll scroll_hide'
+        }
+      >
         <Container>
-          {" "}
+          {' '}
           <Header title={activePage} setActivePage={setActivePage}></Header>
           {children}
         </Container>

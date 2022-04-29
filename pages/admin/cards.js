@@ -1,7 +1,10 @@
-import React from "react";
+import React from 'react';
+import Cards from '../../Components/Pages/Admin/Cards';
+import BaseLayout from '../../Components/Layout';
 
 const cards = () => {
-  return <div>cards</div>;
+  return <Cards />;
 };
 
+cards.Layout = BaseLayout;
 export default cards;
