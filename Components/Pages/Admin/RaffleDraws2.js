@@ -36,6 +36,7 @@ const Wrapper = styled.section`
     display: flex;
     gap: 4rem;
     font-size: 1.4rem;
+    margin-bottom: 6rem;
     button {
       font-weight: 700;
       background: #eaeaea;

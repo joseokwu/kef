@@ -3,8 +3,38 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import CountDown from './Countdown';
 import TableV1 from '../Tables/TableV1';
+import TableRaffle from './TableRaffle';
 
 const Weekly = () => {
+  const navs = [
+    'All Winners',
+    'Category 1',
+    'Category 2',
+    'Category 3',
+    'Category 4',
+    'Category 5',
+    'Category 6',
+  ];
+  const data = [
+    {
+      firstName: 'Jonathan',
+      lastName: 'Mcreynold',
+      ticketType: 'Event',
+      DatePurchased: '21 March, 2022',
+      amount: '500',
+      phone: '+234(0)812 3456789',
+      email: 'j.mcreynold@gmail.com',
+    },
+    {
+      firstName: 'Jonathan',
+      lastName: 'Smith',
+      ticketType: 'Event',
+      DatePurchased: '21 March, 2022',
+      amount: '500',
+      phone: '+234(0)812 3456789',
+      email: 'jonsmith@gmail.com',
+    },
+  ];
   const [list, setList] = useState(1);
   if (!list) {
     return (
@@ -41,7 +71,12 @@ const Weekly = () => {
             />
           </div>
         </div>
-        <TableV1 />
+        <TableRaffle
+          datePicker={false}
+          data={data}
+          navs={navs}
+          tableTitle={true}
+        />
       </Wrapper>
     );
   }
@@ -54,7 +89,6 @@ const Wrapper = styled.main`
     display: flex;
     gap: 5rem;
     align-items: center;
-    margin-top: 6rem;
 
     .start-draw2 {
       cursor: pointer;
