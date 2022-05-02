@@ -25,22 +25,22 @@ import { useSelector } from 'react-redux';
 import { getPage } from '../store/pages';
 import LandingPage from '../Components/Pages/LandingPage';
 // import { setActivePage as setGlobalPage } from "../store/pages";
-import UseIsLoggedIn from '../hooks/useIsLoggedIn';
+// import UseIsLoggedIn from "../hooks/useIsLoggedIn";
 
 export default function Home() {
   // const [activePage, setActivePage] = useState("Dashboard");
   const activePage = useSelector(getPage);
-  const isLoggedIn = UseIsLoggedIn();
+  // const isLoggedIn = UseIsLoggedIn();
   // const open = useSelector(getStatus);
   // const snbMsg = useSelector(getMessage);
   // const dispatch = useDispatch();
   // const router = useRouter();
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.push('/auth/sign-up');
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     router.push("/auth/sign-up");
+  //   }
+  // }, []);
 
   // const setActivePage = (page) => {
   //   dispatch(setGlobalPage(page));
