@@ -265,7 +265,7 @@ const CreateAccount = () => {
                 setUser({ ...user, dob: e.target.value });
               }}
               ref={dateRef}
-              className={`w-full !pr-[2rem] `}
+              className={`w-full !pr-[2rem] date`}
               type="date"
               required
             />
