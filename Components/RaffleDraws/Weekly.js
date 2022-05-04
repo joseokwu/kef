@@ -35,11 +35,11 @@ const Weekly = () => {
       email: 'jonsmith@gmail.com',
     },
   ];
-  const [list, setList] = useState(1);
+  const [list, setList] = useState();
   if (!list) {
     return (
       <Wrapper1 className='main'>
-        <div className='start-draw'>
+        <div className='start-draw' onClick={() => setList(1)}>
           <Image
             src={'/start-draw-red.svg'}
             alt='start draw'
