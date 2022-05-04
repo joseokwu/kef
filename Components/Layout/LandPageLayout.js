@@ -18,7 +18,7 @@ const LandPageLayout = ({ children }) => {
   };
 
   return (
-    <div className=" bg-homepage flex flex-col h-screen justify-between">
+    <div className=" bg-homepage bg-slate-900 flex flex-col h-screen justify-between">
       <div className=" grow-0 shrink-0 ">
         <Container>
           {" "}
