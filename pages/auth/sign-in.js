@@ -126,7 +126,7 @@ const SignIn = () => {
             </div>
           </div>
 
-          <button className="btn col-span-2 mt-[6.8rem]">Log In</button>
+          <button className="btn col-span-2 mt-[4.8rem]">Log In</button>
         </div>
       </form>
     </div>

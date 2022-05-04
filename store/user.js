@@ -5,6 +5,7 @@ const initialState = {
   error: { status: false, message: "" },
   loggedIn: false,
   processsing: false,
+  data: null,
 };
 
 // Reducer

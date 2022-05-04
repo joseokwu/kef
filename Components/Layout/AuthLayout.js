@@ -12,7 +12,7 @@ const AuthLayout = ({ children }) => {
         {/* <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta> */}
       </Head>
       <AuthHeader />
-      <main className="mt-[19rem]">{children}</main>
+      <main className="mt-[16rem]">{children}</main>
     </div>
   );
 };

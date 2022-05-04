@@ -3,7 +3,7 @@ import Link from "next/link";
 import useLoading from "../../hooks/useLoading";
 
 const Container = ({ children }) => {
-  return <div className="max-w-[142rem] mx-auto w-full px-[4rem] sidebar:px-[10rem]">{children}</div>;
+  return <div className="max-w-[182rem] mx-auto w-full px-[4rem] sidebar:px-[10rem]">{children}</div>;
 };
 
 const LandPageLayout = ({ children }) => {

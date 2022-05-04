@@ -83,7 +83,7 @@ const SignUp = () => {
   return (
     <>
       {!gotMail && (
-        <div className="auth-container !mb-[10rem]">
+        <div className="auth-container !mb-[5rem]">
           <form
             className="auth-form"
             onSubmit={(e) => {
@@ -92,7 +92,7 @@ const SignUp = () => {
             }}
           >
             <h3>Sign up</h3>
-            <p className="mb-[7.4rem]">
+            <p className="mb-[5.4rem]">
               Hey there! Not yet a member fill the form below to register. Already a member?{" "}
               <Link href="/auth/sign-in">
                 <a className="text-[#FCAC0D]">Sign In</a>
@@ -153,7 +153,7 @@ const SignUp = () => {
                 />
                 {phoneError && <p className=" !text-[1.4rem] !text-red-500">*Phone number must be valid</p>}
               </div>
-              <button className="btn col-span-2 mt-[6.8rem]">Sign Up</button>
+              <button className="btn col-span-2 mt-[3.8rem]">Sign Up</button>
             </div>
           </form>
         </div>

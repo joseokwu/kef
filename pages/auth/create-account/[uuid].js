@@ -12,16 +12,22 @@ const CreateAccount = () => {
   const passRef = useRef();
   const passConfRef = useRef();
   const usernameRef = useRef();
+  const dateRef = useRef();
+  const bvnRef = useRef();
   const [user, setUser] = useState({
     username: "",
     password: "",
     confirmPassword: "",
     uuid: "",
+    dob: "",
+    bvn: "",
+    isDiaspora: false,
   });
   const [error, setError] = useState("");
   const [confError, setConfError] = useState("");
   const [userValid, setUserValid] = useState(true);
   const [passError, setPassError] = useState("");
+  // const [dateError, setDateError] = useState(false);
   const router = useRouter();
   const { isLoading, toggleLoad } = useLoading();
   const toggleAlertBar = useShowAlert();
@@ -75,7 +81,7 @@ const CreateAccount = () => {
         toggleAlertBar(error.response.data.message, "failed", true);
         return;
       } else {
-        toggleAlertBar("Something's not quite right", "failed", true, 10000);
+        toggleAlertBar("Something's not right", "failed", true, 10000);
       }
       console.log("there was an error", error?.response);
     }
@@ -126,7 +132,7 @@ const CreateAccount = () => {
   };
 
   return (
-    <div className="auth-container !mb-[10rem]">
+    <div className="auth-container !mb-[5rem]">
       <form
         autoComplete="off"
         className="auth-form"
@@ -136,7 +142,7 @@ const CreateAccount = () => {
         }}
       >
         <h3>Create Account</h3>
-        <p className="mb-[7.4rem]">
+        <p className="mb-[4.4rem]">
           You are almost there, just a few little details and we are good. Already a member?
           <Link replace href="/auth/sign-in">
             <a className="text-[#FCAC0D] ml-2">Sign In</a>
@@ -234,6 +240,36 @@ const CreateAccount = () => {
             </div>
             {confError && <p className=" !text-[1.2rem] !font-normal !text-red-500">*{confError}</p>}
           </div>
+
+          {/* BVN */}
+          <div className="form-group">
+            <label>BVN</label>
+            <input
+              className={`w-full ${!userValid ? " !border-red-500 !border-[2px]" : ""}`}
+              name="username"
+              ref={bvnRef}
+              onChange={(e) => {
+                setUser({ ...user, bvn: e.target.value });
+              }}
+              required
+              placeholder="BVN"
+            />
+          </div>
+          {/* DOB */}
+          <div className="form-group">
+            <label>Date of Birth</label>
+            <input
+              max="2022-12-31"
+              onChange={(e) => {
+                console.log("date is ", e.target.value);
+                setUser({ ...user, dob: e.target.value });
+              }}
+              ref={dateRef}
+              className={`w-full !pr-[2rem] `}
+              type="date"
+              required
+            />
+          </div>
           {/* <div className="form-group">
             <label>Password</label>
             <input
@@ -258,7 +294,7 @@ const CreateAccount = () => {
               placeholder="Enter email"
             />
           </div> */}
-          <button hidden={canSubmit} className={`btn mt-[6.8rem] ${canSubmit ? "" : "cursor-not-allowed"}`}>
+          <button hidden={canSubmit} className={`btn mt-[3.8rem] ${canSubmit ? "" : "cursor-not-allowed"}`}>
             Create Account
           </button>
         </div>
