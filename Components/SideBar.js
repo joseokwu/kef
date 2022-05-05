@@ -94,8 +94,8 @@ const SideBar = ({ activePage, setActivePage }) => {
                   setActivePage(page);
                 }}
               >
-                <i className={`icon icon-${icons[i]} text-[1.8rem] ${icons[i] == "Dashboard" ? " text-[1.8rem]" : ""} `}></i>
-                <span className="mt-[1rem]">{page}</span>
+                <i className={`icon icon-${icons[i]} text-[2rem] ${icons[i] == "Dashboard" ? " text-[1.8rem]" : ""} `}></i>
+                <span className="mt-[1rem] text-[1.15rem]">{page}</span>
               </li>
             );
           })}

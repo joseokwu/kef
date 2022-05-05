@@ -151,7 +151,7 @@ const Header = ({ title, setActivePage }) => {
               setActiveModal("SelfCheckOut");
               setShow(true);
             }}
-            className="btn ml-auto !bg-[#F0F0F0]"
+            className="btn flex-1 sm:flex-grow-0 ml-auto !bg-[#F0F0F0]"
           >
             Self Checkout
           </button>
@@ -160,7 +160,7 @@ const Header = ({ title, setActivePage }) => {
               setActiveModal("AmountOfTickets");
               setShow(true);
             }}
-            className="btn ml-[1.6rem]"
+            className="btn ml-[1.6rem] flex-1 sm:flex-grow-0"
           >
             Buy Raffle Ticket
           </button>
