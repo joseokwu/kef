@@ -6,7 +6,7 @@ import { baseInstanceAPI } from "../../axios";
 import useLoading from "../../hooks/useLoading";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import { useDispatch } from "react-redux";
-import { setLoginStatus, setUser as setUserRedux } from "../../store/user";
+import { setDashboardHistory, setLoginStatus, setUser as setUserRedux } from "../../store/user";
 import useShowAlert from "../../hooks/useShowAlert";
 
 const SignIn = () => {
@@ -37,6 +37,32 @@ const SignIn = () => {
       dispatch(setLoginStatus(true));
       dispatch(setUserRedux({ username: user.email }));
       setLocalStorage("token", response.data.access_token);
+
+      // Profiel INfo
+      try {
+        const userResp = await baseInstanceAPI.get("/profile/dashboard", {
+          headers: {
+            Authorization: `Bearer ${response.data.access_token}`,
+          },
+        });
+        console.log("user is ", userResp.data);
+        dispatch(setUserRedux(userResp.data));
+      } catch (error) {
+        console.log("Error loadin user extra data", error);
+      }
+
+      //user dashboard history
+      try {
+        const historyResp = await baseInstanceAPI.get("/dashboard/user-dashboard-history", {
+          headers: {
+            Authorization: `Bearer ${response.data.access_token}`,
+          },
+        });
+        console.log("user is ", historyResp.data);
+        dispatch(setDashboardHistory(historyResp.data));
+      } catch (error) {
+        console.log("Error loadin dashboard history", error);
+      }
 
       toggleLoad();
       router.replace("/dashboard");

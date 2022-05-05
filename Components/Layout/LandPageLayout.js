@@ -22,7 +22,7 @@ const LandPageLayout = ({ children }) => {
       <div className=" grow-0 shrink-0 ">
         <Container>
           {" "}
-          <header className="flex items-center py-[4rem]">
+          <header className="flex items-center pt-[3rem] pb-[1.6rem]">
             <img src="/kef-logo.svg" className="mr-auto w-[6.4rem]"></img>
             {/* Desktop Nav */}
             <div className="items-center hidden sidebar:flex ">

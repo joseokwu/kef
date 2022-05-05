@@ -6,6 +6,11 @@ const initialState = {
   loggedIn: false,
   processsing: false,
   data: null,
+  dashboardHistory: {
+    raffleTickets: 0,
+    rewardWon: 0,
+    eventTickets: 0,
+  },
 };
 
 // Reducer
@@ -21,6 +26,8 @@ export const AuthReducer = (state = initialState, action) => {
       return { ...state, loggedIn: action?.status };
     case "setUser":
       return { ...state, user: action?.user };
+    case "setDashboardHistory":
+      return { ...state, dashboardHistory: action?.data };
     default:
       return { ...state };
   }
@@ -35,6 +42,9 @@ export const getLoggedIn = (state) => {
 };
 export const getErrorMessage = (state) => {
   return state.auth.error;
+};
+export const getDashHistory = (state) => {
+  return state.auth.dashboardHistory;
 };
 
 // Actions
@@ -54,9 +64,17 @@ export const login = ({ username, password }) => {
 };
 
 export const setUser = (user) => {
+  console.log("setting user", user);
   return {
     type: "setUser",
     user,
+  };
+};
+export const setDashboardHistory = (data) => {
+  console.log("setting history", data);
+  return {
+    type: "setDashboardHistory",
+    data,
   };
 };
 

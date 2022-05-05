@@ -7,18 +7,20 @@ import SideBar from "../SideBar";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getMessage, getStatus, toggleSnackbar } from "../../store/snackbar";
-import { login } from "../../store/user";
+import { getUser, login } from "../../store/user";
 import { getPage } from "../../store/pages";
 import { setActivePage as setGlobalPage } from "../../store/pages";
+import { setUser as setUserRedux } from "../../store/user";
 // import useIsLoggedIn from "../../hooks/useIsLoggedIn";
 import useIsLoggedIn from "../../hooks/useIsLoggedIn";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import Container from "./Container";
+import { baseInstanceAPI } from "../../axios";
 
 const BaseLayout = ({ children }) => {
   const activePage = useSelector(getPage);
-  const { isLoggedIn } = useLocalStorage();
-
+  const { isLoggedIn, getLocalStorage } = useLocalStorage();
+  const user = useSelector(getUser);
   // const isLoggedIn = useIsLoggedIn();
   const isopen = useSelector(getStatus);
   const snbMsg = useSelector(getMessage);
@@ -26,9 +28,24 @@ const BaseLayout = ({ children }) => {
   const router = useRouter();
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userResp = await baseInstanceAPI.get("/profile/dashboard", {
+          headers: {
+            Authorization: `Bearer ${getLocalStorage("token")}`,
+          },
+        });
+        console.log("user is ", userResp.data);
+        dispatch(setUserRedux(userResp.data));
+      } catch (error) {
+        console.log("Error loadin user extra data", error);
+      }
+    };
     console.log("is logged in useEffect", isLoggedIn());
     if (!isLoggedIn()) {
       router.push("/auth/sign-up");
+    } else if (!user) {
+      fetchData();
     }
   }, []);
 
