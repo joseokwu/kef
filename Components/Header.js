@@ -77,7 +77,7 @@ const Header = ({ title, setActivePage }) => {
         {/* {activeModal == "VerifyPayment" && <VerifyPayment onVerify={onVerify}></VerifyPayment>} */}
       </Dialog>
       <div className="flex items-center mb-[4.5rem] hdr:mb-[8.4rem] w-full">
-        <h1 className="h1">{title}</h1>
+        <h1 className="h1 transition-all">{title}</h1>
         <div className="flex flex-wrap ml-auto">
           {/* Buttons */}
           {!router.route.includes("admin") && (

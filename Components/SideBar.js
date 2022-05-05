@@ -88,7 +88,7 @@ const SideBar = ({ activePage, setActivePage }) => {
           {pages.map((page, i) => {
             return (
               <li
-                className={`flex items-center mb-[4.2rem] cursor-pointer flex-col ${page == activePage ? "  text-[#FCAC0D]" : "text-white"}`}
+                className={`flex items-center transition-all ease-in mb-[4.2rem] cursor-pointer flex-col ${page == activePage ? "  text-[#FCAC0D]" : "text-white"}`}
                 key={i}
                 onClick={() => {
                   setActivePage(page);
