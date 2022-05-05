@@ -8,6 +8,8 @@ import useLoading from '../../hooks/useLoading';
 import useShowAlert from '../../hooks/useShowAlert';
 
 const OTP = ({ action }) => {
+  const [activeOTP, setActiveOTP] = useState(0);
+  let inputRef = useRef();
   const inputAmount = [1, 2, 3, 4, 5, 6];
   const { isLoading, toggleLoad } = useLoading();
   const [otp, setOtp] = useState([]);
@@ -27,6 +29,12 @@ const OTP = ({ action }) => {
     console.log(router.query.uuid);
     setUuid(router.query.uuid);
   }, [router.isReady]);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [activeOTP]);
 
   const onVerify = async () => {
     const data = { uuid: uuid, otp: otp.toString().replace(/,/g, '') };
@@ -78,7 +86,9 @@ const OTP = ({ action }) => {
                   <div key={el} className='form-group '>
                     <input
                       required
+                      ref={i === activeOTP ? inputRef : null}
                       onChange={(e) => {
+                        setActiveOTP(i + 1);
                         setOtp((value) => {
                           const newOTP = value;
                           newOTP[i] = e.target.value;
