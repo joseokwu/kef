@@ -77,7 +77,7 @@ const Header = ({ title, setActivePage }) => {
         {/* {activeModal == "VerifyPayment" && <VerifyPayment onVerify={onVerify}></VerifyPayment>} */}
       </Dialog>
       <div className="flex items-center mb-[4.5rem] hdr:mb-[8.4rem] w-full">
-        <h1 className="h1">{title}</h1>
+        <h1 className="h1 transition-all">{title}</h1>
         <div className="flex flex-wrap ml-auto">
           {/* Buttons */}
           {!router.route.includes("admin") && (
@@ -151,7 +151,7 @@ const Header = ({ title, setActivePage }) => {
               setActiveModal("SelfCheckOut");
               setShow(true);
             }}
-            className="btn ml-auto !bg-[#F0F0F0]"
+            className="btn flex-1 sm:flex-grow-0 ml-auto !bg-[#F0F0F0]"
           >
             Self Checkout
           </button>
@@ -160,7 +160,7 @@ const Header = ({ title, setActivePage }) => {
               setActiveModal("AmountOfTickets");
               setShow(true);
             }}
-            className="btn ml-[1.6rem]"
+            className="btn ml-[1.6rem] flex-1 sm:flex-grow-0"
           >
             Buy Raffle Ticket
           </button>

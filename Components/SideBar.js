@@ -88,14 +88,14 @@ const SideBar = ({ activePage, setActivePage }) => {
           {pages.map((page, i) => {
             return (
               <li
-                className={`flex items-center mb-[4.2rem] cursor-pointer flex-col ${page == activePage ? "  text-[#FCAC0D]" : "text-white"}`}
+                className={`flex items-center transition-all ease-in mb-[4.2rem] cursor-pointer flex-col ${page == activePage ? "  text-[#FCAC0D]" : "text-white"}`}
                 key={i}
                 onClick={() => {
                   setActivePage(page);
                 }}
               >
-                <i className={`icon icon-${icons[i]} text-[1.8rem] ${icons[i] == "Dashboard" ? " text-[1.8rem]" : ""} `}></i>
-                <span className="mt-[1rem]">{page}</span>
+                <i className={`icon icon-${icons[i]} text-[2rem] ${icons[i] == "Dashboard" ? " text-[1.8rem]" : ""} `}></i>
+                <span className="mt-[1rem] text-[1.15rem]">{page}</span>
               </li>
             );
           })}
