@@ -1,12 +1,12 @@
 // Initial state
 const initialState = {
-  activePage: "Dashboard",
+  activePage: 'Dashboard',
 };
 
 // Reducer
 export const PageReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "page/setActivePage":
+    case 'page/setActivePage':
       return { ...state, activePage: action.page };
     default:
       return { ...state };
@@ -20,5 +20,5 @@ export const getPage = (state) => {
 
 // Actions
 export const setActivePage = (page) => {
-  return { type: "page/setActivePage", page };
+  return { type: 'page/setActivePage', page };
 };

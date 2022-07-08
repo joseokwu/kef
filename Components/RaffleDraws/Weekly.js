@@ -1,11 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import CountDown from './Countdown';
 import TableV1 from '../Tables/TableV1';
 import TableRaffle from './TableRaffle';
+import useRaffleDraw from '../../hooks/admin/useRaffleDraw';
+import useShowAlert from '../../hooks/useShowAlert';
+import useLoading from '../../hooks/useLoading';
 
 const Weekly = () => {
+  const [search, setSearch] = useState('');
+  const [type, setType] = useState('all');
+  const [date, setDate] = useState('');
+  const [page, setPage] = useState(1);
+  const [list, setList] = useState();
+  const [passError, setPassError] = useState('');
+  const toggleAlertBar = useShowAlert();
+  const { toggleLoad } = useLoading();
+  const {
+    startWeeklyDraw,
+    checkWeeklyDrawBtn,
+    getWeeklyDraw,
+    stateRaffleDraw: { weeklyDraw },
+  } = useRaffleDraw();
+
+  const handleStartDraw = () => {
+    // startWeeklyDraw({ toggleAlertBar, toggleLoad, setPassError });
+    setList(1);
+  };
+
   const navs = [
     'All Winners',
     'Category 1',
@@ -35,11 +58,24 @@ const Weekly = () => {
       email: 'jonsmith@gmail.com',
     },
   ];
-  const [list, setList] = useState();
+
+  useEffect(() => {
+    // checkWeeklyDrawBtn({ toggleAlertBar, toggleLoad, setPassError });
+    getWeeklyDraw({
+      toggleAlertBar,
+      toggleLoad,
+      setPassError,
+      date,
+      search,
+      page,
+      type,
+    });
+  }, [date, search, page, type]);
+
   if (!list) {
     return (
       <Wrapper1 className='main'>
-        <div className='start-draw' onClick={() => setList(1)}>
+        <div className='start-draw' onClick={handleStartDraw}>
           <Image
             src={'/start-draw-red.svg'}
             alt='start draw'
@@ -73,9 +109,15 @@ const Weekly = () => {
         </div>
         <TableRaffle
           datePicker={false}
-          data={data}
+          data={weeklyDraw}
           navs={navs}
           tableTitle={true}
+          setDate={setDate}
+          setPage={setPage}
+          setType={setType}
+          setSearch={setSearch}
+          page={page}
+          date={date}
         />
       </Wrapper>
     );

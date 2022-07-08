@@ -4,8 +4,22 @@ import styled from 'styled-components';
 import CountDown from './Countdown';
 import TableV1 from '../Tables/TableV1';
 import TableRaffle from './TableRaffle';
+import useRaffleDraw from '../../hooks/admin/useRaffleDraw';
+import useShowAlert from '../../hooks/useShowAlert';
+import useLoading from '../../hooks/useLoading';
 
 const Event = () => {
+  const [passError, setPassError] = useState('');
+  const [list, setList] = useState();
+  const toggleAlertBar = useShowAlert();
+  const { toggleLoad } = useLoading();
+  const { startOnEventDraw } = useRaffleDraw();
+
+  const handleStartDraw = () => {
+    // startOnEventDraw({ toggleAlertBar, toggleLoad, setPassError });
+    setList(1);
+  };
+
   const navs = [
     'All Winners',
     'Category 1',
@@ -35,11 +49,10 @@ const Event = () => {
       email: 'jonsmith@gmail.com',
     },
   ];
-  const [list, setList] = useState();
   if (!list) {
     return (
       <Wrapper1 className='main'>
-        <div className='start-draw' onClick={() => setList(1)}>
+        <div className='start-draw' onClick={handleStartDraw}>
           <Image
             src={'/start-draw-red.svg'}
             alt='start draw'

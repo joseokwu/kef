@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?pv243k');
-  src:  url('fonts/icomoon.eot?pv243k#iefix') format('embedded-opentype'),
+  src: url('fonts/icomoon.eot?pv243k');
+  src: url('fonts/icomoon.eot?pv243k#iefix') format('embedded-opentype'),
     url('fonts/icomoon.ttf?pv243k') format('truetype'),
     url('fonts/icomoon.woff?pv243k') format('woff'),
     url('fonts/icomoon.svg?pv243k#icomoon') format('svg');
@@ -10,7 +10,8 @@
   font-display: block;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^='icon-'],
+[class*=' icon-'] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: never;
@@ -26,47 +27,50 @@
 }
 
 .icon-Crown:before {
-  content: "\e900";
+  content: '\e900';
 }
 .icon-Dashboard:before {
-  content: "\e901";
+  content: '\e901';
 }
 .icon-Graph:before {
-  content: "\e902";
+  content: '\e902';
 }
 .icon-kudibar-logo:before {
-  content: "\e903";
+  content: '\e903';
 }
 .icon-Livestream-Event:before {
-  content: "\e904";
+  content: '\e904';
 }
 .icon-logout:before {
-  content: "\e905";
+  content: '\e905';
 }
 .icon-notification:before {
-  content: "\e906";
+  content: '\e906';
 }
 .icon-Raffle-Tickets:before {
-  content: "\e907";
+  content: '\e907';
 }
 .icon-Rewards:before {
-  content: "\e908";
+  content: '\e908';
 }
 .icon-Settings:before {
-  content: "\e909";
+  content: '\e909';
 }
+/* .icon-artist:before {
+  content: '\e80b';
+} */
 .icon-sidebar-wallet:before {
-  content: "\e90a";
+  content: '\e90a';
 }
 .icon-smiley:before {
-  content: "\e90b";
+  content: '\e90b';
 }
 .icon-Transactions:before {
-  content: "\e90c";
+  content: '\e90c';
 }
 .icon-Users:before {
-  content: "\e90d";
+  content: '\e90d';
 }
 .icon-Wallet:before {
-  content: "\e90e";
+  content: '\e90e';
 }
