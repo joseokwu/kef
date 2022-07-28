@@ -6,11 +6,15 @@ const useEvents = () => {
   const dispatch = useDispatch();
   const stateEvents = useSelector((state) => state.adminEvents);
 
-  const { getSingleEvent } = bindActionCreators(eventsCreators, dispatch);
+  const { getSingleEvent, getEvents } = bindActionCreators(
+    eventsCreators,
+    dispatch
+  );
 
   return {
     stateEvents,
     getSingleEvent,
+    getEvents,
   };
 };
 

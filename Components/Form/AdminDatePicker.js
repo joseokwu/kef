@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AdminDatePicker = ({ setDate, date }) => {
+const AdminDatePicker = ({ setDate, date, setShowFilter }) => {
   return (
     <>
       <style jsx>
@@ -20,7 +20,7 @@ const AdminDatePicker = ({ setDate, date }) => {
           }
         `}
       </style>
-      <div className='relative w-[13rem] ml-[1.6rem] border-[#E6E8EC] border-2 rounded-full overflow-hidden'>
+      <div className='relative border-[#E6E8EC] border-2 rounded-[10px] overflow-hidden w-[80%]'>
         <label
           className='absolute top-0 left-0 bg-white h-full font-bold text-[1.2rem] w-full text-left flex items-center pl-[1.6rem]'
           onClick={() => {
@@ -29,11 +29,14 @@ const AdminDatePicker = ({ setDate, date }) => {
           }}
           htmlFor='date'
         >
-          {date || 'All Date'}
+          {date || 'Pick Date'}
         </label>
         <input
-          onChange={(e) => setDate(e.target.value)}
-          className='px-[1.6rem] calendar py-[1rem] outline-transparent border-transparent  w-full'
+          onChange={(e) => {
+            setDate(e.target.value);
+            setShowFilter(false);
+          }}
+          className='px-[1.6rem] calendar py-[0.5rem] outline-transparent border-transparent  w-full'
           id='date'
           placeholder='All date'
           type='date'

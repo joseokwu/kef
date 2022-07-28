@@ -16,7 +16,7 @@ export const getCards = ({
       const response = await authFetch.get(
         `/admin/get-card-analystics?search=${search}&type=${type}&page=${page}&date=${date}`
       );
-      console.log(response);
+      console.log('res', response);
       const { data } = response;
       dispatch({
         type: GET_CARDS_SUCCESS,
@@ -24,6 +24,7 @@ export const getCards = ({
       });
       toggleLoad();
     } catch (error) {
+      console.log(error);
       toggleLoad();
       if (!error.response) {
         console.log('No response from the server');

@@ -58,6 +58,17 @@ const TableRaffle = ({
     }
     setPage(page + 1);
   };
+  // useEffect(() => {
+  //   console.log(index, data.length);
+  //   const interval = setInterval(() => {
+  //     if (index < data.length) {
+  //       const element = data[index];
+  //       setWinnersList([...winnersList, element]);
+  //       setIndex(index + 1);
+  //     }
+  //   }, 1000);
+  //   return () => clearInterval(interval);
+  // }, [winnersList]);
 
   return (
     <>
@@ -69,10 +80,8 @@ const TableRaffle = ({
             handleType(val);
           }}
         />
-        <SearchAdmin onChange={(e) => setSearch(e.target.value)}></SearchAdmin>
-        {datePicker && (
-          <AdminDatePicker setDate={setDate} date={date}></AdminDatePicker>
-        )}
+        <SearchAdmin></SearchAdmin>
+        {datePicker && <AdminDatePicker></AdminDatePicker>}
       </section>
 
       {tableTitle && (
@@ -124,7 +133,7 @@ const TableRaffle = ({
             </tr>
           </thead>
           <tbody className='caption_light text-black-default whitespace-nowrap h-[48px]'>
-            {data.length > 0 &&
+            {data?.length > 0 &&
               data?.map((el) => {
                 return (
                   <>

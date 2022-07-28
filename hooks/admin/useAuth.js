@@ -6,10 +6,11 @@ const useAuth = () => {
   const dispatch = useDispatch();
   const stateAuth = useSelector((state) => state.adminAuth);
 
-  const { login } = bindActionCreators(authCreators, dispatch);
+  const { setActivePage, login } = bindActionCreators(authCreators, dispatch);
 
   return {
     stateAuth,
+    setActivePage,
     login,
   };
 };

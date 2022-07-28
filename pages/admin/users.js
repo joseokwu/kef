@@ -1,7 +1,9 @@
-import React from "react";
+import BaseLayout from '../../Components/Layout';
+import Users from '../../Components/Pages/Admin/Users';
 
-const users = () => {
-  return <div>users</div>;
+const UsersPage = () => {
+  return <Users></Users>;
 };
 
-export default users;
+UsersPage.Layout = BaseLayout;
+export default UsersPage;

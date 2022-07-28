@@ -9,33 +9,44 @@ import useUsers from '../../../hooks/admin/useUsers';
 import useShowAlert from '../../../hooks/useShowAlert';
 import useLoading from '../../../hooks/useLoading';
 import useAuth from '../../../hooks/admin/useAuth';
+import Filter from '../../Filter';
+import FilterCard from '../../FilterCard';
 
 const Users = () => {
   const dateRef = useRef();
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
   const [type, setType] = useState('all');
+  const [navType, setNavType] = useState('All Users');
   const [active, setActive] = useState('All users');
   const [date, setDate] = useState('');
   const [passError, setPassError] = useState('');
+  const [showFilter, setShowFilter] = useState(false);
+  const [dateValue, setDateValue] = useState();
   const toggleAlertBar = useShowAlert();
   const { toggleLoad } = useLoading();
+  const { setActivePage } = useAuth();
+
+  console.log(date);
 
   const {
     getUsers,
     stateUsers: { totalJoinedToday, totalUser, users, totalPages },
   } = useUsers();
 
-  const navs = ['All users', 'New', 'Old'];
+  const navs = ['All Users', 'New', 'Old'];
 
   const handleType = (val) => {
-    if (val === 'All users') {
+    if (val === 'All Users') {
+      setNavType('All Users');
       setType('all');
     }
     if (val === 'Old') {
+      setNavType('Old');
       setType('old');
     }
     if (val === 'New') {
+      setNavType('New');
       setType('new');
     }
     setPage(1);
@@ -53,6 +64,10 @@ const Users = () => {
     }
     setPage(page + 1);
   };
+
+  useEffect(() => {
+    setActivePage('Users');
+  }, []);
 
   useEffect(() => {
     getUsers({
@@ -77,16 +92,30 @@ const Users = () => {
       </section>
 
       {/*  */}
-      <section className='mt-[4.6rem] flex items-center mb-[3.2rem]'>
+      <section className='mt-[6rem] flex items-center mb-[2.6rem]'>
         <NavV1
-          activeNav={'All users'}
+          activeNav={navType}
           navs={navs}
           onChange={(val) => {
             handleType(val);
           }}
         />
-        <SearchAdmin onChange={(e) => setSearch(e.target.value)}></SearchAdmin>
-        <AdminDatePicker setDate={setDate} date={date}></AdminDatePicker>
+        <div className='ml-auto flex  w-[34%] relative'>
+          <Filter setShowFilter={setShowFilter} showFilter={showFilter} />
+          {showFilter && (
+            <FilterCard
+              date={date}
+              setDate={setDate}
+              type={'users'}
+              setDateValue={setDateValue}
+              handleFilter={() => setShowFilter(false)}
+              dateValue={dateValue}
+            />
+          )}
+          <SearchAdmin
+            onChange={(e) => setSearch(e.target.value)}
+          ></SearchAdmin>
+        </div>
       </section>
 
       {/* Table */}
@@ -158,56 +187,58 @@ const Users = () => {
         </table>
       </div>
 
-      <div className='flex items-center justify-center mt-[3.2rem]'>
-        <button
-          onClick={() => {
-            onBack();
-          }}
-          className={`h-[4rem] grid place-items-center place-content-center rounded-[5px] p-[1.2rem] border border-[#827F7F] bg-[#F0F0F0]`}
-        >
-          <svg
-            className=' rotate-180'
-            width='6'
-            height='10'
-            viewBox='0 0 6 10'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
+      {totalPages > 1 && (
+        <div className='flex items-center justify-center mt-[3.2rem]'>
+          <button
+            onClick={() => {
+              onBack();
+            }}
+            className={`h-[4rem] grid place-items-center place-content-center rounded-[5px] p-[1.2rem] border border-[#827F7F] bg-[#F0F0F0]`}
           >
-            <path
-              d='M3.88047 5.00005L0.167969 1.28755L1.22847 0.227051L6.00147 5.00005L1.22847 9.77305L0.167969 8.71255L3.88047 5.00005Z'
-              fill='black'
-            />
-          </svg>
-        </button>
-        <Pagination
-          count={totalPages}
-          page={page}
-          onClick={(e) => setPage(parseInt(e.target.textContent))}
-          variant='outlined'
-          shape='rounded'
-          hidePrevButton
-          hideNextButton
-        />
-        <button
-          onClick={() => {
-            onNext();
-          }}
-          className={`h-[4rem] grid place-items-center place-content-center rounded-[5px] p-[1.2rem] border border-[#827F7F] bg-[#F0F0F0]`}
-        >
-          <svg
-            width='6'
-            height='10'
-            viewBox='0 0 6 10'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
+            <svg
+              className=' rotate-180'
+              width='6'
+              height='10'
+              viewBox='0 0 6 10'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M3.88047 5.00005L0.167969 1.28755L1.22847 0.227051L6.00147 5.00005L1.22847 9.77305L0.167969 8.71255L3.88047 5.00005Z'
+                fill='black'
+              />
+            </svg>
+          </button>
+          <Pagination
+            count={totalPages}
+            page={page}
+            onClick={(e) => setPage(parseInt(e.target.textContent))}
+            variant='outlined'
+            shape='rounded'
+            hidePrevButton
+            hideNextButton
+          />
+          <button
+            onClick={() => {
+              onNext();
+            }}
+            className={`h-[4rem] grid place-items-center place-content-center rounded-[5px] p-[1.2rem] border border-[#827F7F] bg-[#F0F0F0]`}
           >
-            <path
-              d='M3.88047 5.00005L0.167969 1.28755L1.22847 0.227051L6.00147 5.00005L1.22847 9.77305L0.167969 8.71255L3.88047 5.00005Z'
-              fill='black'
-            />
-          </svg>
-        </button>
-      </div>
+            <svg
+              width='6'
+              height='10'
+              viewBox='0 0 6 10'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M3.88047 5.00005L0.167969 1.28755L1.22847 0.227051L6.00147 5.00005L1.22847 9.77305L0.167969 8.71255L3.88047 5.00005Z'
+                fill='black'
+              />
+            </svg>
+          </button>
+        </div>
+      )}
     </Container>
   );
 };

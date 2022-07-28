@@ -14,6 +14,9 @@ import { useRouter } from 'next/router';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { toggleAlert } from '../store/alert';
 import { useDispatch } from 'react-redux';
+import useAuth from '../hooks/admin/useAuth';
+import useShowAlert from '../hooks/useShowAlert';
+import { useEffect } from 'react';
 
 const Header = ({ title, setActivePage }) => {
   // const VerifyPaymentProcess = ["VerifyPayment", "Status"];
@@ -23,8 +26,13 @@ const Header = ({ title, setActivePage }) => {
   const [text, setText] = useState();
   const router = useRouter();
   const [showMore, setShowMore] = useState(false);
-  const { logOut } = useLocalStorage();
+  const { logOut, isAdminLoggedIn } = useLocalStorage();
+  // const activePage = useSelector(getPage);
+  const toggleAlertBar = useShowAlert();
   const dispatch = useDispatch();
+  const {
+    stateAuth: { activePage },
+  } = useAuth();
 
   const [show, setShow] = useState(false);
   function toggle() {
@@ -71,6 +79,29 @@ const Header = ({ title, setActivePage }) => {
     }
   }
 
+  useEffect(() => {
+    const res = isAdminLoggedIn();
+    switch (res) {
+      case 'noToken':
+        toggleAlertBar('You are not logged In', 'fail', true, 5000);
+        logOut();
+        router.replace('/admin/sign-in');
+        break;
+      case 'expired':
+        toggleAlertBar('Your session has expired', 'fail', true, 5000);
+        logOut();
+        router.replace('/admin/sign-in');
+        break;
+      case 'error':
+        toggleAlertBar('Please log in again', 'fail', true, 5000);
+        logOut();
+        router.replace('/admin/sign-in');
+        break;
+      default:
+        // setAutoPage('Overview');
+        break;
+    }
+  }, [activePage, router]);
   return (
     <>
       <Dialog open={show} onClose={toggle}>
@@ -116,8 +147,8 @@ const Header = ({ title, setActivePage }) => {
         )}
         {/* {activeModal == "VerifyPayment" && <VerifyPayment onVerify={onVerify}></VerifyPayment>} */}
       </Dialog>
-      <div className='flex items-center mb-[4.5rem] hdr:mb-[8.4rem] w-full'>
-        <h1 className='h1'>{title}</h1>
+      <div className='flex items-center mb-[4.5rem] hdr:mb-[6.4rem] w-full'>
+        <h1 className='h1'>{activePage && activePage}</h1>
         <div className='flex flex-wrap ml-auto'>
           {/* Buttons */}
           {!router.route.includes('admin') && (
@@ -144,7 +175,7 @@ const Header = ({ title, setActivePage }) => {
           )}
           {/* User Profile */}
           <div className='flex items-center ml-auto relative'>
-            <div className=' w-[42px] h-[42px] rounded-full grid place-items-center bg-[#FFF7E7] ml-auto mobile:ml-[59px] mr-[16px]'>
+            <div className=' w-[42px] h-[42px] rounded-full grid place-items-center ml-auto mobile:ml-[59px] mr-[16px]'>
               {/* <i className='icon icon-notification text-[1.7rem]'></i> */}
             </div>
             <div className='peer  py-4'>
@@ -154,14 +185,14 @@ const Header = ({ title, setActivePage }) => {
                   onClick={() => {
                     // setShowMore((val) => !val);
                   }}
-                  className='h-[4.2rem] cursor-pointer w-[4.2rem] object-cover rounded-full ml-[16px] yellow-shadow'
-                  src='/user-img.jpg'
+                  className='h-[4.2rem] cursor-pointer w-[4.2rem] object-cover rounded-full ml-[16px]'
+                  src='/profile-circle.svg'
                 />
                 {/* </Tooltip> */}
               </div>
             </div>
             {/* Logout/Profile */}
-            <ul className='p-[2.2rem] hidden hover:block peer-hover:block absolute top-[5.5rem] z-50 right-0 bg-white yellow-shadow rounded-[2rem] rounded-tr-none'>
+            <ul className='p-[2.2rem] hidden hover:block peer-hover:block absolute top-[5.5rem] z-50 right-0 bg-white  rounded-[2rem] rounded-tr-none'>
               {/* <li
                 onClick={() => {
                   setActivePage('Profile');
@@ -181,7 +212,6 @@ const Header = ({ title, setActivePage }) => {
                 <span className=' font-medium text-[1.4rem] ml-3'>Log out</span>
               </li>
             </ul>
-            )
           </div>
         </div>
       </div>

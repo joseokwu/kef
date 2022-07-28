@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { setAuthToken } from '../../../utils/helpers';
+import { SET_ACTIVE_PAGE } from './actionTypes';
 
 export const login = ({
   user,
@@ -12,7 +13,7 @@ export const login = ({
     toggleLoad();
     try {
       const response = await axios.post(
-        `https://api.kennismusic.app/admin/login`,
+        `https://kmf.kennismusic.app/admin/login`,
         user
       );
       const { access_token } = response.data;
@@ -39,5 +40,14 @@ export const login = ({
         toggleAlertBar('An Error Occurred', 'fail', true, 7000);
       }
     }
+  };
+};
+
+export const setActivePage = (page) => {
+  return async (dispatch) => {
+    dispatch({
+      type: SET_ACTIVE_PAGE,
+      payload: page,
+    });
   };
 };

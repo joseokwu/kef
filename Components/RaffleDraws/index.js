@@ -4,12 +4,17 @@ import Automated from './Automated';
 import History from './History';
 import AutomatedCard from './AutomatedCard';
 import AutomatedCardBar from './AutomatedCardBar';
-import AutomateWeeklyBar from './AutomateWeeklyBar';
+import CreateCampaign from './CreateCampaign';
 import SelectBox from './SelectBox';
 import TimeBox from './TimeBox';
 import Actions from './Actions';
 import AutomateEventBar from './AutomateEventBar';
 import TimeFrame from './TimeFrame';
+import RaffleDashboard from './RaffleDashboard';
+import DateBox from './DateBox';
+import ViewCampaign from './ViewCampaign';
+import StartDrawModal from './StartDrawModal';
+import SearchBox from './SearchBox';
 
 export {
   Weekly,
@@ -18,10 +23,15 @@ export {
   History,
   AutomatedCard,
   AutomatedCardBar,
-  AutomateWeeklyBar,
+  CreateCampaign,
   SelectBox,
   TimeBox,
   Actions,
   AutomateEventBar,
   TimeFrame,
+  RaffleDashboard,
+  DateBox,
+  ViewCampaign,
+  StartDrawModal,
+  SearchBox,
 };

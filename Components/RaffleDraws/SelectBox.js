@@ -1,10 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SelectBox = ({ label, options, disabled, onChange, category }) => {
+const SelectBox = ({
+  label,
+  subtitle,
+  options,
+  disabled,
+  onChange,
+  category,
+  setDrawType,
+}) => {
   return (
     <Wrapper>
-      <label htmlFor={label}>{label}</label>
+      <div className='info'>
+        <label htmlFor={label}>{label}</label>
+        <p>{subtitle}</p>
+      </div>
       <select
         name={label}
         id={label}
@@ -28,15 +39,22 @@ export default SelectBox;
 
 const Wrapper = styled.div`
   display: flex;
+  /* gap: 8rem; */
   align-items: center;
-  justify-content: flex-start;
-  /* width: 30%; */
   margin-bottom: 2rem;
+  .info {
+    width: 30%;
+  }
   label {
     font-size: 1.8rem;
     font-weight: 600;
     color: #575757;
-    width: 15%;
+    /* width: 15%; */
+  }
+  p {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    width: 90%;
   }
   select {
     font-size: 1.6rem;

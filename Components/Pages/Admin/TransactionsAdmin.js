@@ -4,20 +4,27 @@ import Container from '../../Layout/Container';
 import Pagination from '@mui/material/Pagination';
 import NavV1 from '../../NavPill/V1';
 import SearchAdmin from '../../Form/searchAdmin';
-import AdminDatePicker from '../../Form/AdminDatePicker';
 import useShowAlert from '../../../hooks/useShowAlert';
 import useLoading from '../../../hooks/useLoading';
 import useTransactions from '../../../hooks/admin/useTransactions';
+import Filter from '../../Filter';
+import useAuth from '../../../hooks/admin/useAuth';
+import FilterCard from '../../FilterCard';
 
 const TransactionsAdmin = () => {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(11);
   const [search, setSearch] = useState('');
   const [type, setType] = useState('all');
+  const [navType, setNavType] = useState('All Sales');
+  const [showFilter, setShowFilter] = useState(false);
+  const [dateValue, setDateValue] = useState();
+  const [date, setDate] = useState(new Date().toLocaleDateString());
   const [passError, setPassError] = useState('');
-  const [date, setDate] = useState('');
+  // const [date, setDate] = useState('');
   const toggleAlertBar = useShowAlert();
   const { toggleLoad } = useLoading();
+  const { setActivePage } = useAuth();
 
   const {
     getTransactions,
@@ -38,23 +45,33 @@ const TransactionsAdmin = () => {
     'Raffle Tickets',
     'Progressive Token',
     'Live Session',
+    'Vendor Payment',
   ];
 
   const handleType = (val) => {
     if (val === 'All Sales') {
+      setNavType('All Sales');
       setType('all');
     }
     if (val === 'Event Tickets') {
+      setNavType('Event Tickets');
       setType('EventTicket');
     }
     if (val === 'Raffle Tickets') {
+      setNavType('Raffle Tickets');
       setType('RaffleTicket');
     }
     if (val === 'Progressive Token') {
-      setType('progressiveTokenTransaction');
+      setNavType('Progressive Token');
+      setType('ProgressiveToken');
     }
     if (val === 'Live Session') {
-      setType('liveStreamTransactions');
+      setNavType('Live Session');
+      setType('LiveStream');
+    }
+    if (val === 'Vendor Payment') {
+      setNavType('Vendor Payment');
+      setType('SelfCheckout');
     }
     setPage(1);
   };
@@ -71,6 +88,10 @@ const TransactionsAdmin = () => {
     }
     setPage(page + 1);
   };
+
+  useEffect(() => {
+    setActivePage('Transactions');
+  }, []);
 
   useEffect(() => {
     getTransactions({
@@ -117,16 +138,29 @@ const TransactionsAdmin = () => {
       </section>
 
       {/*  */}
-      <section className='mt-[4.6rem] flex items-center mb-[3.2rem]'>
+      <section className='mt-[6rem] flex items-center mb-[2.6rem]'>
         <NavV1
-          activeNav={'All Sales'}
+          activeNav={navType}
           navs={navs}
           onChange={(val) => {
             handleType(val);
           }}
         />
-        <SearchAdmin onChange={(e) => setSearch(e.target.value)}></SearchAdmin>
-        <AdminDatePicker setDate={setDate} date={date}></AdminDatePicker>
+        <div className='ml-auto flex  w-[34%]'>
+          <Filter setShowFilter={setShowFilter} showFilter={showFilter} />
+          {showFilter && (
+            <FilterCard
+              date={date}
+              setDate={setDate}
+              handleFilter={() => setShowFilter(false)}
+              setDateValue={setDateValue}
+              dateValue={dateValue}
+            />
+          )}
+          <SearchAdmin
+            onChange={(e) => setSearch(e.target.value)}
+          ></SearchAdmin>
+        </div>
       </section>
 
       {/* Table */}
@@ -205,52 +239,54 @@ const TransactionsAdmin = () => {
         </table>
       </div>
 
-      <div className='flex items-center justify-center mt-[3.2rem]'>
-        <button
-          onClick={onBack}
-          className={`h-[4rem] grid place-items-center place-content-center rounded-[5px] p-[1.2rem] border border-[#827F7F] bg-[#F0F0F0]`}
-        >
-          <svg
-            className=' rotate-180'
-            width='6'
-            height='10'
-            viewBox='0 0 6 10'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
+      {totalPages > 1 && (
+        <div className='flex items-center justify-center mt-[3.2rem]'>
+          <button
+            onClick={onBack}
+            className={`h-[4rem] grid place-items-center place-content-center rounded-[5px] p-[1.2rem] border border-[#827F7F] bg-[#F0F0F0]`}
           >
-            <path
-              d='M3.88047 5.00005L0.167969 1.28755L1.22847 0.227051L6.00147 5.00005L1.22847 9.77305L0.167969 8.71255L3.88047 5.00005Z'
-              fill='black'
-            />
-          </svg>
-        </button>
-        <Pagination
-          count={totalPages}
-          page={page}
-          onClick={(e) => setPage(parseInt(e.target.textContent))}
-          variant='outlined'
-          shape='rounded'
-          hidePrevButton
-          hideNextButton
-        />
-        <button
-          onClick={onNext}
-          className={`h-[4rem] grid place-items-center place-content-center rounded-[5px] p-[1.2rem] border border-[#827F7F] bg-[#F0F0F0]`}
-        >
-          <svg
-            width='6'
-            height='10'
-            viewBox='0 0 6 10'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
+            <svg
+              className=' rotate-180'
+              width='6'
+              height='10'
+              viewBox='0 0 6 10'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M3.88047 5.00005L0.167969 1.28755L1.22847 0.227051L6.00147 5.00005L1.22847 9.77305L0.167969 8.71255L3.88047 5.00005Z'
+                fill='black'
+              />
+            </svg>
+          </button>
+          <Pagination
+            count={totalPages}
+            page={page}
+            onClick={(e) => setPage(parseInt(e.target.textContent))}
+            variant='outlined'
+            shape='rounded'
+            hidePrevButton
+            hideNextButton
+          />
+          <button
+            onClick={onNext}
+            className={`h-[4rem] grid place-items-center place-content-center rounded-[5px] p-[1.2rem] border border-[#827F7F] bg-[#F0F0F0]`}
           >
-            <path
-              d='M3.88047 5.00005L0.167969 1.28755L1.22847 0.227051L6.00147 5.00005L1.22847 9.77305L0.167969 8.71255L3.88047 5.00005Z'
-              fill='black'
-            />
-          </svg>
-        </button>
-      </div>
+            <svg
+              width='6'
+              height='10'
+              viewBox='0 0 6 10'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M3.88047 5.00005L0.167969 1.28755L1.22847 0.227051L6.00147 5.00005L1.22847 9.77305L0.167969 8.71255L3.88047 5.00005Z'
+                fill='black'
+              />
+            </svg>
+          </button>
+        </div>
+      )}
     </Container>
   );
 };

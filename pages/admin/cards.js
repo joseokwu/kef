@@ -1,10 +1,8 @@
-import React from 'react';
-import Cards from '../../Components/Pages/Admin/Cards';
 import BaseLayout from '../../Components/Layout';
+import Cards from '../../Components/Pages/Admin/Cards';
 
-const cards = () => {
-  return <Cards />;
+const CardsPage = () => {
+  return <Cards></Cards>;
 };
-
-cards.Layout = BaseLayout;
-export default cards;
+CardsPage.Layout = BaseLayout;
+export default CardsPage;

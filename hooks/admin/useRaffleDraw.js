@@ -8,33 +8,25 @@ const useRaffleDraw = () => {
 
   const {
     setAutoPage,
-    getAutomatedDraw,
-    activateWeeklyDrawSettings,
-    getWeeklyDrawSettings,
-    getWeeklyDraw,
-    updateWeeklyDrawSettings,
-    checkWeeklyDrawBtn,
-    activateEventDrawSettings,
-    getEventDrawSettings,
-    getEventDraw,
-    updateEventDrawSettings,
-    checkEventDrawBtn,
+    toggleFullScreen,
+    createCampaign,
+    getRaffleDraw,
+    getActiveDraws,
+    getProgressiveDrawDetails,
+    startProgressiveDraw,
+    stopProgressiveDraw,
   } = bindActionCreators(raffleDrawCreators, dispatch);
 
   return {
     stateRaffleDraw,
     setAutoPage,
-    getAutomatedDraw,
-    activateWeeklyDrawSettings,
-    getWeeklyDrawSettings,
-    getWeeklyDraw,
-    updateWeeklyDrawSettings,
-    checkWeeklyDrawBtn,
-    activateEventDrawSettings,
-    getEventDrawSettings,
-    getEventDraw,
-    updateEventDrawSettings,
-    checkEventDrawBtn,
+    toggleFullScreen,
+    createCampaign,
+    getRaffleDraw,
+    getActiveDraws,
+    getProgressiveDrawDetails,
+    startProgressiveDraw,
+    stopProgressiveDraw,
   };
 };
 

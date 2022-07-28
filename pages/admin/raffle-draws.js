@@ -1,7 +1,9 @@
-import React from 'react';
+import BaseLayout from '../../Components/Layout';
+import RaffleDraws from '../../Components/Pages/Admin/RaffleDraws';
 
-const RaffDraws = () => {
-  return <div>RaffDraws</div>;
+const RaffleDrawsPage = () => {
+  return <RaffleDraws></RaffleDraws>;
 };
 
-export default RaffDraws;
+RaffleDrawsPage.Layout = BaseLayout;
+export default RaffleDrawsPage;

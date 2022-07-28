@@ -1,6 +1,6 @@
 export const authState = {
   user: false,
-  hhd: 'djdj',
+  activePage: 'Overview',
 };
 
 export const usersState = {
@@ -23,23 +23,17 @@ export const transactionsState = {
 
 export const raffleState = {
   autoPage: 'cards',
-  automatedDrawSettings: {},
-  weeklyDrawSettings: {},
-  weeklyDraw: {},
-  weeklyDrawBtn: false,
-  eventDrawSettings: {},
-  eventDraw: {},
-  eventDrawBtn: false,
+  campaigns: [],
+  drawHistoryRepo: 0,
+  totalCampaign: 0,
+  totalPages: 0,
+  fullScreen: false,
+  progressiveDrawDetails: [],
 };
 
 export const eventsState = {
-  overallTotalSales: 0,
-  vipCategory: 0,
-  regularCategory: 0,
-  totalSalesVip: 0,
-  totalSalesRegular: 0,
-  purchasedTickets: 0,
-  wonTickets: 0,
+  events: [],
+  singleEvent: [],
 };
 
 export const artistCatalogueState = {
@@ -56,4 +50,16 @@ export const cardsState = {
   cards: [],
   totalPages: 1,
   page: 1,
+};
+
+export const overviewState = {
+  eventsCreated: 0,
+  raffleTicketsParticipated: 0,
+  raffleTicketsPurchased: 0,
+  raffleTicketsWon: 0,
+  rafflesCompleted: 0,
+  totalAmountSold: 0,
+  totalTicketsSold: 0,
+  totalVendorTransactions: 0,
+  vendors: 0,
 };

@@ -1,7 +1,8 @@
-import React from "react";
+import BaseLayout from '../../Components/Layout';
+import Events from '../../Components/Pages/Admin/Events';
 
-const events = () => {
-  return <div>events</div>;
+const EventsPage = () => {
+  return <Events></Events>;
 };
-
-export default events;
+EventsPage.Layout = BaseLayout;
+export default EventsPage;

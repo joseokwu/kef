@@ -8,7 +8,7 @@ const renderer = (element) => {
       // Render a countdown
       return (
         <div className='py-[1.8rem] px-[2.7rem] rounded-[2rem] bg-[#F8F9FD] text-[3rem] text-center'>
-          <h4 className='font-semibold text-[1.2rem] text-[#FCAC0D]  mb-[4px]'>
+          <h4 className='font-semibold text-[1.2rem] text-[#A307A8]  mb-[4px]'>
             Raffle Draw Starts In
           </h4>
           <div className='flex'>
@@ -43,7 +43,7 @@ const renderer = (element) => {
 const CountDown = ({ time, completed }) => {
   return (
     <Countdown
-      date={Date.now() + 500000}
+      date={Date.now() + time}
       renderer={renderer(completed)}
     ></Countdown>
   );

@@ -8,28 +8,37 @@ import AdminDatePicker from '../../Form/AdminDatePicker';
 import useShowAlert from '../../../hooks/useShowAlert';
 import useLoading from '../../../hooks/useLoading';
 import useCards from '../../../hooks/admin/useCards';
+import Filter from '../../Filter';
+import useAuth from '../../../hooks/admin/useAuth';
+import FilterCard from '../../FilterCard';
 
 const Cards = () => {
   const [page, setPage] = useState(1);
   const [active, setActive] = useState('All Cards');
   const [search, setSearch] = useState('');
   const [type, setType] = useState('all');
+  const [navType, setNavType] = useState('All Cards');
+  const [showFilter, setShowFilter] = useState(false);
+  const [date, setDate] = useState(new Date().toLocaleDateString());
   const [passError, setPassError] = useState('');
-  const [date, setDate] = useState('');
+  const [dateValue, setDateValue] = useState();
+  // const [date, setDate] = useState('');
   const toggleAlertBar = useShowAlert();
   const { toggleLoad } = useLoading();
+  const { setActivePage } = useAuth();
   const {
     getCards,
     stateCards: { totalCards, newCards, cards, totalPages },
   } = useCards();
   const navs = ['All Cards', 'New Cards'];
-  // const data = [
 
   const handleType = (val) => {
     if (val === 'All Cards') {
+      setNavType('All Cards');
       setType('all');
     }
     if (val === 'New Cards') {
+      setNavType('New Cards');
       setType('new');
     }
 
@@ -49,49 +58,8 @@ const Cards = () => {
     setPage(page + 1);
   };
 
-  //   {
-  //     firstName: 'Jonathan',
-  //     lastName: 'Mcreynold',
-  //     DatePurchased: '21 March, 2022',
-  //     pickupStatus: 'Delivered',
-  //     phone: '+234(0)812 3456789',
-  //     email: 'j.mcreynold@gmail.com',
-  //   },
-  //   {
-  //     firstName: 'Jonathan',
-  //     lastName: 'Smith',
-  //     DatePurchased: '21 March, 2022',
-  //     pickupStatus: 'Not Delivered',
-  //     phone: '+234(0)812 3456789',
-  //     email: 'jonsmith@gmail.com',
-  //   },
-  //   {
-  //     firstName: 'Jonathan',
-  //     lastName: 'Mcreynold',
-  //     DatePurchased: '21 March, 2022',
-  //     pickupStatus: 'Delivered',
-  //     phone: '+234(0)812 3456789',
-  //     email: 'j.mcreynold@gmail.com',
-  //   },
-  //   {
-  //     firstName: 'Jonathan',
-  //     lastName: 'Mcreynold',
-  //     DatePurchased: '21 March, 2022',
-  //     pickupStatus: 'Delivered',
-  //     phone: '+234(0)812 3456789',
-  //     email: 'j.mcreynold@gmail.com',
-  //   },
-  //   {
-  //     firstName: 'Jonathan',
-  //     lastName: 'Smith',
-  //     DatePurchased: '21 March, 2022',
-  //     pickupStatus: 'Not Delivered',
-  //     phone: '+234(0)812 3456789',
-  //     email: 'jonsmith@gmail.com',
-  //   },
-  // ];
-
   useEffect(() => {
+    setActivePage('Cards');
     getCards({
       toggleAlertBar,
       toggleLoad,
@@ -111,16 +79,29 @@ const Cards = () => {
       </section>
 
       {/*  */}
-      <section className='mt-[4.6rem] flex items-center mb-[3.2rem]'>
+      <section className='mt-[6rem] flex items-center mb-[2.6rem]'>
         <NavV1
-          activeNav={'All Cards'}
+          activeNav={navType}
           navs={navs}
           onChange={(val) => {
             handleType(val);
           }}
         />
-        <SearchAdmin onChange={(e) => setSearch(e.target.value)}></SearchAdmin>
-        <AdminDatePicker setDate={setDate} date={date}></AdminDatePicker>
+        <div className='ml-auto flex  w-[34%]'>
+          <Filter setShowFilter={setShowFilter} showFilter={showFilter} />
+          {showFilter && (
+            <FilterCard
+              date={date}
+              setDate={setDate}
+              setDateValue={setDateValue}
+              handleFilter={() => setShowFilter(false)}
+              dateValue={dateValue}
+            />
+          )}
+          <SearchAdmin
+            onChange={(e) => setSearch(e.target.value)}
+          ></SearchAdmin>
+        </div>
       </section>
 
       {/* Table */}
@@ -201,52 +182,54 @@ const Cards = () => {
         </table>
       </div>
 
-      <div className='flex items-center justify-center mt-[3.2rem]'>
-        <button
-          onClick={onBack}
-          className={`h-[4rem] grid place-items-center place-content-center rounded-[5px] p-[1.2rem] border border-[#827F7F] bg-[#F0F0F0]`}
-        >
-          <svg
-            className=' rotate-180'
-            width='6'
-            height='10'
-            viewBox='0 0 6 10'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
+      {totalPages > 1 && (
+        <div className='flex items-center justify-center mt-[3.2rem]'>
+          <button
+            onClick={onBack}
+            className={`h-[4rem] grid place-items-center place-content-center rounded-[5px] p-[1.2rem] border border-[#827F7F] bg-[#F0F0F0]`}
           >
-            <path
-              d='M3.88047 5.00005L0.167969 1.28755L1.22847 0.227051L6.00147 5.00005L1.22847 9.77305L0.167969 8.71255L3.88047 5.00005Z'
-              fill='black'
-            />
-          </svg>
-        </button>
-        <Pagination
-          count={totalPages}
-          page={page}
-          onChange={(e) => setPage(parseInt(e.target.textContent))}
-          variant='outlined'
-          shape='rounded'
-          hidePrevButton
-          hideNextButton
-        />
-        <button
-          onClick={onNext}
-          className={`h-[4rem] grid place-items-center place-content-center rounded-[5px] p-[1.2rem] border border-[#827F7F] bg-[#F0F0F0]`}
-        >
-          <svg
-            width='6'
-            height='10'
-            viewBox='0 0 6 10'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
+            <svg
+              className=' rotate-180'
+              width='6'
+              height='10'
+              viewBox='0 0 6 10'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M3.88047 5.00005L0.167969 1.28755L1.22847 0.227051L6.00147 5.00005L1.22847 9.77305L0.167969 8.71255L3.88047 5.00005Z'
+                fill='black'
+              />
+            </svg>
+          </button>
+          <Pagination
+            count={totalPages}
+            page={page}
+            onChange={(e) => setPage(parseInt(e.target.textContent))}
+            variant='outlined'
+            shape='rounded'
+            hidePrevButton
+            hideNextButton
+          />
+          <button
+            onClick={onNext}
+            className={`h-[4rem] grid place-items-center place-content-center rounded-[5px] p-[1.2rem] border border-[#827F7F] bg-[#F0F0F0]`}
           >
-            <path
-              d='M3.88047 5.00005L0.167969 1.28755L1.22847 0.227051L6.00147 5.00005L1.22847 9.77305L0.167969 8.71255L3.88047 5.00005Z'
-              fill='black'
-            />
-          </svg>
-        </button>
-      </div>
+            <svg
+              width='6'
+              height='10'
+              viewBox='0 0 6 10'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M3.88047 5.00005L0.167969 1.28755L1.22847 0.227051L6.00147 5.00005L1.22847 9.77305L0.167969 8.71255L3.88047 5.00005Z'
+                fill='black'
+              />
+            </svg>
+          </button>
+        </div>
+      )}
     </Container>
   );
 };

@@ -1,23 +1,18 @@
 import { eventsState } from '../initialStates';
-import {
-  GET_SINGLE_EVENT_SUCCESS,
-  GET_TRANSACTIONS_SUCCESS,
-} from '../actions/actionTypes';
+import { GET_EVENTS, GET_SINGLE_EVENT } from '../actions/actionTypes';
 
 const reducer = (state = eventsState, action) => {
   switch (action.type) {
-    case GET_SINGLE_EVENT_SUCCESS:
-      const { totalEventTicketSold, vipTicketSold, regularTicketSold } =
-        action.payload;
+    case GET_EVENTS:
+      const { events } = action.payload;
       return {
         ...state,
-        overallTotalSales: totalEventTicketSold,
-        // vipCategory: 0,
-        // regularCategory: 0,
-        totalSalesVip: vipTicketSold,
-        totalSalesRegular: regularTicketSold,
-        // purchasedTickets: 0,
-        // wonTickets: 0,
+        events,
+      };
+    case GET_SINGLE_EVENT:
+      return {
+        ...state,
+        singleEvent: action.payload,
       };
     default:
       return state;

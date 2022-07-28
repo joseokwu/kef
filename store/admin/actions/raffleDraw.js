@@ -1,16 +1,13 @@
 import authFetch from '../../../axios/admin';
 import {
-  START_ON_EVENT_DRAW_SUCCESS,
   SET_AUTO_PAGE,
-  GET_AUTOMATED_DRAW_SETTINGS_SUCCESS,
-  GET_WEEKLY_DRAW,
-  CHECK_WEEKLY_DRAW_BTN,
-  UPDATE_WEEKLY_DRAW_SETTINGS,
-  GET_WEEKLY_DRAW_SETTINGS,
-  GET_EVENT_DRAW_SETTINGS,
-  ACTIVATE_WEEKLY_DRAW_SETTINGS,
-  GET_EVENT_DRAW,
-  CHECK_EVENT_DRAW_BTN,
+  SET_FULLSCREEN,
+  CREATE_CAMPAIGN,
+  GET_RAFFLE_DRAW,
+  GET_PROGRESSIVE_DRAW_DETAILS,
+  START_PROGRESSIVE_DRAW,
+  STOP_PROGRESSIVE_DRAW,
+  GET_ACTIVE_DRAWS,
 } from './actionTypes';
 
 export const setAutoPage = (page) => {
@@ -22,26 +19,29 @@ export const setAutoPage = (page) => {
   };
 };
 
-export const getAutomatedDraw = ({
+export const createCampaign = ({
   toggleLoad,
   toggleAlertBar,
   setPassError,
+  details,
+  setModal,
 }) => {
   return async (dispatch) => {
+    console.log(details);
     toggleLoad();
+
     try {
-      const response = await authFetch.get(
-        `https://api.kennismusic.app/draw/get-automated-draw`
-      );
+      const response = await authFetch.post(`/draw/create-campaign`, details);
       console.log(response);
       const { data } = response;
       dispatch({
-        type: GET_AUTOMATED_DRAW_SETTINGS_SUCCESS,
+        type: CREATE_CAMPAIGN,
         payload: data,
       });
       toggleLoad();
+      setModal(true);
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
       toggleLoad();
       if (!error.response) {
         console.log('No response from the server');
@@ -65,30 +65,21 @@ export const getAutomatedDraw = ({
 
 //WEEKLY
 
-export const activateWeeklyDrawSettings = ({
-  toggleLoad,
-  toggleAlertBar,
-  setPassError,
-  activated,
-}) => {
+export const getRaffleDraw = ({ toggleLoad, toggleAlertBar, setPassError }) => {
   return async (dispatch) => {
     toggleLoad();
     try {
-      const response = await authFetch.post(
-        `https://api.kennismusic.app/draw/activate-weekly-draw-setting
-`,
-        { activated }
-      );
+      const response = await authFetch.get(`/draw/raffle-draw`);
       console.log(response);
       const { data } = response;
-      // dispatch({
-      //   type: ACTIVATE_WEEKLY_DRAW_SETTINGS,
-      //   payload: data,
-      // });
+      dispatch({
+        type: GET_RAFFLE_DRAW,
+        payload: data,
+      });
       toggleLoad();
       toggleAlertBar('Weekly draw settings have been activated', true);
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
       toggleLoad();
       if (!error.response) {
         console.log('No response from the server');
@@ -110,26 +101,27 @@ export const activateWeeklyDrawSettings = ({
   };
 };
 
-export const getWeeklyDrawSettings = ({
+export const startProgressiveDraw = ({
   toggleLoad,
   toggleAlertBar,
   setPassError,
+  uuid,
 }) => {
   return async (dispatch) => {
     toggleLoad();
     try {
-      const response = await authFetch.get(
-        `https://api.kennismusic.app/draw/get-weekly-draw-setting`
+      const response = await authFetch.post(
+        `/draw/start-progressive-draw/${uuid}`
       );
       console.log(response);
       const { data } = response;
       dispatch({
-        type: GET_WEEKLY_DRAW_SETTINGS,
+        type: START_PROGRESSIVE_DRAW,
         payload: data,
       });
       toggleLoad();
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
       toggleLoad();
       if (!error.response) {
         console.log('No response from the server');
@@ -151,7 +143,7 @@ export const getWeeklyDrawSettings = ({
   };
 };
 
-export const updateWeeklyDrawSettings = ({
+export const stopProgressiveDraw = ({
   toggleLoad,
   toggleAlertBar,
   setPassError,
@@ -161,15 +153,15 @@ export const updateWeeklyDrawSettings = ({
     toggleLoad();
     try {
       const response = await authFetch.post(
-        `https://api.kennismusic.app/draw/weekly-draw-setting`,
+        `/draw/stop-progressive-draw/${uuid}`,
         values
       );
       console.log(response);
       const { data } = response;
-      // dispatch({
-      //   type: UPDATE_WEEKLY_DRAW_SETTINGS,
-      //   payload: data,
-      // });
+      dispatch({
+        type: STOP_PROGRESSIVE_DRAW,
+        payload: data,
+      });
       toggleLoad();
       toggleAlertBar('Your settings have been updated!', true);
     } catch (error) {
@@ -195,200 +187,23 @@ export const updateWeeklyDrawSettings = ({
   };
 };
 
-export const getWeeklyDraw = ({
+export const getActiveDraws = ({
   toggleLoad,
   toggleAlertBar,
   setPassError,
-  page,
-  type,
-  search,
-  date,
+  uuid,
 }) => {
   return async (dispatch) => {
     toggleLoad();
     try {
-      const response = await authFetch.get(
-        `https://api.kennismusic.app/admin/get-weekly-draw-analystics?search=${search}&type=${type}&page=${page}&date=${date}`
-      );
+      const response = await authFetch.get(`/draw/get-active-draws/${uuid}`);
       console.log(response);
       const { data } = response;
       dispatch({
-        type: GET_WEEKLY_DRAW,
+        type: GET_ACTIVE_DRAWS,
         payload: data,
       });
       toggleLoad();
-    } catch (error) {
-      console.log(error);
-      toggleLoad();
-      if (!error.response) {
-        console.log('No response from the server');
-        toggleAlertBar(
-          'No server response. Please Check Your internet connection',
-          'fail',
-          true
-        );
-        return;
-        // setError("Network Error");
-      }
-      if (error.response.data.statusCode === 401) {
-        console.log('response error', error.response);
-        setPassError('Email or Password is incorrect');
-      } else {
-        toggleAlertBar('An Error Occurred', 'fail', true, 7000);
-      }
-    }
-  };
-};
-
-export const checkWeeklyDrawBtn = ({
-  toggleLoad,
-  toggleAlertBar,
-  setPassError,
-}) => {
-  return async (dispatch) => {
-    toggleLoad();
-    try {
-      const response = await authFetch.get(
-        `https://api.kennismusic.app/draw/check-weekly-draw-btn`
-      );
-      console.log(response);
-      const { data } = response;
-      dispatch({
-        type: CHECK_WEEKLY_DRAW_BTN,
-        payload: data,
-      });
-      toggleLoad();
-    } catch (error) {
-      console.log(error);
-      toggleLoad();
-      if (!error.response) {
-        console.log('No response from the server');
-        toggleAlertBar(
-          'No server response. Please Check Your internet connection',
-          'fail',
-          true
-        );
-        return;
-        // setError("Network Error");
-      }
-      if (error.response.data.statusCode === 401) {
-        console.log('response error', error.response);
-        setPassError('Email or Password is incorrect');
-      } else {
-        toggleAlertBar('An Error Occurred', 'fail', true, 7000);
-      }
-    }
-  };
-};
-
-// EVENTS
-export const activateEventDrawSettings = ({
-  toggleLoad,
-  toggleAlertBar,
-  setPassError,
-  activated,
-}) => {
-  return async (dispatch) => {
-    toggleLoad();
-    try {
-      const response = await authFetch.post(
-        `https://api.kennismusic.app/draw/activate-event-draw-setting
-`,
-        { activated }
-      );
-      console.log(response);
-      const { data } = response;
-      // dispatch({
-      //   type: ACTIVATE_WEEKLY_DRAW_SETTINGS,
-      //   payload: data,
-      // });
-      toggleLoad();
-      toggleAlertBar('Event draw settings have been activated', true);
-    } catch (error) {
-      console.log(error);
-      toggleLoad();
-      if (!error.response) {
-        console.log('No response from the server');
-        toggleAlertBar(
-          'No server response. Please Check Your internet connection',
-          'fail',
-          true
-        );
-        return;
-        // setError("Network Error");
-      }
-      if (error.response.data.statusCode === 401) {
-        console.log('response error', error.response);
-        setPassError('Email or Password is incorrect');
-      } else {
-        toggleAlertBar('An Error Occurred', 'fail', true, 7000);
-      }
-    }
-  };
-};
-
-export const getEventDrawSettings = ({
-  toggleLoad,
-  toggleAlertBar,
-  setPassError,
-}) => {
-  return async (dispatch) => {
-    toggleLoad();
-    try {
-      const response = await authFetch.get(
-        `https://api.kennismusic.app/draw/get-event-draw-setting`
-      );
-      console.log(response);
-      const { data } = response;
-      dispatch({
-        type: GET_EVENT_DRAW_SETTINGS,
-        payload: data,
-      });
-      toggleLoad();
-    } catch (error) {
-      console.log(error);
-      toggleLoad();
-      if (!error.response) {
-        console.log('No response from the server');
-        toggleAlertBar(
-          'No server response. Please Check Your internet connection',
-          'fail',
-          true
-        );
-        return;
-        // setError("Network Error");
-      }
-      if (error.response.data.statusCode === 401) {
-        console.log('response error', error.response);
-        setPassError('Email or Password is incorrect');
-      } else {
-        toggleAlertBar('An Error Occurred', 'fail', true, 7000);
-      }
-    }
-  };
-};
-
-export const updateEventDrawSettings = ({
-  toggleLoad,
-  toggleAlertBar,
-  setPassError,
-  values,
-}) => {
-  return async (dispatch) => {
-    toggleLoad();
-    try {
-      const response = await authFetch.post(
-        `https://api.kennismusic.app/draw/event-draw-setting`,
-        values
-      );
-      console.log(response);
-      const { data } = response;
-      // dispatch({
-      //   type: UPDATE_WEEKLY_DRAW_SETTINGS,
-      //   payload: data,
-      // });
-      toggleLoad();
-      toggleAlertBar('Your settings have been updated!', true);
     } catch (error) {
       console.log(error.response);
       toggleLoad();
@@ -412,30 +227,27 @@ export const updateEventDrawSettings = ({
   };
 };
 
-export const getEventDraw = ({
+export const getProgressiveDrawDetails = ({
   toggleLoad,
   toggleAlertBar,
   setPassError,
-  page,
-  type,
-  search,
-  date,
+  uuid,
 }) => {
   return async (dispatch) => {
     toggleLoad();
     try {
       const response = await authFetch.get(
-        `https://api.kennismusic.app/admin/get-weekly-draw-analystics?search=${search}&type=${type}&page=${page}&date=${date}`
+        `/draw/get-progressive-draw-details/${uuid}`
       );
       console.log(response);
       const { data } = response;
       dispatch({
-        type: GET_EVENT_DRAW,
+        type: GET_PROGRESSIVE_DRAW_DETAILS,
         payload: data,
       });
       toggleLoad();
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
       toggleLoad();
       if (!error.response) {
         console.log('No response from the server');
@@ -457,43 +269,11 @@ export const getEventDraw = ({
   };
 };
 
-export const checkEventDrawBtn = ({
-  toggleLoad,
-  toggleAlertBar,
-  setPassError,
-}) => {
+export const toggleFullScreen = ({ value }) => {
   return async (dispatch) => {
-    toggleLoad();
-    try {
-      const response = await authFetch.get(
-        `https://api.kennismusic.app/draw/check-event-draw-btn`
-      );
-      console.log(response);
-      const { data } = response;
-      dispatch({
-        type: CHECK_EVENT_DRAW_BTN,
-        payload: data,
-      });
-      toggleLoad();
-    } catch (error) {
-      console.log(error);
-      toggleLoad();
-      if (!error.response) {
-        console.log('No response from the server');
-        toggleAlertBar(
-          'No server response. Please Check Your internet connection',
-          'fail',
-          true
-        );
-        return;
-        // setError("Network Error");
-      }
-      if (error.response.data.statusCode === 401) {
-        console.log('response error', error.response);
-        setPassError('Email or Password is incorrect');
-      } else {
-        toggleAlertBar('An Error Occurred', 'fail', true, 7000);
-      }
-    }
+    dispatch({
+      type: SET_FULLSCREEN,
+      payload: value,
+    });
   };
 };

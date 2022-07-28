@@ -1,27 +1,33 @@
 import { raffleState } from '../initialStates';
 import {
-  GET_WEEKLY_DRAW_SETTINGS,
-  GET_AUTOMATED_DRAW_SETTINGS_SUCCESS,
   SET_AUTO_PAGE,
-  GET_WEEKLY_DRAW,
-  GET_EVENT_DRAW_SETTINGS,
-  GET_EVENT_DRAW,
+  SET_FULLSCREEN,
+  GET_RAFFLE_DRAW,
+  GET_PROGRESSIVE_DRAW_DETAILS,
 } from '../actions/actionTypes';
 
 const reducer = (state = raffleState, action) => {
   switch (action.type) {
     case SET_AUTO_PAGE:
       return { ...state, autoPage: action.payload };
-    case GET_AUTOMATED_DRAW_SETTINGS_SUCCESS:
-      return { ...state, automatedDrawSettings: action.payload };
-    case GET_WEEKLY_DRAW_SETTINGS:
-      return { ...state, weeklyDrawSettings: action.payload };
-    case GET_WEEKLY_DRAW:
-      return { ...state, weeklyDraw: action.payload };
-    case GET_EVENT_DRAW_SETTINGS:
-      return { ...state, eventDrawSettings: action.payload };
-    case GET_EVENT_DRAW:
-      return { ...state, eventDraw: action.payload };
+    case GET_RAFFLE_DRAW:
+      const { campaigns, drawHistoryRepo, totalCampaign, totalPages } =
+        action.payload;
+      return {
+        ...state,
+        campaigns,
+        drawHistoryRepo,
+        totalCampaign,
+        totalPages,
+      };
+    case GET_PROGRESSIVE_DRAW_DETAILS:
+      const progressiveDrawDetails = action.payload;
+      return {
+        ...state,
+        progressiveDrawDetails,
+      };
+    case SET_FULLSCREEN:
+      return { ...state, fullScreen: action.payload };
     default:
       return state;
   }

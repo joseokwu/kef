@@ -3,7 +3,6 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import CountDown from './Countdown';
 import AutomatedCardBar from './AutomatedCardBar';
-import AutomateWeeklyBar from './AutomateWeeklyBar';
 import AutomateEventBar from './AutomateEventBar';
 import useRaffleDraw from '../../hooks/admin/useRaffleDraw';
 import useShowAlert from '../../hooks/useShowAlert';
@@ -27,9 +26,9 @@ const Automated = () => {
   return (
     <>
       {autoPage === 'cards' && <AutomatedCardBar />}
-      {autoPage === 'weekly' && (
-        <AutomateWeeklyBar weeklyDrawSettings={weeklyDrawSettings} />
-      )}
+      {/* {autoPage === 'weekly' && (
+        // <AutomateWeeklyBar weeklyDrawSettings={weeklyDrawSettings} />
+      )} */}
       {autoPage === 'event' && (
         <AutomateEventBar eventDrawSettings={eventDrawSettings} />
       )}

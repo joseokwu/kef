@@ -13,6 +13,7 @@ import adminTransactionsReducer from './admin/reducers/transactions';
 import adminEventsReducer from './admin/reducers/events';
 import adminArtistCatalogueReducer from './admin/reducers/artistCatalogue';
 import adminCardsReducer from './admin/reducers/cards';
+import adminOverviewReducer from './admin/reducers/overview';
 
 const store = createStore(
   combineReducers({
@@ -28,6 +29,7 @@ const store = createStore(
     adminEvents: adminEventsReducer,
     adminArtistCatalogue: adminArtistCatalogueReducer,
     adminCards: adminCardsReducer,
+    adminOverview: adminOverviewReducer,
   }),
   applyMiddleware(thunk)
 );

@@ -14,7 +14,7 @@ export const getUsers = ({
     toggleLoad();
     try {
       const response = await authFetch.get(
-        `https://api.kennismusic.app/admin/get-users-analystics?search=${search}&type=${type}&page=${page}&date=${date}`
+        `/admin/get-users-analystics?search=${search}&type=${type}&page=${page}&date=${date}`
       );
       console.log(response);
       const { data } = response;

@@ -14,7 +14,7 @@ export const getTransactions = ({
     toggleLoad();
     try {
       const response = await authFetch.get(
-        `https://api.kennismusic.app/admin/get-transactions-analystics?search=${search}&type=${type}&page=${page}&date=${date}`
+        `/admin/get-transactions-analystics?search=${search}&type=${type}&page=${page}&date=${date}`
       );
       console.log(response);
       const { data } = response;
@@ -24,6 +24,7 @@ export const getTransactions = ({
       });
       toggleLoad();
     } catch (error) {
+      console.log(error?.response);
       toggleLoad();
       if (!error.response) {
         console.log('No response from the server');
