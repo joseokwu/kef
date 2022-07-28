@@ -3,7 +3,7 @@ import Link from "next/link";
 import useLoading from "../../hooks/useLoading";
 
 const Container = ({ children }) => {
-  return <div className="max-w-[142rem] mx-auto w-full px-[4rem] sidebar:px-[10rem]">{children}</div>;
+  return <div className="max-w-[182rem] mx-auto w-full px-[4rem] sidebar:px-[10rem]">{children}</div>;
 };
 
 const LandPageLayout = ({ children }) => {
@@ -18,11 +18,11 @@ const LandPageLayout = ({ children }) => {
   };
 
   return (
-    <div className=" bg-homepage flex flex-col h-screen justify-between">
+    <div className=" bg-homepage bg-slate-900 flex flex-col h-screen justify-between">
       <div className=" grow-0 shrink-0 ">
         <Container>
           {" "}
-          <header className="flex items-center py-[4rem]">
+          <header className="flex items-center pt-[3rem] pb-[1.6rem]">
             <img src="/kef-logo.svg" className="mr-auto w-[6.4rem]"></img>
             {/* Desktop Nav */}
             <div className="items-center hidden sidebar:flex ">

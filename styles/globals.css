@@ -17,12 +17,22 @@ body {
 }
 
 html {
+<<<<<<< HEAD
   font-size: 55.3%;
+=======
+  font-size: 52%;
+
+>>>>>>> e675d9d01e4d437d0a646cacde42543aef27ad40
 }
 
 @media (min-width: 940px) {
   html {
+<<<<<<< HEAD
     font-size: 62.5%;
+=======
+    font-size: 58%;
+
+>>>>>>> e675d9d01e4d437d0a646cacde42543aef27ad40
   }
 }
 
