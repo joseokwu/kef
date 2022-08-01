@@ -34,49 +34,10 @@ const Header = ({ title, setActivePage }) => {
     stateAuth: { activePage },
   } = useAuth();
 
-  const [show, setShow] = useState(false);
-  function toggle() {
-    console.log('toggleing...');
-    open ? setShow(false) : setShow(true);
-  }
-
-  function onVerify() {
-    setActiveModal('Status');
-  }
-  function onCheckOut() {
-    setActiveModal('ReviewCheckOut');
-  }
-
-  function onReview() {
-    setLinkText('View Receipt');
-    setStatusTitle('Purchase Successful');
-    setText(
-      'Your purchase order is successful and your account has been credited.'
-    );
-    setActiveModal('Status');
-  }
-  function onSelected() {
-    setActiveModal('PaymentOptions');
-  }
-
-  function onSelectPayOption() {
-    setLinkText('Go to dashboard');
-    setStatusTitle('Purchase Order Success');
-    setText('Your purchase order for 20 tickets was successful');
-    setActiveModal('Status');
-  }
-
   function onLogOut() {
-    console.log(router);
-    if (router.pathname.includes('admin')) {
-      logOut();
-      router.replace('/admin/sign-in');
-      dispatch(toggleAlert('success', 'Logged Out successfully!', true));
-    } else {
-      logOut();
-      router.replace('/auth/sign-in');
-      dispatch(toggleAlert('success', 'Logged Out successfully!', true));
-    }
+    logOut();
+    router.replace('/');
+    dispatch(toggleAlert('success', 'Logged Out successfully!', true));
   }
 
   useEffect(() => {
@@ -85,17 +46,17 @@ const Header = ({ title, setActivePage }) => {
       case 'noToken':
         toggleAlertBar('You are not logged In', 'fail', true, 5000);
         logOut();
-        router.replace('/admin/sign-in');
+        router.replace('/');
         break;
       case 'expired':
         toggleAlertBar('Your session has expired', 'fail', true, 5000);
         logOut();
-        router.replace('/admin/sign-in');
+        router.replace('/');
         break;
       case 'error':
         toggleAlertBar('Please log in again', 'fail', true, 5000);
         logOut();
-        router.replace('/admin/sign-in');
+        router.replace('/');
         break;
       default:
         // setAutoPage('Overview');
@@ -104,75 +65,11 @@ const Header = ({ title, setActivePage }) => {
   }, [activePage, router]);
   return (
     <>
-      <Dialog open={show} onClose={toggle}>
-        {activeModal == 'Status' && (
-          <PopupStatus
-            action={toggle}
-            title={statusTitle}
-            link={`/dashboard`}
-            linkText={linkText}
-            text={text}
-            status={'success'}
-          ></PopupStatus>
-        )}
-        {/* <CardAddress></CardAddress> */}
-        {/* <ActivateCard></ActivateCard> */}
-        {/* <ClaimReward></ClaimReward> */}
-        {activeModal == 'PaymentOptions' && (
-          <PaymentOptions
-            onCancel={toggle}
-            onSelectPayOption={onSelectPayOption}
-          ></PaymentOptions>
-        )}
-        {activeModal == 'AmountOfTickets' && (
-          <AmountOfTickets
-            onCancel={toggle}
-            onSelected={onSelected}
-          ></AmountOfTickets>
-        )}
-        {activeModal == 'VerifyPayment' && (
-          <VerifyPayment onCancel={toggle} onVerify={onVerify}></VerifyPayment>
-        )}
-        {activeModal == 'SelfCheckOut' && (
-          <SelfCheckOut
-            onCancel={toggle}
-            onCheckOut={onCheckOut}
-          ></SelfCheckOut>
-        )}
-        {activeModal == 'ReviewCheckOut' && (
-          <ReviewCheckOut
-            onCancel={toggle}
-            onReview={onReview}
-          ></ReviewCheckOut>
-        )}
-        {/* {activeModal == "VerifyPayment" && <VerifyPayment onVerify={onVerify}></VerifyPayment>} */}
-      </Dialog>
       <div className='flex items-center mb-[4.5rem] hdr:mb-[6.4rem] w-full'>
         <h1 className='h1'>{activePage && activePage}</h1>
         <div className='flex flex-wrap ml-auto'>
           {/* Buttons */}
-          {!router.route.includes('admin') && (
-            <div className='flex-none hidden items-center ml-auto hdr:flex '>
-              <button
-                onClick={() => {
-                  setActiveModal('SelfCheckOut');
-                  setShow(true);
-                }}
-                className='btn ml-auto !bg-[#F0F0F0]'
-              >
-                Self Checkout
-              </button>
-              <button
-                onClick={() => {
-                  setActiveModal('AmountOfTickets');
-                  setShow(true);
-                }}
-                className='btn ml-[1.6rem]'
-              >
-                Buy Raffle Ticket
-              </button>
-            </div>
-          )}
+
           {/* User Profile */}
           <div className='flex items-center ml-auto relative'>
             <div className=' w-[42px] h-[42px] rounded-full grid place-items-center ml-auto mobile:ml-[59px] mr-[16px]'>
@@ -215,29 +112,6 @@ const Header = ({ title, setActivePage }) => {
           </div>
         </div>
       </div>
-
-      {!router.route.includes('admin') && (
-        <div className='flex items-center ml-auto hdr:hidden mb-[4.5rem] overflow-scroll scroll_hide'>
-          <button
-            onClick={() => {
-              setActiveModal('SelfCheckOut');
-              setShow(true);
-            }}
-            className='btn ml-auto !bg-[#F0F0F0]'
-          >
-            Self Checkout
-          </button>
-          <button
-            onClick={() => {
-              setActiveModal('AmountOfTickets');
-              setShow(true);
-            }}
-            className='btn ml-[1.6rem]'
-          >
-            Buy Raffle Ticket
-          </button>
-        </div>
-      )}
     </>
   );
 };

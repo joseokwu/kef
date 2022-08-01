@@ -21,7 +21,6 @@ const Automated = () => {
   useEffect(() => {
     getWeeklyDrawSettings({ toggleAlertBar, toggleLoad, setPassError });
     getEventDrawSettings({ toggleAlertBar, toggleLoad, setPassError });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

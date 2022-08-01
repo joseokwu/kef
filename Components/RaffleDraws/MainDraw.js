@@ -530,16 +530,15 @@ const MainDraw = ({ list, id }) => {
 
   useEffect(() => {
     getActiveDraws({ toggleAlertBar, toggleLoad, setPassError, uuid: id });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  useEffect(() => {
-    if (nextTime) {
-      const newTime = new Date(nextTime) - new Date(Date.now());
-      console.log(newTime);
-      setInitialTime(newTime);
-    }
-  }, [nextTime]);
+  // useEffect(() => {
+  //   if (nextTime) {
+  //     const newTime = new Date(nextTime) - new Date(Date.now());
+  //     console.log(newTime);
+  //     setInitialTime(newTime);
+  //   }
+  // }, [nextTime]);
 
   useEffect(() => {
     if (winners[5].length === data[5].length) {
@@ -590,7 +589,6 @@ const MainDraw = ({ list, id }) => {
 
       return () => clearInterval(interval);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [winners, listIndex, list]);
 
   useEffect(() => {
@@ -600,7 +598,6 @@ const MainDraw = ({ list, id }) => {
       }
     }, 10000);
     return () => clearTimeout(timeout);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [confetti]);
 
   useEffect(() => {
@@ -616,7 +613,6 @@ const MainDraw = ({ list, id }) => {
       }
     }, 1000);
     return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [time]);
 
   const handleStartDraw = () => {
@@ -656,7 +652,11 @@ const MainDraw = ({ list, id }) => {
                 {/* <span className='fullscreen'>Make Full Screen</span> */}
               </div>
               <div className='timer'>
-                {time > 0 ? <CountDown time={time} /> : <p>Completed</p>}
+                {time > 0 ? (
+                  <CountDown time={time} />
+                ) : (
+                  <p className='status'>Completed</p>
+                )}
               </div>
             </div>
             <div className='start-draw2'>
@@ -766,6 +766,14 @@ const Wrapper = styled.main`
       }
       .timer {
         /* width: 30%; */
+        .status {
+          font-size: 1.8rem;
+          font-weight: 700;
+          border: 1px solid rgba(163, 7, 168, 1);
+          width: 100%;
+          padding: 1rem 2rem;
+          border-radius: 10px;
+        }
       }
     }
   }

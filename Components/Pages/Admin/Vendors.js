@@ -42,7 +42,6 @@ const Vendors = ({ link, setShow }) => {
 
   useEffect(() => {
     setActivePage('Vendors');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -73,7 +72,7 @@ const Vendors = ({ link, setShow }) => {
                     <VendorCard
                       item={item}
                       key={index}
-                      onClick={() => router.push('/admin/single-vendor')}
+                      onClick={() => router.push('/single-vendor')}
                     />
                   );
                 })

@@ -4,7 +4,7 @@ import Link from 'next/link';
 const AdminAuthHeader = () => {
   return (
     <header className='flex items-center px-[12.5rem] py-[5.6rem] fixed top-0 left-0 w-full z-10'>
-      <Link href={'/admin/sign-in'}>
+      <Link href={'/'}>
         <img className='w-[20rem] cursor-pointer' src='/kef_logo.svg'></img>
       </Link>
     </header>

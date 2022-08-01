@@ -1,5 +1,5 @@
-import BaseLayout from '../../Components/Layout';
-import SingleVendor from '../../Components/Vendors/SingleVendor';
+import BaseLayout from '../Components/Layout';
+import SingleVendor from '../Components/Vendors/SingleVendor';
 
 const SingleVendorPage = () => {
   return <SingleVendor></SingleVendor>;

@@ -64,7 +64,6 @@ const WeeklyDetail = () => {
       page,
       type,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date, search, page, type]);
   return (
     <Container>

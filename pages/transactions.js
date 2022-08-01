@@ -1,5 +1,5 @@
-import BaseLayout from '../../Components/Layout';
-import TransactionsAdmin from '../../Components/Pages/Admin/TransactionsAdmin';
+import BaseLayout from '../Components/Layout';
+import TransactionsAdmin from '../Components/Pages/Admin/TransactionsAdmin';
 
 const TransactionsPage = () => {
   return <TransactionsAdmin></TransactionsAdmin>;

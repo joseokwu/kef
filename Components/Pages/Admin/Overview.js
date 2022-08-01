@@ -33,7 +33,6 @@ const Overview = ({ link, setShow }) => {
   useEffect(() => {
     setActivePage('Overview');
     getOverview({ toggleLoad, toggleAlertBar, setPassError });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

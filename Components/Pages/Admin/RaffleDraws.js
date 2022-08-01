@@ -8,7 +8,6 @@ const RaffleDraws = () => {
 
   useEffect(() => {
     setActivePage('Raffle Draws');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

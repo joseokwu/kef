@@ -67,7 +67,6 @@ const Users = () => {
 
   useEffect(() => {
     setActivePage('Users');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -80,7 +79,6 @@ const Users = () => {
       page,
       date,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, type, page, date]);
 
   return (

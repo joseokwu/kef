@@ -1,5 +1,5 @@
-import BaseLayout from '../../Components/Layout';
-import { CreateCampaign } from '../../Components/RaffleDraws';
+import BaseLayout from '../Components/Layout';
+import { CreateCampaign } from '../Components/RaffleDraws';
 
 const CreateCampaignPage = () => {
   return <CreateCampaign></CreateCampaign>;

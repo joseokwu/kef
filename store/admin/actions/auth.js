@@ -20,7 +20,7 @@ export const login = ({
       setAuthToken(access_token);
       toggleAlertBar('Login Successful!', 'success', true);
       toggleLoad();
-      router.replace('/admin/dashboard');
+      router.replace('/dashboard');
     } catch (error) {
       toggleLoad();
       if (!error.response) {

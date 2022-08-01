@@ -1,5 +1,5 @@
-import BaseLayout from '../../Components/Layout';
-import Overview from '../../Components/Pages/Admin/Overview';
+import BaseLayout from '../Components/Layout';
+import Overview from '../Components/Pages/Admin/Overview';
 
 const OverviewPage = () => {
   return <Overview></Overview>;

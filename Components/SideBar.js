@@ -11,7 +11,7 @@ const SideBar = ({ setActivePage }) => {
     setAutoPage,
     stateRaffleDraw: { fullScreen },
   } = useRaffleDraw();
-  const pages = ['Dashboard', 'Raffle Tickets', 'Rewards', 'Livestream Event'];
+
   const adminPages = [
     'Overview',
     'Raffle Draws',
@@ -49,42 +49,35 @@ const SideBar = ({ setActivePage }) => {
   const handleAdminNav = (page) => {
     switch (page) {
       case 'Overview':
-        router.push('/admin/overview');
+        router.push('/overview');
         break;
       case 'Raffle Draws':
-        router.push('/admin/raffle-draws');
+        router.push('/raffle-draws');
         break;
       case 'Cards':
-        router.push('/admin/cards');
+        router.push('/cards');
         break;
       case 'Events':
-        router.push('/admin/events');
+        router.push('/events');
         break;
       case 'Transactions':
-        router.push('/admin/transactions');
+        router.push('/transactions');
         break;
       case 'Users':
-        router.push('/admin/users');
+        router.push('/users');
         break;
       case 'Artist Catalogue':
-        router.push('/admin/artist-catalogue');
+        router.push('/artist-catalogue');
         break;
       case 'Vendors':
-        router.push('/admin/vendors');
+        router.push('/vendors');
         break;
       default:
         break;
     }
   };
 
-  useEffect(() => {
-    if (router.route.includes('admin')) {
-      setIsAdmin(true);
-    } else {
-      setActivePage('Dashboard');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.route]);
+  useEffect(() => {}, [router.route]);
   return (
     <>
       {!fullScreen && (
@@ -95,114 +88,59 @@ const SideBar = ({ setActivePage }) => {
             alt='logo'
           ></img>
           <ul className='bg-r whitespace-nowrap'>
-            {!admin &&
-              pages.map((page, i) => {
-                return (
-                  <li
-                    className='flex items-center mb-[4.2rem] cursor-pointer'
-                    key={i}
-                    onClick={() => {
-                      setActivePage(page);
-                    }}
-                  >
-                    <div
-                      className={`transition-all duration-200 w-[1rem] h-[1rem] rounded-full bg-[#FCAC0D] mr-[2.6rem] opacity-0 ${
-                        page == activePage ? ' opacity-100' : ''
-                      } 
+            {adminPages.map((page, i) => {
+              return (
+                <li
+                  className='flex items-center mb-[4.2rem] cursor-pointer'
+                  key={i}
+                  onClick={() => {
+                    handleAdminNav(page);
+                  }}
+                >
+                  <div
+                    className={`transition-all duration-200 w-[1rem] h-[1rem] rounded-full bg-gradient-to-br from-[#A608A3] via-[#C6155F] to-[#D82023] mr-[2.6rem] opacity-0 ${
+                      page == activePage ? ' opacity-100' : ''
+                    } 
                  ${
                    page == 'Dashboard' && activePage == 'Profile'
                      ? ' opacity-100'
                      : ''
                  }`}
-                    ></div>
-                    <i
-                      className={`icon icon-${
-                        icons[i]
-                      } mr-[1.7rem] text-[1.8rem] ${
-                        icons[i] == 'Dashboard' ? ' text-[2.8rem]' : ''
-                      }  ${page == activePage ? '  text-[#FCAC0D]' : ''}
-                  ${
-                    page == 'Dashboard' && activePage == 'Profile'
-                      ? ' !text-[#FCAC0D]'
-                      : ''
-                  }`}
-                    ></i>
-                    <span
-                      className={`transition-all duration-200 font-normal text-[1.6rem]  ${
-                        page == activePage
-                          ? ' text-[#FCAC0D] !font-bold text-[2rem]'
-                          : 'text-white'
-                      }  
-                  ${
-                    page == 'Dashboard' && activePage == 'Profile'
-                      ? ' !text-[#FCAC0D] !font-bold text-[2rem]'
-                      : ''
-                  }`}
-                    >
-                      {page}
-                    </span>
-                  </li>
-                );
-              })}
-            {admin &&
-              adminPages.map((page, i) => {
-                return (
-                  <li
-                    className='flex items-center mb-[4.2rem] cursor-pointer'
-                    key={i}
-                    onClick={() => {
-                      handleAdminNav(page);
-                    }}
-                  >
-                    <div
-                      className={`transition-all duration-200 w-[1rem] h-[1rem] rounded-full bg-gradient-to-br from-[#A608A3] via-[#C6155F] to-[#D82023] mr-[2.6rem] opacity-0 ${
-                        page == activePage ? ' opacity-100' : ''
-                      } 
-                 ${
-                   page == 'Dashboard' && activePage == 'Profile'
-                     ? ' opacity-100'
-                     : ''
-                 }`}
-                    ></div>
-                    <i
-                      className={`icon icon-${
-                        adminIcons[i]
-                      } mr-[1.7rem] text-[1.8rem] ${
-                        adminIcons[i] == 'Dashboard' ? ' text-[2.8rem]' : ''
-                      }  ${
-                        page == activePage
-                          ? '  text-transparent bg-clip-text bg-gradient-to-br from-[#A608A3] via-[#C6155F] to-[#D82023]'
-                          : ''
-                      }
+                  ></div>
+                  <i
+                    className={`icon icon-${
+                      adminIcons[i]
+                    } mr-[1.7rem] text-[1.8rem] ${
+                      adminIcons[i] == 'Dashboard' ? ' text-[2.8rem]' : ''
+                    }  ${
+                      page == activePage
+                        ? '  text-transparent bg-clip-text bg-gradient-to-br from-[#A608A3] via-[#C6155F] to-[#D82023]'
+                        : ''
+                    }
                   ${
                     page == 'Dashboard' && activePage == 'Profile'
                       ? ' !text-transparent bg-clip-text bg-gradient-to-br from-[#A608A3] via-[#C6155F] to-[#D82023]'
                       : ''
                   }`}
-                    ></i>
-                    <span
-                      className={`transition-all duration-200 font-normal text-[1.8rem]  ${
-                        page == activePage
-                          ? 'text-transparent bg-clip-text bg-gradient-to-br from-[#A608A3] via-[#C6155F] to-[#D82023] !font-bold text-[2rem]'
-                          : 'text-white'
-                      }  
+                  ></i>
+                  <span
+                    className={`transition-all duration-200 font-normal text-[1.8rem]  ${
+                      page == activePage
+                        ? 'text-transparent bg-clip-text bg-gradient-to-br from-[#A608A3] via-[#C6155F] to-[#D82023] !font-bold text-[2rem]'
+                        : 'text-white'
+                    }  
                   ${
                     page == 'Dashboard' && activePage == 'Profile'
                       ? ' !text-transparent bg-clip-text bg-gradient-to-br from-[#A608A3] via-[#C6155F] to-[#D82023] !font-bold text-[2rem]'
                       : ''
                   }`}
-                    >
-                      {page}
-                    </span>
-                  </li>
-                );
-              })}
+                  >
+                    {page}
+                  </span>
+                </li>
+              );
+            })}
           </ul>
-          {!router.route.includes('admin') && (
-            <button className='btn btn--outlined mt-auto mb-[57px]'>
-              Buy Reward Ticket
-            </button>
-          )}
         </div>
       )}
 

@@ -1,5 +1,5 @@
-import BaseLayout from '../../Components/Layout';
-import Vendors from '../../Components/Pages/Admin/Vendors';
+import BaseLayout from '../Components/Layout';
+import Vendors from '../Components/Pages/Admin/Vendors';
 
 const VendorsPage = () => {
   return <Vendors></Vendors>;

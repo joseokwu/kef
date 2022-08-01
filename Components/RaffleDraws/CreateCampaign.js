@@ -279,7 +279,7 @@ const CreateCampaign = ({ setLocation }) => {
         </div>
 
         <Actions
-          setLocation={() => router.replace('/admin/raffle-draws')}
+          setLocation={() => router.replace('/raffle-draws')}
           onClick={() => handleSubmit()}
           title='Create Campaign'
         />
@@ -287,7 +287,7 @@ const CreateCampaign = ({ setLocation }) => {
       <Success
         setModal={setModal}
         modal={modal}
-        setLocation={() => router.replace('/admin/raffle-draws')}
+        setLocation={() => router.replace('/raffle-draws')}
       />
     </>
   );

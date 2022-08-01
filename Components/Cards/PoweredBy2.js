@@ -24,7 +24,7 @@ const PoweredBy2 = ({ setShow, event }) => {
         onClick={() =>
           router.push(
             {
-              pathname: `/admin/single-event`,
+              pathname: `/single-event`,
               query: { slug },
             },
             undefined,

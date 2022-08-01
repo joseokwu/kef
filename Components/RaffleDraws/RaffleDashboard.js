@@ -115,7 +115,6 @@ const RaffleDashboard = () => {
       toggleLoad,
       setPassError,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -167,7 +166,7 @@ const RaffleDashboard = () => {
         >
           <button
             className='create-btn'
-            onClick={() => router.push('/admin/create-campaign')}
+            onClick={() => router.push('/create-campaign')}
           >
             Create Campaign
           </button>
@@ -255,7 +254,7 @@ const RaffleDashboard = () => {
                         className='border border-[#252525] text-[#252525] px-6 py-1 rounded-lg'
                         onClick={() =>
                           router.push({
-                            pathname: '/admin/view-campaign',
+                            pathname: '/view-campaign',
                             query: {
                               id: el?.id,
                               type: el?.typeOfDraw,

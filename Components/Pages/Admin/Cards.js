@@ -69,7 +69,6 @@ const Cards = () => {
       type,
       date,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
