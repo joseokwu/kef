@@ -28,6 +28,7 @@ const History = ({ weeklyDraw, filters }) => {
           <img
             src='/3d-trophy.svg'
             className='absolute bottom-[0rem] right-[0rem] w-[45%]'
+            alt='trophy'
           ></img>
         </div>
         <div
@@ -47,6 +48,7 @@ const History = ({ weeklyDraw, filters }) => {
           <img
             src='/3d-trophy.svg'
             className='absolute bottom-[0rem] right-[0rem] w-[45%]'
+            alt='trophy'
           ></img>
         </div>
 
@@ -67,6 +69,7 @@ const History = ({ weeklyDraw, filters }) => {
           <img
             src='/3d-trophy.svg'
             className='absolute bottom-[0rem] right-[0rem] w-[45%]'
+            alt='trophy'
           ></img>
         </div>
         <div
@@ -86,6 +89,7 @@ const History = ({ weeklyDraw, filters }) => {
           <img
             src='/3d-trophy.svg'
             className='absolute bottom-[0rem] right-[0rem] w-[45%]'
+            alt='trophy'
           ></img>
         </div>
       </div>

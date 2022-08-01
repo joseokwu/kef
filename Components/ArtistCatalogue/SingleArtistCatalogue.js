@@ -4,7 +4,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import MusicCard from '../Cards/MusicCard';
 import GoBack from '../GoBack';
-import FullScreenDialog from './MusicPopUp';
+import MusicPopUp from './MusicPopUp';
 
 const SingleArtistCatalogue = ({ setView }) => {
   const [activeNav, setActiveNav] = useState('Albums');
@@ -92,7 +92,7 @@ const SingleArtistCatalogue = ({ setView }) => {
           );
         })}
       </div>
-      {popUp && <FullScreenDialog popUp={popUp} setPopUp={setPopUp} />}
+      {popUp && <MusicPopUp popUp={popUp} setPopUp={setPopUp} />}
     </Wrapper>
   );
 };

@@ -29,6 +29,7 @@ export const raffleState = {
   totalPages: 0,
   fullScreen: false,
   progressiveDrawDetails: [],
+  activeDrawDetails: [],
 };
 
 export const eventsState = {

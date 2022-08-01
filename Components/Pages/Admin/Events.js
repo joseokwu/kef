@@ -20,6 +20,7 @@ const Events = () => {
   useEffect(() => {
     setActivePage('Events');
     getEvents({ toggleLoad, toggleAlertBar, setPassError });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -1,5 +1,5 @@
 import authFetch from '../../../axios/admin';
-import { GET, GET_ARTIST_CATALOGUE_SUCCESS } from './actionTypes';
+import { GET_ARTIST_CATALOGUE_SUCCESS } from './actionTypes';
 
 export const getArtistCatalogue = ({
   toggleLoad,
@@ -14,7 +14,7 @@ export const getArtistCatalogue = ({
     toggleLoad();
     try {
       const response = await authFetch.get(
-        `https://api.kennismusic.app/admin/get-artist-catalogue-analystics?search=${search}&type=${type}&page=${page}&date=${date}`
+        `/admin/get-artist-catalogue-analystics?search=${search}&type=${type}&page=${page}&date=${date}`
       );
       console.log(response);
       const { data } = response;

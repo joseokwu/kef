@@ -91,6 +91,7 @@ const TransactionsAdmin = () => {
 
   useEffect(() => {
     setActivePage('Transactions');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -103,6 +104,7 @@ const TransactionsAdmin = () => {
       type,
       date,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, page, type, date]);
 
   console.log(

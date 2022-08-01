@@ -26,7 +26,7 @@ const SearchBox = ({ label, subtitle, category, onChange, trailing }) => {
       </div>
       <span className='trailing'>
         <h4>Kennis Music Festival</h4>
-        <Image src={'/cancel.svg'} height={15} width={15} />
+        <Image src={'/cancel.svg'} height={15} width={15} alt='cancel' />
       </span>
     </Wrapper>
   );

@@ -30,6 +30,7 @@ const Dashboard = () => {
         router.replace('/admin/overview');
         break;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <></>;

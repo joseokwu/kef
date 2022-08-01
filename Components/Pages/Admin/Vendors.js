@@ -42,6 +42,7 @@ const Vendors = ({ link, setShow }) => {
 
   useEffect(() => {
     setActivePage('Vendors');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

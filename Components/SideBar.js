@@ -83,6 +83,7 @@ const SideBar = ({ setActivePage }) => {
     } else {
       setActivePage('Dashboard');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.route]);
   return (
     <>
@@ -91,6 +92,7 @@ const SideBar = ({ setActivePage }) => {
           <img
             src='/kef_logo.svg'
             className='mb-[5.1rem] w-[16.3rem] mx-auto'
+            alt='logo'
           ></img>
           <ul className='bg-r whitespace-nowrap'>
             {!admin &&

@@ -48,7 +48,10 @@ const MainDraw = ({ list, id }) => {
     toggleFullScreen,
     getActiveDraws,
     getProgressiveDrawDetails,
-    stateRaffleDraw: { fullScreen },
+    stateRaffleDraw: {
+      fullScreen,
+      activeDrawDetails: { cycles, iterations, nextTime },
+    },
   } = useRaffleDraw();
 
   const navs = [
@@ -527,7 +530,16 @@ const MainDraw = ({ list, id }) => {
 
   useEffect(() => {
     getActiveDraws({ toggleAlertBar, toggleLoad, setPassError, uuid: id });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
+  useEffect(() => {
+    if (nextTime) {
+      const newTime = new Date(nextTime) - new Date(Date.now());
+      console.log(newTime);
+      setInitialTime(newTime);
+    }
+  }, [nextTime]);
 
   useEffect(() => {
     if (winners[5].length === data[5].length) {
@@ -578,6 +590,7 @@ const MainDraw = ({ list, id }) => {
 
       return () => clearInterval(interval);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [winners, listIndex, list]);
 
   useEffect(() => {
@@ -587,9 +600,15 @@ const MainDraw = ({ list, id }) => {
       }
     }, 10000);
     return () => clearTimeout(timeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [confetti]);
 
   useEffect(() => {
+    if (initialTime <= 0) {
+      setTime(0);
+      setTimePct(0);
+      return;
+    }
     const interval = setInterval(() => {
       if (time >= 0) {
         setTime(time - 1000);
@@ -597,6 +616,7 @@ const MainDraw = ({ list, id }) => {
       }
     }, 1000);
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [time]);
 
   const handleStartDraw = () => {
@@ -636,7 +656,7 @@ const MainDraw = ({ list, id }) => {
                 {/* <span className='fullscreen'>Make Full Screen</span> */}
               </div>
               <div className='timer'>
-                <CountDown time={time} />
+                {time > 0 ? <CountDown time={time} /> : <p>Completed</p>}
               </div>
             </div>
             <div className='start-draw2'>

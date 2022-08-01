@@ -4,6 +4,7 @@ import {
   SET_FULLSCREEN,
   GET_RAFFLE_DRAW,
   GET_PROGRESSIVE_DRAW_DETAILS,
+  GET_ACTIVE_DRAWS,
 } from '../actions/actionTypes';
 
 const reducer = (state = raffleState, action) => {
@@ -25,6 +26,12 @@ const reducer = (state = raffleState, action) => {
       return {
         ...state,
         progressiveDrawDetails,
+      };
+    case GET_ACTIVE_DRAWS:
+      const activeDrawDetails = action.payload;
+      return {
+        ...state,
+        activeDrawDetails,
       };
     case SET_FULLSCREEN:
       return { ...state, fullScreen: action.payload };

@@ -57,6 +57,7 @@ const AutomatedCardBar = () => {
 
   useEffect(() => {
     getAutomatedDraw({ setPassError, toggleAlertBar, toggleLoad });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

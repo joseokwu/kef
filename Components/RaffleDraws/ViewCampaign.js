@@ -1,29 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import StatV2 from '../Cards/Stats-v2';
-import { useState } from 'react';
-import TableRaffle from './TableRaffle';
-import CountDown from './Countdown';
-import {
-  buildStyles,
-  CircularProgressbarWithChildren,
-} from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
-import RaffleCard from './RaffleCard';
-import NavV1 from '../NavPill/V1';
-import Filter from '../Filter';
-import SearchAdmin from '../Form/searchAdmin';
 import StartDrawModal from './StartDrawModal';
 import GoBack from '../GoBack';
-import Confetti1 from '../Confetti';
 import useRaffleDraw from '../../hooks/admin/useRaffleDraw';
-import CircularCountdown from '../CircularCountdown';
-import Loading from '../Loading';
 import { useRouter } from 'next/router';
 import useShowAlert from '../../hooks/useShowAlert';
 import useLoading from '../../hooks/useLoading';
-import MainDraw from './mainDraw';
+import MainDraw from './MainDraw';
 import useAuth from '../../hooks/admin/useAuth';
 
 const ViewCampaign = () => {
@@ -78,6 +63,7 @@ const ViewCampaign = () => {
     } else {
       return;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, type]);
 
   return (
