@@ -601,11 +601,11 @@ const MainDraw = ({ list, id }) => {
   }, [confetti]);
 
   useEffect(() => {
-    if (initialTime <= 0) {
-      setTime(0);
-      setTimePct(0);
-      return;
-    }
+    // if (initialTime <= 0) {
+    //   setTime(0);
+    //   setTimePct(0);
+    //   return;
+    // }
     const interval = setInterval(() => {
       if (time >= 0) {
         setTime(time - 1000);
@@ -615,9 +615,6 @@ const MainDraw = ({ list, id }) => {
     return () => clearInterval(interval);
   }, [time]);
 
-  const handleStartDraw = () => {
-    setModal(true);
-  };
   return (
     <>
       {showCountdown && (
