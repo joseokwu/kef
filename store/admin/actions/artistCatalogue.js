@@ -13,9 +13,7 @@ export const getArtistCatalogue = ({
   return async (dispatch) => {
     toggleLoad();
     try {
-      const response = await authFetch.get(
-        `/admin/get-artist-catalogue-analystics?search=${search}&type=${type}&page=${page}&date=${date}`
-      );
+      const response = await authFetch.get(`/admin/catalogue`);
       console.log(response);
       const { data } = response;
       dispatch({
@@ -24,6 +22,7 @@ export const getArtistCatalogue = ({
       });
       toggleLoad();
     } catch (error) {
+      console.log(error.response);
       toggleLoad();
       if (!error.response) {
         console.log('No response from the server');

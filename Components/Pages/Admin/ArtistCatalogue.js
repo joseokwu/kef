@@ -33,15 +33,15 @@ const ArtistCatalogue = () => {
   const [dateValue, setDateValue] = useState();
   const [date, setDate] = useState(new Date().toLocaleDateString());
 
-  // const {
-  //   getArtistCatalogue,
-  //   stateArtistCatalogue: {
-  //     totalArtists,
-  //     artistsJoinedToday,
-  //     // artists,
-  //     totalPages,
-  //   },
-  // } = useArtistCatalogue();
+  const {
+    getArtistCatalogue,
+    stateArtistCatalogue: {
+      totalArtists,
+      artistsJoinedToday,
+      // artists,
+      totalPages,
+    },
+  } = useArtistCatalogue();
 
   const navs = ['All Artists', 'Artists', 'Producers'];
   const data = [
@@ -160,17 +160,13 @@ const ArtistCatalogue = () => {
     setActivePage('Artist Catalogue');
   }, []);
 
-  // useEffect(() => {
-  //   getArtistCatalogue({
-  //     setPassError,
-  //     toggleAlertBar,
-  //     toggleLoad,
-  //     search,
-  //     type,
-  //     date,
-  //     page,
-  //   });
-  // }, [type, search, date, page]);
+  useEffect(() => {
+    getArtistCatalogue({
+      setPassError,
+      toggleAlertBar,
+      toggleLoad,
+    });
+  }, []);
 
   return (
     <>

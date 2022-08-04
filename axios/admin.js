@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getAuthToken } from '../utils/helpers';
 
 const authFetch = axios.create({
-  baseURL: 'https://kmf.kennismusic.app',
+  baseURL: 'https://dev.kennismusic.app',
 });
 
 //axios interceptors
