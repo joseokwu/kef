@@ -27,10 +27,10 @@ const CreateCampaign = ({ setLocation }) => {
   const [drawDays, setDrawDays] = useState('Monday');
   const [drawTime, setDrawTime] = useState();
   const [winnerPerCategory, setWinnerPerCategory] = useState();
-  const [intervalOfDraw, setIntervalOfDraw] = useState('10 Minutes');
+  const [intervalOfDraw, setIntervalOfDraw] = useState('minutes10');
   const [amountPerTicket, setAmountPerTicket] = useState();
   const [winnerPerInterval, setWinnerPerInterval] = useState();
-  const [cycleOfDraw, setCycleOfDraw] = useState();
+  const [cycleOfDraw, setCycleOfDraw] = useState(0);
   const [gifts, setGifts] = useState([
     {
       giftName: 'string',
@@ -62,7 +62,7 @@ const CreateCampaign = ({ setLocation }) => {
           mainGifts[i].giftName = e.target.value;
         }
         if (value === 'number') {
-          mainGifts[i].giftQuantity = e.target.value;
+          mainGifts[i].giftQuantity = parseInt(e.target.value);
         }
       }
     }
@@ -81,16 +81,16 @@ const CreateCampaign = ({ setLocation }) => {
     'Sunday',
   ];
   const intervals = [
-    '10 Minutes',
-    '20 Minutes',
-    '30 Minutes',
-    '1 Hour',
-    '2 Hours',
+    'minutes10',
+    'minutes20',
+    'minutes30',
+    // '1 Hour',
+    // '2 Hours',
   ];
 
   const duration = ['1 Week', '2 Weeks', '3 Weeks'];
 
-  const details = {
+  const weeklyDetails = {
     campaignTitle,
     typeOfDraw,
     campaignDuration,
@@ -99,21 +99,35 @@ const CreateCampaign = ({ setLocation }) => {
     drawDays,
     drawTime,
     winnerPerCategory,
+  };
+  const progressiveDetails = {
+    campaignTitle,
+    typeOfDraw,
     intervalOfDraw,
-    amountPerTicket,
-    winnerPerInterval,
-    cycleOfDraw,
+    amountPerTicket: parseInt(amountPerTicket),
+    winnerPerInterval: parseInt(winnerPerInterval),
+    cycleOfDraw: parseInt(cycleOfDraw),
     gifts,
   };
 
   const handleSubmit = () => {
-    createCampaign({
-      toggleAlertBar,
-      toggleLoad,
-      setPassError,
-      details,
-      setModal,
-    });
+    if (typeOfDraw === 'Weekly') {
+      createCampaign({
+        toggleAlertBar,
+        toggleLoad,
+        setPassError,
+        details: weeklyDetails,
+        setModal,
+      });
+    } else {
+      createCampaign({
+        toggleAlertBar,
+        toggleLoad,
+        setPassError,
+        details: progressiveDetails,
+        setModal,
+      });
+    }
   };
 
   return (
@@ -269,7 +283,15 @@ const CreateCampaign = ({ setLocation }) => {
                   );
                 })}
                 <button
-                  onClick={() => setProgressiveGifts([...progressiveGifts, 1])}
+                  onClick={() =>
+                    setGifts([
+                      ...gifts,
+                      {
+                        giftName: '',
+                        giftQuantity: 0,
+                      },
+                    ])
+                  }
                 >
                   Add Another Item+
                 </button>
