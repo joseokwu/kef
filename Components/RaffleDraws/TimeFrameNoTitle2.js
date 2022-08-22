@@ -16,7 +16,7 @@ const TimeFrameNoTitle = ({
         <input
           type='text'
           id={label}
-          placeholder={'Iphone'}
+          placeholder={1}
           ref={inputRef}
           value={category}
           onChange={onChange}
@@ -32,13 +32,13 @@ export default TimeFrameNoTitle;
 const Wrapper = styled.div`
   /* display: flex; */
   /* align-items: center; */
-  width: 80%;
+  /* width: 40%; */
 
   input {
     outline: none;
     font-size: 1.6rem;
     font-weight: 500;
-    width: 70%;
+    width: 30%;
     height: 100%;
     border-radius: 10px;
     padding-left: 2rem;
@@ -58,7 +58,7 @@ const Wrapper = styled.div`
   .input-container {
     display: flex;
     color: #575757;
-    width: 100%;
+    /* width: 100%; */
     height: 4rem;
     background-color: white;
     border: 1px solid #c4c4c4;

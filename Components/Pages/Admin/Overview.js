@@ -49,7 +49,7 @@ const Overview = ({ link, setShow }) => {
           value={totalTicketsSold && totalTicketsSold}
           title={'Total Tickets Sold'}
         ></StatV2>
-        <StatV2 value={234} title={'Total Tickets Won'}></StatV2>
+        <StatV2 value={0} title={'Total Tickets Won'}></StatV2>
       </section>
       <h4 className='text-[1.8rem] font-bold text-[#A307A8] mb-4'>
         Raffle Analytics

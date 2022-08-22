@@ -14,6 +14,7 @@ import GoBack from '../GoBack';
 import Success from '../Success';
 import { useRouter } from 'next/router';
 import TimeFrameNoTitle from './TimeFrameNoTitle';
+import TimeFrameNoTitle2 from './TimeFrameNoTitle2';
 import Image from 'next/image';
 
 const CreateCampaign = ({ setLocation }) => {
@@ -69,7 +70,29 @@ const CreateCampaign = ({ setLocation }) => {
     setGifts(mainGifts);
   };
 
-  console.log(gifts);
+  const handleInterval = (interval) => {
+    if (interval === '1 minute') {
+      return 'minutes1';
+    }
+    if (interval === '10 minutes') {
+      return 'minutes10';
+    }
+    if (interval === '20 minutes') {
+      return 'minutes20';
+    }
+    if (interval === '30 minutes') {
+      return 'minutes30';
+    }
+    if (interval === '120 minutes') {
+      return 'minutes120';
+    }
+    if (interval === '1 hour') {
+      return 'hour1';
+    }
+    if (interval === '2 hours') {
+      return 'hours2';
+    }
+  };
 
   const days = [
     'Monday',
@@ -82,16 +105,13 @@ const CreateCampaign = ({ setLocation }) => {
   ];
 
   const intervals = [
-    'minutes1',
-    'minutes10',
-    'minutes20',
-    'minutes30',
-    'minutes120',
-    'hour1',
-    'hours2',
-
-    // '1 Hour',
-    // '2 Hours',
+    '1 minute',
+    '10 minutes',
+    '20 minutes',
+    '30 minutes',
+    '120 minutes',
+    '1 hour',
+    '2 hours',
   ];
 
   const duration = ['1 Week', '2 Weeks', '3 Weeks'];
@@ -209,7 +229,7 @@ const CreateCampaign = ({ setLocation }) => {
                         onChange={(e) => handleGifts(e, 'name', index)}
                       />
                       <span className='x'>x</span>
-                      <TimeFrameNoTitle
+                      <TimeFrameNoTitle2
                         // category={category3}
                         trailing={'Number of winners'}
                         onChange={(e) => handleGifts(e, 'number', index)}
@@ -247,7 +267,9 @@ const CreateCampaign = ({ setLocation }) => {
                 subtitle={'Choose how long for the draw'}
                 options={intervals}
                 disabled={false}
-                onChange={(e) => setIntervalOfDraw(e.target.value)}
+                onChange={(e) =>
+                  setIntervalOfDraw(handleInterval(e.target.value))
+                }
               />
               <InputBox
                 label={'Cycles of draw'}
@@ -280,7 +302,7 @@ const CreateCampaign = ({ setLocation }) => {
                       />
                       <span className='x'>x</span>
 
-                      <TimeFrameNoTitle
+                      <TimeFrameNoTitle2
                         // category={category3}
                         trailing={'Number of winners'}
                         onChange={(e) => handleGifts(e, 'number', index)}
