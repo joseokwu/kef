@@ -63,7 +63,6 @@ const SingleVendor = () => {
           <StatV2 value={'N200,000'} title={'Total Transactions'}></StatV2>
           <StatV2 value={10} title={'Total Branch'}></StatV2>
         </Wrapper3>
-        <hr />
       </>
 
       <Wrapper>
@@ -128,6 +127,7 @@ const Wrapper = styled.main`
 `;
 
 const Wrapper2 = styled.section`
+  background: #ffffff;
   border: 1px solid #cecccc;
   border-radius: 20px;
   width: 90%;

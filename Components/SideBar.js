@@ -21,6 +21,7 @@ const SideBar = ({ setActivePage }) => {
     'Users',
     'Artist Catalogue',
     'Vendors',
+    'Referrals',
   ];
   const icons = [
     'Dashboard',
@@ -40,6 +41,7 @@ const SideBar = ({ setActivePage }) => {
     'users',
     'artist',
     'vendors',
+    'referrals',
   ];
   const [admin, setIsAdmin] = useState(false);
   // const [active, setActive] = useState("Dashboard");
@@ -72,16 +74,18 @@ const SideBar = ({ setActivePage }) => {
       case 'Vendors':
         router.push('/vendors');
         break;
+      case 'Referrals':
+        router.push('/referrals');
+        break;
       default:
         break;
     }
   };
 
-  useEffect(() => {}, [router.route]);
   return (
     <>
       {!fullScreen && (
-        <div className='w-[37rem] h-screen px-[4.7rem] py-[4.9rem] hidden flex-col bg-[#010101] text-white bg-sidebar sidebar:flex'>
+        <div className='w-[37rem] h-screen px-[4.7rem] py-[4.9rem] hidden flex-col bg-[#010101] text-white bg-sidebar sidebar:flex overflow-y-auto'>
           <img
             src='/kef_logo.svg'
             className='mb-[5.1rem] w-[16.3rem] mx-auto'

@@ -28,8 +28,27 @@ export const raffleState = {
   totalCampaign: 0,
   totalPages: 0,
   fullScreen: false,
-  progressiveDrawDetails: [],
+  progressiveDrawDetails: {
+    totalSubscribers: 0,
+    raffleWinners: 0,
+    raffleDrawsCompleted: 0,
+  },
   activeDrawDetails: [],
+};
+
+export const vendorsState = {
+  getVendorsData: {},
+};
+
+export const referralsState = {
+  referralData: {
+    celebrities: [],
+    totalCelebrities: 0,
+    totalMintTicket: 0,
+    totalSignUps: 0,
+  },
+  referralData: {},
+  referralLink: {},
 };
 
 export const eventsState = {

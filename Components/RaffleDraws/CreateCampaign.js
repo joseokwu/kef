@@ -80,10 +80,16 @@ const CreateCampaign = ({ setLocation }) => {
     'Saturday',
     'Sunday',
   ];
+
   const intervals = [
+    'minutes1',
     'minutes10',
     'minutes20',
     'minutes30',
+    'minutes120',
+    'hour1',
+    'hours2',
+
     // '1 Hour',
     // '2 Hours',
   ];

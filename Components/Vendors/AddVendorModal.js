@@ -6,13 +6,79 @@ import Actions from '../RaffleDraws/Actions';
 import AddBranchModal from './AddBranchModal';
 import { useState } from 'react';
 import BranchBar from './BranchBar';
+import useVendors from '../../hooks/admin/useVendors';
+import useShowAlert from '../../hooks/useShowAlert';
+import useLoading from '../../hooks/useLoading';
+import authFetch from '../../axios/admin';
+import { useRef } from 'react';
 
 const AddVendorModal = ({ setModal, modal, startDraw }) => {
   const [branchModal, setBranchModal] = useState(false);
   const [branchList, setBranchList] = useState(['The Place, Lekki']);
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const [logo, setLogo] = useState();
+  const [uploadImgUrl, setUploadImgUrl] = useState();
+  const [imageFile, setImageFile] = useState();
+  const [passError, setPassError] = useState('');
+  const toggleAlertBar = useShowAlert();
+  const { toggleLoad } = useLoading();
+  const {
+    getVendors,
+    stateVendors: {
+      getVendorsData: {
+        totalVendorPayments,
+        totalVendors,
+        vendor,
+        totalVendorBranches,
+      },
+    },
+    addVendor,
+  } = useVendors();
+  const imageRef = useRef(null);
+
+  // const onFileChange = (e) => {
+  //   // setCanSubmit(true);
+  //   // console.log('Image ref is ', imageRef.current.firstChild);
+  //   const newImageUrl = URL.createObjectURL(e.target.files[0]);
+  //   setUploadImgUrl(newImageUrl);
+  //   console.log('b4 revode new image rul is', newImageUrl);
+  //   imageRef.current.src = newImageUrl;
+  //   URL.revokeObjectURL(newImageUrl);
+  //   console.log('after revoke url is', newImageUrl);
+
+  //   setImageFile(e.target.files[0]);
+  // };
+  const updateAvatar = async (e) => {
+    toggleLoad();
+    const formData = new FormData();
+    formData.append('avatar', e.target.files[0]);
+    try {
+      const resp = await authFetch.post('/profile/upload-avatar', formData);
+      console.log('Proife avaartar response is', resp);
+      // AppData.fetchUserDetails();
+      toggleAlertBar(resp.data.message, 'success', true, 3000);
+      // setImageFile(null);
+      // setCanSubmit(false);
+      // URL.revokeObjectURL(uploadImgUrl);
+      toggleLoad();
+    } catch (error) {
+      toggleAlertBar(
+        'Problem Updating Profile Picture. Please Ensure all Fields are Correct and Try Again!',
+        'error',
+        true,
+        8000
+      );
+      toggleLoad();
+    }
+  };
 
   const handleAdd = (value) => {
     setBranchList([...branchList, value]);
+  };
+
+  const handleAddVendor = ({ details }) => {
+    addVendor({ toggleAlertBar, toggleLoad, setPassError, details });
   };
   return (
     <Dialog onClose={() => setModal(false)} open={modal}>
@@ -39,6 +105,7 @@ const AddVendorModal = ({ setModal, modal, startDraw }) => {
               <div className='file-upload-overlay'>
                 <Image
                   src={'/upload.svg'}
+                  // ref={imageRef}
                   height={15}
                   width={15}
                   alt='upload'
@@ -50,6 +117,7 @@ const AddVendorModal = ({ setModal, modal, startDraw }) => {
                 id='description'
                 placeholder='Ex. 0000'
                 type='file'
+                onChange={updateAvatar}
               ></input>
             </div>
           </div>

@@ -100,7 +100,9 @@ const AdminSignIn = () => {
           </div>
           <p>Forgot Password?</p>
 
-          <button className='btn col-span-2 mt-[4rem]'>Log In</button>
+          <button className='btn col-span-2 mt-[4rem] bg-gradient-to-br from-[#A608A3] via-[#C6155F] to-[#D82023] mr-[2.6rem] '>
+            Log In
+          </button>
         </div>
       </form>
     </div>

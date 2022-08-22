@@ -192,9 +192,11 @@ export const getActiveDraws = ({
   toggleAlertBar,
   setPassError,
   uuid,
+  setLoading,
 }) => {
   return async (dispatch) => {
     toggleLoad();
+    setLoading(true);
     try {
       const response = await authFetch.get(`/draw/get-active-draws/${uuid}`);
       console.log(response);
@@ -204,9 +206,11 @@ export const getActiveDraws = ({
         payload: data,
       });
       toggleLoad();
+      setLoading(false);
     } catch (error) {
       console.log(error.response);
       toggleLoad();
+      setLoading(false);
       if (!error.response) {
         console.log('No response from the server');
         toggleAlertBar(

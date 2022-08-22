@@ -6,3 +6,5 @@ export * as eventsCreators from './events';
 export * as artistCatalogueCreators from './artistCatalogue';
 export * as cardsCreators from './cards';
 export * as overviewCreators from './overview';
+export * as vendorsCreators from './vendors';
+export * as referralsCreators from './referrals';

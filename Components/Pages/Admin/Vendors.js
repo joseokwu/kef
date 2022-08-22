@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import Loading from '../../Loading';
 import styled from 'styled-components';
 import AddVendorModal from '../../Vendors/AddVendorModal';
+import useVendors from '../../../hooks/admin/useVendors';
 
 const Vendors = ({ link, setShow }) => {
   const [page, setPage] = useState(1);
@@ -39,9 +40,21 @@ const Vendors = ({ link, setShow }) => {
   const [active, setActive] = useState('All users');
   const [modal, setModal] = useState(false);
   const { setActivePage } = useAuth();
+  const {
+    getVendors,
+    stateVendors: {
+      getVendorsData: {
+        totalVendorPayments,
+        totalVendors,
+        vendor,
+        totalVendorBranches,
+      },
+    },
+  } = useVendors();
 
   useEffect(() => {
     setActivePage('Vendors');
+    getVendors({ toggleAlertBar, toggleLoad, setPassError });
   }, []);
 
   return (
@@ -52,9 +65,15 @@ const Vendors = ({ link, setShow }) => {
         startDraw={() => setList(1)}
       />
       <section className='grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] xl:!grid-cols-[repeat(auto-fit,_minmax(28rem,_32rem))] gap-[2.6rem]'>
-        <StatV2 value={5} title={'Vendors'}></StatV2>
-        <StatV2 value={'N200,000'} title={'Total Transactions'}></StatV2>
-        <StatV2 value={5} title={'Total Branches'}></StatV2>
+        <StatV2 value={totalVendors && totalVendors} title={'Vendors'}></StatV2>
+        <StatV2
+          value={totalVendorPayments && totalVendorPayments}
+          title={'Total Transactions'}
+        ></StatV2>
+        <StatV2
+          value={totalVendorBranches && totalVendorBranches}
+          title={'Total Branches'}
+        ></StatV2>
       </section>
       <Wrapper>
         <Wrapper2>

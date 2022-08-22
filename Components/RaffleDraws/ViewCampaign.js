@@ -28,7 +28,11 @@ const ViewCampaign = () => {
     startProgressiveDraw,
     stateRaffleDraw: {
       fullScreen,
-      progressiveDrawDetails: { totalSubscribers, raffleWinners },
+      progressiveDrawDetails: {
+        totalSubscribers,
+        raffleDrawsCompleted,
+        raffleWinners,
+      },
     },
   } = useRaffleDraw();
 
@@ -50,7 +54,7 @@ const ViewCampaign = () => {
 
   useEffect(() => {
     setActivePage('Raffle Draws');
-    if (type === 'Progressive') {
+    if (status === 'Active' && type === 'Progressive') {
       getProgressiveDrawDetails({
         setPassError,
         toggleAlertBar,
@@ -82,7 +86,10 @@ const ViewCampaign = () => {
               value={totalSubscribers && totalSubscribers}
               title={'Total Subscribers'}
             ></StatV2>
-            <StatV2 value={10} title={'Raffle Draw Completed'}></StatV2>
+            <StatV2
+              value={raffleDrawsCompleted && raffleDrawsCompleted}
+              title={'Raffle Draws Completed'}
+            ></StatV2>
             <StatV2
               value={raffleWinners && raffleWinners}
               title={'Raffle Winners'}

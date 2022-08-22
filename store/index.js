@@ -14,6 +14,8 @@ import adminEventsReducer from './admin/reducers/events';
 import adminArtistCatalogueReducer from './admin/reducers/artistCatalogue';
 import adminCardsReducer from './admin/reducers/cards';
 import adminOverviewReducer from './admin/reducers/overview';
+import adminVendorsReducer from './admin/reducers/vendors';
+import adminReferralsReducer from './admin/reducers/referrals';
 
 const store = createStore(
   combineReducers({
@@ -30,6 +32,8 @@ const store = createStore(
     adminArtistCatalogue: adminArtistCatalogueReducer,
     adminCards: adminCardsReducer,
     adminOverview: adminOverviewReducer,
+    adminVendors: adminVendorsReducer,
+    adminReferrals: adminReferralsReducer,
   }),
   applyMiddleware(thunk)
 );

@@ -22,6 +22,10 @@ const Events = () => {
     getEvents({ toggleLoad, toggleAlertBar, setPassError });
   }, []);
 
+  if (events?.length <= 0) {
+    return <Wrapper1>No Events Available</Wrapper1>;
+  }
+
   return (
     <Wrapper className=''>
       {events?.map((event, index) => {
@@ -44,4 +48,17 @@ const Wrapper = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
+`;
+
+const Wrapper1 = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8rem;
+  color: gray;
+  border: 1px solid #cecccc;
+  border-radius: 20px;
+  height: 50rem;
+  padding: 3rem 3rem;
+  box-shadow: 0px 4px 44px rgba(163, 7, 168, 0.1);
 `;

@@ -44,7 +44,7 @@ const RenderTime = ({ remainingTime }) => {
   );
 };
 
-const CircularCountdown = ({ onComplete, title, listIndex }) => (
+const CircularCountdown = ({ onComplete, title }) => (
   <Wrapper>
     <h3>{title} Complete</h3>
     <p>
