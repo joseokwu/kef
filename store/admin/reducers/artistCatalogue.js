@@ -9,7 +9,7 @@ const reducer = (state = artistCatalogueState, action) => {
       return {
         ...state,
         totalArtists,
-        artistsJoinedToday: totalJoinedToday,
+        totalJoinedToday,
         totalPages,
         artists,
       };

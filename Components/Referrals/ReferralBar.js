@@ -1,8 +1,21 @@
 import Image from 'next/image';
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const ReferralBar = ({ item, index }) => {
+  const [check, setCheck] = useState(false);
+
+  useEffect(() => {
+    let timer;
+    if (check) {
+      timer = setTimeout(() => {
+        setCheck(false);
+      }, 2000);
+    }
+    return () => clearTimeout(timer);
+  }, [check]);
   return (
     <Wrapper>
       <h2>{item?.name}</h2>
@@ -14,13 +27,28 @@ const ReferralBar = ({ item, index }) => {
       </p>
       <p>
         User Link<span> - {item?.referalCode}</span>{' '}
-        <Image
-          src={'/copy.svg'}
-          height={18}
-          width={18}
-          alt={'copy'}
-          onClick={() => navigator.clipboard.writeText(item?.referalCode)}
-        />
+        <span className='referral'>
+          <Image
+            src={'/copy.svg'}
+            height={18}
+            width={18}
+            alt={'copy'}
+            onClick={() => {
+              navigator.clipboard.writeText(item?.referalCode);
+              setCheck(true);
+            }}
+          />
+          {check && (
+            <span className='good'>
+              <Image
+                src={'/success-check.svg'}
+                height={18}
+                width={18}
+                alt={'copy'}
+              />
+            </span>
+          )}
+        </span>
       </p>
     </Wrapper>
   );
@@ -37,8 +65,37 @@ const Wrapper = styled.div`
   border: 1px solid #a307a8;
   border-radius: 20px;
   padding: 1rem 2rem;
+  transition: all 0.4s;
+
   img {
     cursor: pointer;
+  }
+
+  .good {
+    animation: check 0.1s ease-in;
+  }
+
+  @keyframes check {
+    0% {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+
+  .referral {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 1rem;
+    position: relative;
+  }
+
+  .referral:active {
+    transform: translateY(0.4rem);
   }
 
   /* .active {
@@ -59,6 +116,7 @@ const Wrapper = styled.div`
     /* margin-bottom: 0.5rem; */
   }
   p {
+    display: flex;
     font-size: 1.4rem;
     font-weight: 400;
     color: #706c6c;

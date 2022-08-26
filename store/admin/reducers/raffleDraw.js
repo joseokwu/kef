@@ -12,13 +12,13 @@ const reducer = (state = raffleState, action) => {
     case SET_AUTO_PAGE:
       return { ...state, autoPage: action.payload };
     case GET_RAFFLE_DRAW:
-      const { campaigns, drawHistoryRepo, totalCampaign, totalPages } =
+      const { campaigns, campaignsCreated, raffleDrawCompleted, totalPages } =
         action.payload;
       return {
         ...state,
         campaigns,
-        drawHistoryRepo,
-        totalCampaign,
+        raffleDrawCompleted,
+        campaignsCreated,
         totalPages,
       };
     case GET_PROGRESSIVE_DRAW_DETAILS:

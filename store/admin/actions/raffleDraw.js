@@ -63,13 +63,68 @@ export const createCampaign = ({
   };
 };
 
-//WEEKLY
+export const createWeeklyCampaign = ({
+  toggleLoad,
+  toggleAlertBar,
+  setPassError,
+  details,
+  setModal,
+}) => {
+  return async (dispatch) => {
+    console.log(details);
+    toggleLoad();
 
-export const getRaffleDraw = ({ toggleLoad, toggleAlertBar, setPassError }) => {
+    try {
+      const response = await authFetch.post(
+        `/draw/start-periodic-draw`,
+        details
+      );
+      console.log(response);
+      const { data } = response;
+      dispatch({
+        type: CREATE_CAMPAIGN,
+        payload: data,
+      });
+      toggleLoad();
+      setModal(true);
+    } catch (error) {
+      console.log(error.response);
+      toggleLoad();
+      if (!error.response) {
+        console.log('No response from the server');
+        toggleAlertBar(
+          'No server response. Please Check Your internet connection',
+          'fail',
+          true
+        );
+        return;
+        // setError("Network Error");
+      }
+      if (error.response.data.statusCode === 401) {
+        console.log('response error', error.response);
+        setPassError('Email or Password is incorrect');
+      } else {
+        toggleAlertBar('An Error Occurred', 'fail', true, 7000);
+      }
+    }
+  };
+};
+
+export const getRaffleDraw = ({
+  toggleLoad,
+  toggleAlertBar,
+  setPassError,
+  page,
+  type,
+  search,
+  date,
+}) => {
   return async (dispatch) => {
     toggleLoad();
     try {
-      const response = await authFetch.get(`/draw/raffle-draw`);
+      const response = await authFetch.get(
+        `/draw/raffle-draw?search=${search}&type=${type}&page=${page}&date=${date}`
+      );
       console.log(response);
       const { data } = response;
       dispatch({

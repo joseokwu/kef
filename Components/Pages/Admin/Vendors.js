@@ -46,7 +46,7 @@ const Vendors = ({ link, setShow }) => {
       getVendorsData: {
         totalVendorPayments,
         totalVendors,
-        vendor,
+        vendors,
         totalVendorBranches,
       },
     },
@@ -79,19 +79,28 @@ const Vendors = ({ link, setShow }) => {
         <Wrapper2>
           <div className='card-container'>
             <div className='header'>
-              <h2 className='title'>Branch</h2>
+              <h2 className='title'>Active Vendors</h2>
               <button className='activate' onClick={() => setModal(true)}>
                 Add Vendor
               </button>
             </div>
-            <section className='flex flex-wrap justify-around mt-[2rem]'>
-              {data.length > 0 ? (
-                data?.map((item, index) => {
+            <section
+              className={`flex px-12 ${
+                vendors?.length > 0 ? 'justify-between' : 'justify-around'
+              } flex-wrap mt-[2rem]`}
+            >
+              {vendors?.length > 0 ? (
+                vendors?.map((item, index) => {
                   return (
                     <VendorCard
                       item={item}
                       key={index}
-                      onClick={() => router.push('/single-vendor')}
+                      onClick={() =>
+                        router.push({
+                          pathname: '/single-vendor',
+                          query: { id: item?.id },
+                        })
+                      }
                     />
                   );
                 })

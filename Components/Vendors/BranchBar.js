@@ -7,7 +7,9 @@ const BranchBar = ({ item, index }) => {
     <Wrapper>
       <Image src={'/building.svg'} height={15} width={15} alt={'copy'} />
 
-      <h2>{item}</h2>
+      <h2>
+        {item?.name}, {item?.location}
+      </h2>
 
       <Image src={'/delete-icon.svg'} height={15} width={15} alt={'copy'} />
     </Wrapper>

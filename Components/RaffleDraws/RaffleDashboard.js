@@ -19,12 +19,17 @@ const RaffleDashboard = () => {
   const [passError, setPassError] = useState('');
   const [showFilter, setShowFilter] = useState(false);
   const [dateValue, setDateValue] = useState();
-  const [date, setDate] = useState(new Date().toLocaleDateString());
+  const [date, setDate] = useState();
   const toggleAlertBar = useShowAlert();
   const { toggleLoad } = useLoading();
   const {
     getRaffleDraw,
-    stateRaffleDraw: { campaigns, drawHistoryRepo, totalCampaign, totalPages },
+    stateRaffleDraw: {
+      campaigns,
+      campaignsCreated,
+      raffleDrawCompleted,
+      totalPages,
+    },
   } = useRaffleDraw();
   const router = useRouter();
   // const [location,s setLocation] = useState('dashboard');
@@ -114,18 +119,22 @@ const RaffleDashboard = () => {
       toggleAlertBar,
       toggleLoad,
       setPassError,
+      page,
+      type,
+      search,
+      date,
     });
-  }, []);
+  }, [page, type, search, date]);
 
   return (
     <Container>
       <section className='grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] xl:!grid-cols-[repeat(auto-fit,_minmax(28rem,_32rem))] gap-[2.6rem]'>
         <StatV2
-          value={totalCampaign && totalCampaign}
+          value={campaignsCreated && campaignsCreated}
           title={'Campaigns Created'}
         ></StatV2>
         <StatV2
-          value={drawHistoryRepo && drawHistoryRepo}
+          value={raffleDrawCompleted && raffleDrawCompleted}
           title={'Raffle Draw Completed'}
         ></StatV2>
         <StatV2 value={10} title={'Total Weekly Draws'}></StatV2>

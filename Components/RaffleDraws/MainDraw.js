@@ -51,9 +51,40 @@ const MainDraw = ({ list, id }) => {
     getProgressiveDrawDetails,
     stateRaffleDraw: {
       fullScreen,
-      activeDrawDetails: { cycles, iterations, nextTime },
+      activeDrawDetails: {
+        campaignDetail: { typeOfDraw, status },
+        cycles,
+        draw,
+        iterations,
+        nextTime,
+      },
     },
   } = useRaffleDraw();
+
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  const d = Date.now(nextTime);
+
+  console.log(d);
+
+  function formatDate(dateToFormat) {
+    return `${new Date(dateToFormat).getDate()} ${
+      months[new Date(dateToFormat).getMonth()]
+    }, ${new Date(dateToFormat).getFullYear()}`;
+  }
 
   const navs = [
     'Category 1',
@@ -65,438 +96,438 @@ const MainDraw = ({ list, id }) => {
   ];
 
   const data = [
-    // [
-    //   {
-    //     number: '01',
-    //     name: 'Joshua Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '02',
-    //     name: 'Joshua Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '03',
-    //     name: 'Joshua Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '04',
-    //     name: 'Joshua Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '05',
-    //     name: 'Joshua Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '06',
-    //     name: 'Joshua Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '07',
-    //     name: 'Joshua Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '08',
-    //     name: 'Joshua Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '09',
-    //     name: 'Joshua Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '10',
-    //     name: 'Joshua Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    // ],
-    // [
-    //   {
-    //     number: '01',
-    //     name: 'Joshua Parag',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '02',
-    //     name: 'Joshua Parag',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '03',
-    //     name: 'Joshua Parag',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '04',
-    //     name: 'Joshua Parag',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '05',
-    //     name: 'Joshua Parag',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '06',
-    //     name: 'Joshua Parag',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '07',
-    //     name: 'Joshua Parag',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '08',
-    //     name: 'Joshua Parag',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '09',
-    //     name: 'Joshua Parag',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '10',
-    //     name: 'Joshua Parag',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    // ],
-    // [
-    //   {
-    //     number: '01',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '02',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '03',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '04',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '05',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '06',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '07',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '08',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '09',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '10',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    // ],
-    // [
-    //   {
-    //     number: '01',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '02',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '03',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '04',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '05',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '06',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '07',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '08',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '09',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '10',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    // ],
-    // [
-    //   {
-    //     number: '01',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '02',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '03',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '04',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '05',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '06',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '07',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '08',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '09',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '10',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    // ],
-    // [
-    //   {
-    //     number: '01',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '02',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '03',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '04',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '05',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '06',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '07',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '08',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '09',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    //   {
-    //     number: '10',
-    //     name: 'Martin Nwagu',
-    //     ticket: '1233334444',
-    //     prize: 'N100,000',
-    //     category: '1',
-    //   },
-    // ],
+    [
+      {
+        number: '01',
+        name: 'Joshua Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '02',
+        name: 'Joshua Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '03',
+        name: 'Joshua Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '04',
+        name: 'Joshua Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '05',
+        name: 'Joshua Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '06',
+        name: 'Joshua Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '07',
+        name: 'Joshua Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '08',
+        name: 'Joshua Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '09',
+        name: 'Joshua Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '10',
+        name: 'Joshua Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+    ],
+    [
+      {
+        number: '01',
+        name: 'Joshua Parag',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '02',
+        name: 'Joshua Parag',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '03',
+        name: 'Joshua Parag',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '04',
+        name: 'Joshua Parag',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '05',
+        name: 'Joshua Parag',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '06',
+        name: 'Joshua Parag',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '07',
+        name: 'Joshua Parag',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '08',
+        name: 'Joshua Parag',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '09',
+        name: 'Joshua Parag',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '10',
+        name: 'Joshua Parag',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+    ],
+    [
+      {
+        number: '01',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '02',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '03',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '04',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '05',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '06',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '07',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '08',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '09',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '10',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+    ],
+    [
+      {
+        number: '01',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '02',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '03',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '04',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '05',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '06',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '07',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '08',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '09',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '10',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+    ],
+    [
+      {
+        number: '01',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '02',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '03',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '04',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '05',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '06',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '07',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '08',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '09',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '10',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+    ],
+    [
+      {
+        number: '01',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '02',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '03',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '04',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '05',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '06',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '07',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '08',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '09',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+      {
+        number: '10',
+        name: 'Martin Nwagu',
+        ticket: '1233334444',
+        prize: 'N100,000',
+        category: '1',
+      },
+    ],
   ];
 
   const handleOnComplete = () => {
@@ -647,15 +678,24 @@ const MainDraw = ({ list, id }) => {
           <div className='top'>
             <div className='top-left'>
               <div className='top-text'>
-                <h3>Week 1 of 6</h3>
-                <p>The next raffle draw will happen on 20 April, 2022. </p>
-                {/* <span className='fullscreen'>Make Full Screen</span> */}
+                {typeOfDraw === 'Progressive' ? (
+                  <h3>Cycle {draw && draw}</h3>
+                ) : (
+                  <h3>Week 1 of 6</h3>
+                )}
+                {status === 'Completed' ? (
+                  ''
+                ) : (
+                  <p>
+                    The next raffle draw will happen on {formatDate(nextTime)}{' '}
+                  </p>
+                )}
               </div>
               <div className='timer'>
-                {time > 0 ? (
-                  <CountDown time={time} />
-                ) : (
+                {status === 'Completed' ? (
                   <p className='status'>Completed</p>
+                ) : (
+                  <CountDown time={time} />
                 )}
               </div>
             </div>
@@ -764,9 +804,10 @@ const Wrapper = styled.main`
       p {
         font-size: 1.4rem;
         width: 70%;
-        margin-bottom: 2rem;
+        /* margin-bottom: 2rem; */
       }
       .timer {
+        margin-left: auto;
         /* width: 30%; */
         .status {
           font-size: 1.8rem;

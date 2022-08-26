@@ -8,14 +8,19 @@ const useArtistCatalogue = () => {
     (state) => state.adminArtistCatalogue
   );
 
-  const { getArtistCatalogue } = bindActionCreators(
-    artistCatalogueCreators,
-    dispatch
-  );
+  const {
+    getArtistCatalogue,
+    getSingleCatalogue,
+    togglePublish,
+    getArtistCatalogue2,
+  } = bindActionCreators(artistCatalogueCreators, dispatch);
 
   return {
     stateArtistCatalogue,
     getArtistCatalogue,
+    getSingleCatalogue,
+    togglePublish,
+    getArtistCatalogue2,
   };
 };
 

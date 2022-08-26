@@ -3,16 +3,16 @@ import styled from 'styled-components';
 
 const DateBox = ({ label, subtitle, onChange, category }) => {
   const today = new Date();
-  const numberOfDaysToAdd = 3;
-  const date = today.setDate(today.getDate() + numberOfDaysToAdd);
-  const defaultValue = new Date(date).toISOString().split('T')[0]; // yyyy-mm-dd
+  // const numberOfDaysToAdd = 3;
+  // const date = today.setDate(today.getDate() + numberOfDaysToAdd);
+  const defaultValue = new Date().toISOString(); // yyyy-mm-dd
   return (
     <Wrapper>
       <div className='info'>
         <label htmlFor={label}>{label}</label>
         <p>{subtitle}</p>
       </div>
-      <input type='date' defaultValue={defaultValue} />
+      <input type='date' defaultValue={defaultValue} onChange={onChange} />
     </Wrapper>
   );
 };

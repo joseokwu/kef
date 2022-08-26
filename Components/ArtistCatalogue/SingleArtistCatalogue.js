@@ -5,10 +5,25 @@ import styled from 'styled-components';
 import MusicCard from '../Cards/MusicCard';
 import GoBack from '../GoBack';
 import MusicPopUp from './MusicPopUp';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import useArtistCatalogue from '../../hooks/admin/useArtistCatalogue';
+import useShowAlert from '../../hooks/useShowAlert';
+import useLoading from '../../hooks/useLoading';
 
-const SingleArtistCatalogue = ({ setView }) => {
+const SingleArtistCatalogue = () => {
   const [activeNav, setActiveNav] = useState('Albums');
   const [popUp, setPopUp] = useState(false);
+  const toggleAlertBar = useShowAlert();
+  const { toggleLoad } = useLoading();
+  const [passError, setPassError] = useState('');
+
+  const router = useRouter();
+  const { getSingleCatalogue, stateArtistCatalogue } = useArtistCatalogue();
+
+  const { id } = router.query;
+
+  console.log(id);
 
   const data = [
     {
@@ -57,9 +72,13 @@ const SingleArtistCatalogue = ({ setView }) => {
       img: '/artist-pic3.svg',
     },
   ];
+
+  useEffect(() => {
+    getSingleCatalogue({ toggleAlertBar, toggleLoad, setPassError, id: id });
+  }, []);
   return (
     <Wrapper>
-      <GoBack text={'Go Back'} onClick={() => setView(false)} />
+      <GoBack text={'Go Back'} onClick={() => router.back()} />
       <div className='btn-header'>
         <BtnWrapper>
           <button

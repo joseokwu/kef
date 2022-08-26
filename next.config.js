@@ -2,6 +2,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['cdn-test.kudibar.com'],
+    domains: ['cdn.kennismusic.app'],
   },
 };

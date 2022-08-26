@@ -1,23 +1,71 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import useArtistCatalogue from '../../hooks/admin/useArtistCatalogue';
+import useShowAlert from '../../hooks/useShowAlert';
+import useLoading from '../../hooks/useLoading';
+import LoadingSmall from '../LoadingSmall';
 
 const ArtistCard = ({ item, setView, setModal }) => {
+  const toggleAlertBar = useShowAlert();
+  const { toggleLoad } = useLoading();
+  const [isLoading, setIsLoading] = useState(false);
+  const [passError, setPassError] = useState('');
+  const [success, setSuccess] = useState(false);
+  const router = useRouter();
+  const { togglePublish, getArtistCatalogue2, stateArtistCatalogue } =
+    useArtistCatalogue();
+
+  const handlePublish = (value) => {
+    const details = {
+      artistId: item?.uuid,
+      isPublished: value,
+    };
+    togglePublish({
+      toggleAlertBar,
+      toggleLoad: setIsLoading,
+      setPassError,
+      details,
+      setSuccess,
+    });
+  };
+
+  useEffect(() => {
+    if (success) {
+      getArtistCatalogue2({ toggleAlertBar, toggleLoad });
+    }
+  }, [success]);
   return (
     <Wrapper>
       <span className='image'>
-        <h1>JN</h1>
+        <h1>{item.artistName.slice(0, 2).toUpperCase()}</h1>
       </span>
       <div className='info'>
-        <h2>Joshua Nwagu</h2>
+        <h2>{item?.artistName}</h2>
         <p>Music Artist</p>
         <div className='btn-container'>
           <button
-            className={item.type === 'Publish' ? 'publish' : 'unpublish'}
-            onClick={item.type === 'Publish' ? () => setModal(true) : () => {}}
+            className={item?.isPublished ? 'unpublish' : 'publish'}
+            onClick={() => handlePublish(!item?.isPublished)}
           >
-            {item.type}
+            {isLoading ? (
+              <LoadingSmall></LoadingSmall>
+            ) : item?.isPublished ? (
+              'Unpublish'
+            ) : (
+              'Publish'
+            )}
           </button>
-          <button className='view' onClick={() => setView(true)}>
+          <button
+            className='view'
+            onClick={() =>
+              router.push({
+                pathname: '/single-catalogue',
+                query: { id: item?.uuid },
+              })
+            }
+          >
             View Catalogue
           </button>
         </div>

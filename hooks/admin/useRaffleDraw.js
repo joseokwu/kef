@@ -15,6 +15,7 @@ const useRaffleDraw = () => {
     getProgressiveDrawDetails,
     startProgressiveDraw,
     stopProgressiveDraw,
+    createWeeklyCampaign,
   } = bindActionCreators(raffleDrawCreators, dispatch);
 
   return {
@@ -27,6 +28,7 @@ const useRaffleDraw = () => {
     getProgressiveDrawDetails,
     startProgressiveDraw,
     stopProgressiveDraw,
+    createWeeklyCampaign,
   };
 };
 

@@ -12,12 +12,19 @@ body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
+  scroll-behavior: smooth;
   /* height: 100vh;
   width: 100%; */
 }
 
+body::-webkit-scrollbar {
+  display: none !important;
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+
 html {
-  font-size: 55.3%;
+  font-size: 52%;
 }
 
 @media (min-width: 940px) {

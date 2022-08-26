@@ -38,13 +38,7 @@ const CreateCampaign = ({ setLocation }) => {
       giftQuantity: 0,
     },
   ]);
-  const [giftsCategory, setGiftsCategory] = useState([
-    {
-      categoryName: 'string',
-      giftName: 'string',
-      giftQuantity: 0,
-    },
-  ]);
+  const [gifts2, setGifts2] = useState([]);
 
   const [modal, setModal] = useState(false);
   const toggleAlertBar = useShowAlert();
@@ -68,6 +62,12 @@ const CreateCampaign = ({ setLocation }) => {
       }
     }
     setGifts(mainGifts);
+  };
+
+  const handleGifts2 = (e, i) => {
+    let mainGifts = [...gifts2];
+    mainGifts[i] = e.target.value;
+    setGifts2(mainGifts);
   };
 
   const handleInterval = (interval) => {
@@ -114,17 +114,18 @@ const CreateCampaign = ({ setLocation }) => {
     '2 hours',
   ];
 
-  const duration = ['1 Week', '2 Weeks', '3 Weeks'];
+  const duration = ['1', '2', '3'];
 
   const weeklyDetails = {
     campaignTitle,
     typeOfDraw,
-    campaignDuration,
+    campaignDuration: parseInt(campaignDuration),
     campaignStartDate,
     drawStartDate,
     drawDays,
     drawTime,
-    winnerPerCategory,
+    winnerPerCategory: parseInt(winnerPerCategory),
+    giftsCategory: gifts2,
   };
   const progressiveDetails = {
     campaignTitle,
@@ -138,6 +139,7 @@ const CreateCampaign = ({ setLocation }) => {
 
   const handleSubmit = () => {
     if (typeOfDraw === 'Weekly') {
+      console.log(weeklyDetails);
       createCampaign({
         toggleAlertBar,
         toggleLoad,
@@ -219,21 +221,21 @@ const CreateCampaign = ({ setLocation }) => {
                 onChange={(e) => setWinnerPerCategory(e.target.value)}
               />
               <div className='gifts'>
-                <h2>Gift To Be Won</h2>
-                {gifts.map((item, index) => {
+                <h2 onClick={() => console.log(gifts2)}>Gift To Be Won</h2>
+                {gifts2.map((item, index) => {
                   return (
                     <div className='gifts-frame' key={index}>
                       <TimeFrameNoTitle
                         // category={category3}
                         trailing={'Item'}
-                        onChange={(e) => handleGifts(e, 'name', index)}
+                        onChange={(e) => handleGifts2(e, index)}
                       />
-                      <span className='x'>x</span>
+                      {/* <span className='x'>x</span>
                       <TimeFrameNoTitle2
                         // category={category3}
                         trailing={'Number of winners'}
                         onChange={(e) => handleGifts(e, 'number', index)}
-                      />
+                      /> */}
                       {/* <div className='cancel-icon'>
                         <Image
                           src={'/cancel.svg'}
@@ -245,17 +247,7 @@ const CreateCampaign = ({ setLocation }) => {
                     </div>
                   );
                 })}
-                <button
-                  onClick={() =>
-                    setGifts([
-                      ...gifts,
-                      {
-                        giftName: '',
-                        giftQuantity: 0,
-                      },
-                    ])
-                  }
-                >
+                <button onClick={() => setGifts2([...gifts2, ''])}>
                   Add Another Item+
                 </button>
               </div>

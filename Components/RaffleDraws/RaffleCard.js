@@ -30,6 +30,7 @@ const Wrapper = styled.div`
   border: 1px solid #a307a8;
   border-radius: 20px;
   padding: 0rem 2rem;
+  animation: fromLeft 3s ease-in-out;
 
   /* .active {
     transform: translateX(0%);
@@ -37,6 +38,19 @@ const Wrapper = styled.div`
   .inactive {
     transform: translateX(-120%);
   } */
+  @keyframes fromLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    80% {
+      transform: translateX(10%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
   h1 {
     font-size: 33px;
     font-weight: bold;

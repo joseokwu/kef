@@ -7,11 +7,12 @@ const VendorCard = ({ item, onClick }) => {
     <Wrapper onClick={onClick}>
       <Image
         className='image'
-        src={item.image}
-        height={120}
+        src={item?.vendorLogoUrl}
+        height={100}
         width={120}
         alt={'Music'}
       />
+
       <h4>{item.name}</h4>
     </Wrapper>
   );
@@ -29,13 +30,18 @@ const Wrapper = styled.div`
   background: #ffffff;
   height: 12rem;
   width: 32rem;
+  cursor: pointer;
+
+  .img {
+    border-radius: 50%;
+  }
 
   /* Adjusted */
 
   box-shadow: 0px 4px 44px rgba(163, 7, 168, 0.1);
   border-radius: 20px;
   .image {
-    border-radius: 20px;
+    border-radius: 50%;
   }
   h4 {
     font-size: 2rem;

@@ -5,13 +5,21 @@ import styled from 'styled-components';
 const VendorCircle = ({ item, onClick }) => {
   return (
     <Wrapper onClick={onClick}>
-      <Image
+      <div
+        style={{
+          backgroundImage: `url(${item})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+        }}
+      ></div>
+      {/* <Image
         className='image'
-        src={'/the-place.svg'}
+        src={item ?? item}
         height={130}
         width={130}
         alt={'Music'}
-      />
+      /> */}
     </Wrapper>
   );
 };
@@ -30,6 +38,12 @@ const Wrapper = styled.div`
   border-radius: 50%;
   border: 1px solid #a608a3;
 
+  div {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+  }
+
   /* Adjusted */
 
   /* box-shadow: 0px 4px 44px rgba(163, 7, 168, 0.1);
@@ -39,9 +53,4 @@ const Wrapper = styled.div`
     width: 100px;
     border-radius: 50%;
   } */
-  h4 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #706c6c;
-  }
 `;

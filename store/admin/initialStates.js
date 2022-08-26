@@ -33,11 +33,24 @@ export const raffleState = {
     raffleWinners: 0,
     raffleDrawsCompleted: 0,
   },
-  activeDrawDetails: [],
+  activeDrawDetails: {
+    campaignDetail: { typeOfDraw: '' },
+    cycles: 0,
+    draw: 0 / 0,
+    iterations: [],
+    nextTime: '',
+  },
 };
 
 export const vendorsState = {
   getVendorsData: {},
+  singleVendorData: {
+    branches: [],
+    vendorBranchCount: 0,
+    vendorLogo: '',
+    vendorName: '',
+    vendorTotalTransaction: 0,
+  },
 };
 
 export const referralsState = {

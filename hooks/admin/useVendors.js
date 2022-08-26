@@ -6,15 +6,15 @@ const useVendors = () => {
   const dispatch = useDispatch();
   const stateVendors = useSelector((state) => state.adminVendors);
 
-  const { getVendors, addVendor } = bindActionCreators(
-    vendorsCreators,
-    dispatch
-  );
+  const { getVendors, addVendor, getSingleVendor, addBranch } =
+    bindActionCreators(vendorsCreators, dispatch);
 
   return {
     stateVendors,
     getVendors,
     addVendor,
+    getSingleVendor,
+    addBranch,
   };
 };
 

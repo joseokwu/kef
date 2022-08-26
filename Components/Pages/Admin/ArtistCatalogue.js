@@ -31,14 +31,14 @@ const ArtistCatalogue = () => {
   const [modal, setModal] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [dateValue, setDateValue] = useState();
-  const [date, setDate] = useState(new Date().toLocaleDateString());
+  const [date, setDate] = useState('');
 
   const {
     getArtistCatalogue,
     stateArtistCatalogue: {
       totalArtists,
       artistsJoinedToday,
-      // artists,
+      artists,
       totalPages,
     },
   } = useArtistCatalogue();
@@ -126,7 +126,7 @@ const ArtistCatalogue = () => {
       type: 'Unpublish',
     },
   ];
-
+  console.log(artists);
   const handleType = (val) => {
     if (val === 'All Artists') {
       setNavType('All Artists');
@@ -158,15 +158,16 @@ const ArtistCatalogue = () => {
 
   useEffect(() => {
     setActivePage('Artist Catalogue');
-  }, []);
-
-  useEffect(() => {
     getArtistCatalogue({
       setPassError,
       toggleAlertBar,
       toggleLoad,
+      page,
+      search,
+      type,
+      date,
     });
-  }, []);
+  }, [search, page, type, date]);
 
   return (
     <>
@@ -174,8 +175,14 @@ const ArtistCatalogue = () => {
         <Container>
           <ArtistPublishModal modal={modal} setModal={setModal} />
           <section className='grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] xl:!grid-cols-[repeat(auto-fit,_minmax(28rem,_32rem))] gap-[2.6rem]'>
-            <StatV2 value={7} title={'Total Artist'}></StatV2>
-            <StatV2 value={3} title={'Artists Joined Today'}></StatV2>
+            <StatV2
+              value={totalArtists && totalArtists}
+              title={'Total Artist'}
+            ></StatV2>
+            <StatV2
+              value={artistsJoinedToday && artistsJoinedToday}
+              title={'Artists Joined Today'}
+            ></StatV2>
           </section>
 
           {/*  */}
@@ -187,7 +194,7 @@ const ArtistCatalogue = () => {
                 handleType(val);
               }}
             />
-            <div className='ml-auto flex  w-[34%]'>
+            <div className='ml-auto flex  w-[34%] relative'>
               <Filter setShowFilter={setShowFilter} showFilter={showFilter} />
               {showFilter && (
                 <FilterCard
@@ -206,7 +213,7 @@ const ArtistCatalogue = () => {
 
           <Wrapper2>
             <div className='card-container'>
-              {data.map((item, index) => {
+              {artists?.map((item, index) => {
                 return (
                   <ArtistCard
                     item={item}
@@ -239,7 +246,7 @@ const ArtistCatalogue = () => {
               </svg>
             </button>
             <Pagination
-              count={totalPage && totalPage}
+              count={totalPages && totalPages}
               page={page}
               onChange={(e) => setPage(parseInt(e.target.textContent))}
               variant='outlined'
@@ -267,7 +274,6 @@ const ArtistCatalogue = () => {
           </div>
         </Container>
       )}
-      {view && <SingleArtistCatalogue setView={setView} />}
     </>
   );
 };

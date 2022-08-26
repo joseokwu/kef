@@ -11,16 +11,18 @@ import useShowAlert from '../../hooks/useShowAlert';
 import useLoading from '../../hooks/useLoading';
 import authFetch from '../../axios/admin';
 import { useRef } from 'react';
+import PhoneInput from 'react-phone-input-2';
 
 const AddVendorModal = ({ setModal, modal, startDraw }) => {
   const [branchModal, setBranchModal] = useState(false);
-  const [branchList, setBranchList] = useState(['The Place, Lekki']);
+  const [branchList, setBranchList] = useState([]);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const [logo, setLogo] = useState();
-  const [uploadImgUrl, setUploadImgUrl] = useState();
+  const [phoneError, setPhoneError] = useState('');
   const [imageFile, setImageFile] = useState();
   const [passError, setPassError] = useState('');
+  const [previewImage, setPreviewImage] = useState();
+  const [imageURL, setImageURL] = useState();
   const toggleAlertBar = useShowAlert();
   const { toggleLoad } = useLoading();
   const {
@@ -35,33 +37,23 @@ const AddVendorModal = ({ setModal, modal, startDraw }) => {
     },
     addVendor,
   } = useVendors();
-  const imageRef = useRef(null);
 
-  // const onFileChange = (e) => {
-  //   // setCanSubmit(true);
-  //   // console.log('Image ref is ', imageRef.current.firstChild);
-  //   const newImageUrl = URL.createObjectURL(e.target.files[0]);
-  //   setUploadImgUrl(newImageUrl);
-  //   console.log('b4 revode new image rul is', newImageUrl);
-  //   imageRef.current.src = newImageUrl;
-  //   URL.revokeObjectURL(newImageUrl);
-  //   console.log('after revoke url is', newImageUrl);
-
-  //   setImageFile(e.target.files[0]);
-  // };
   const updateAvatar = async (e) => {
     toggleLoad();
     const formData = new FormData();
     formData.append('avatar', e.target.files[0]);
     try {
       const resp = await authFetch.post('/profile/upload-avatar', formData);
-      console.log('Proife avaartar response is', resp);
-      // AppData.fetchUserDetails();
+      console.log('response is', resp);
+      const {
+        data: { avatar },
+      } = resp.data;
+      console.log(avatar);
       toggleAlertBar(resp.data.message, 'success', true, 3000);
-      // setImageFile(null);
-      // setCanSubmit(false);
+      setImageURL(avatar);
       // URL.revokeObjectURL(uploadImgUrl);
       toggleLoad();
+      setPreviewImage(URL.createObjectURL(e.target.files[0]));
     } catch (error) {
       toggleAlertBar(
         'Problem Updating Profile Picture. Please Ensure all Fields are Correct and Try Again!',
@@ -75,9 +67,17 @@ const AddVendorModal = ({ setModal, modal, startDraw }) => {
 
   const handleAdd = (value) => {
     setBranchList([...branchList, value]);
+    console.log(branchList);
   };
 
-  const handleAddVendor = ({ details }) => {
+  const details = {
+    name,
+    vendorNumber: number,
+    logoUrl: imageURL,
+    branches: branchList,
+  };
+
+  const handleAddVendor = (details) => {
     addVendor({ toggleAlertBar, toggleLoad, setPassError, details });
   };
   return (
@@ -92,20 +92,20 @@ const AddVendorModal = ({ setModal, modal, startDraw }) => {
             <p>Provide vendor details to manage transactions</p>
           </div>
           <div className='input'>
-            <label htmlFor='description'>Vendor Name</label>
+            <label htmlFor='name'>Vendor Name</label>
             <input
-              name='description'
-              id='description'
+              name='name'
+              id='name'
               placeholder='Ex. Jonathan'
+              onChange={(e) => setName(e.target.value)}
             ></input>
           </div>
           <div className='input file'>
-            <label htmlFor='description'>Vendor Logo</label>
+            <label htmlFor='logo'>Vendor Logo</label>
             <div className='input-container'>
               <div className='file-upload-overlay'>
                 <Image
                   src={'/upload.svg'}
-                  // ref={imageRef}
                   height={15}
                   width={15}
                   alt='upload'
@@ -113,29 +113,52 @@ const AddVendorModal = ({ setModal, modal, startDraw }) => {
                 <p>Upload a display image</p>
               </div>
               <input
-                name='description'
-                id='description'
+                name='logo'
+                id='logo'
                 placeholder='Ex. 0000'
                 type='file'
                 onChange={updateAvatar}
               ></input>
             </div>
           </div>
+          {previewImage && (
+            <img src={previewImage} alt='22' height={50} width={50} />
+          )}
           <div className='input'>
-            <label htmlFor='description'>Vendor Number</label>
-            <input
-              name='description'
-              id='description'
-              placeholder='Ex. 0000'
-            ></input>
+            <label htmlFor='number'>Vendor Number</label>
+            <PhoneInput
+              // containerClass=''
+              inputClass={`input ${
+                phoneError ? ' !border-red-500 !border-[2px]' : ''
+              }`}
+              name='number'
+              id='number'
+              country={'ng'}
+              countryCodeEditable={false}
+              enableTerritories={false}
+              disableDropdown={true}
+              disableSearchIcon={true}
+              showDropdown={false}
+              specialLabel=''
+              value={number}
+              onChange={(phone) => {
+                setNumber(`+${phone}`);
+                setPhoneError('');
+              }}
+            />
+            {phoneError && (
+              <p className=' !text-[1.4rem] !text-red-500'>
+                *{phoneError ?? 'Phone number must be valid'}
+              </p>
+            )}
           </div>
-          {branchList.length > 0 && (
+          {branchList?.length > 0 && (
             <div>
               <div className='input'>
-                <label htmlFor='description' className='branch-title'>
+                <label htmlFor='branch' className='branch-title'>
                   Branches
                 </label>
-                {branchList.map((item, index) => {
+                {branchList?.map((item, index) => {
                   return <BranchBar key={index} item={item} />;
                 })}
               </div>
@@ -146,7 +169,11 @@ const AddVendorModal = ({ setModal, modal, startDraw }) => {
           </button>
           <hr />
           <div className='btns'>
-            <Actions setLocation={() => setModal(false)} title={'Publish'} />
+            <Actions
+              onClick={() => handleAddVendor(details)}
+              setLocation={() => setModal(false)}
+              title={'Publish'}
+            />
           </div>
         </div>
         <AddBranchModal

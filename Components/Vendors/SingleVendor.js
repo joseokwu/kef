@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import StatV2 from '../Cards/Stats-v2';
-import { useState } from 'react';
 import StartDrawModal from '../RaffleDraws/StartDrawModal';
 import GoBack from '../GoBack';
 import Loading from '../Loading';
@@ -10,11 +9,31 @@ import { useRouter } from 'next/router';
 import BranchCard from './BranchCard';
 import AddBranchModal from './AddBranchModal';
 import VendorCircle from './VendorCircle';
+import useVendors from '../../hooks/admin/useVendors';
+import useShowAlert from '../../hooks/useShowAlert';
+import useLoading from '../../hooks/useLoading';
 
 const SingleVendor = () => {
   const [list, setList] = useState();
   const [modal, setModal] = useState(false);
+  const [passError, setPassError] = useState('');
+  const toggleAlertBar = useShowAlert();
+  const { toggleLoad } = useLoading();
   const router = useRouter();
+  const { id } = router.query;
+
+  const {
+    getSingleVendor,
+    stateVendors: {
+      singleVendorData: {
+        branches,
+        vendorBranchCount,
+        vendorLogo,
+        vendorName,
+        vendorTotalTransaction,
+      },
+    },
+  } = useVendors();
 
   const handleStartDraw = () => {
     setModal(true);
@@ -43,6 +62,12 @@ const SingleVendor = () => {
     },
   ];
 
+  useEffect(() => {
+    if (id) {
+      getSingleVendor({ toggleAlertBar, toggleLoad, setPassError, uuid: id });
+    }
+  }, [router]);
+
   return (
     <>
       <AddBranchModal
@@ -59,9 +84,15 @@ const SingleVendor = () => {
 
       <>
         <Wrapper3 className=''>
-          <VendorCircle />
-          <StatV2 value={'N200,000'} title={'Total Transactions'}></StatV2>
-          <StatV2 value={10} title={'Total Branch'}></StatV2>
+          <VendorCircle item={vendorLogo ?? vendorLogo} />
+          <StatV2
+            value={vendorTotalTransaction && vendorTotalTransaction}
+            title={'Total Transactions'}
+          ></StatV2>
+          <StatV2
+            value={vendorBranchCount && vendorBranchCount}
+            title={'Total Branch'}
+          ></StatV2>
         </Wrapper3>
       </>
 
@@ -74,8 +105,8 @@ const SingleVendor = () => {
                 Add Branch
               </button>
             </div>
-            {branch.length > 0 ? (
-              branch?.map((item, index) => {
+            {branches.length > 0 ? (
+              branches?.map((item, index) => {
                 return <BranchCard item={item} key={index} />;
               })
             ) : (

@@ -3,13 +3,49 @@ import { Dialog } from '@mui/material';
 import styled from 'styled-components';
 import Image from 'next/image';
 import Actions from '../RaffleDraws/Actions';
+import { useRouter } from 'next/router';
+import useVendors from '../../hooks/admin/useVendors';
+import useShowAlert from '../../hooks/useShowAlert';
+import useLoading from '../../hooks/useLoading';
+import PhoneInput from 'react-phone-input-2';
 
 const AddBranchModal = ({ setModal, modal, handleAdd }) => {
   const [branchName, setBranchName] = useState();
-  const handleClick = () => {
-    startDraw();
+  const [branchLocation, setBranchLocation] = useState();
+  // const [branchNumber, setBranchNumber] = useState();
+  const [phoneError, setPhoneErrror] = useState('');
+  const [phone, setPhone] = useState();
+  const [passError, setPassError] = useState('');
+  const toggleAlertBar = useShowAlert();
+  const { toggleLoad } = useLoading();
+  const router = useRouter();
+  const { addBranch } = useVendors();
+
+  const { id } = router.query;
+
+  const handleSubmit = () => {
+    if (id) {
+      addBranch({
+        toggleAlertBar,
+        toggleLoad,
+        setPassError,
+        uuid: id,
+        details: {
+          name: branchName,
+          location: branchLocation,
+          branchNumber: phone,
+        },
+      });
+    } else {
+      handleAdd({
+        name: branchName,
+        location: branchLocation,
+        branchNumber: phone,
+      });
+    }
     setModal(false);
   };
+
   return (
     <Dialog onClose={() => setModal(false)} open={modal}>
       <Wrapper>
@@ -22,31 +58,60 @@ const AddBranchModal = ({ setModal, modal, handleAdd }) => {
             <p>Add a branch of the vendor</p>
           </div>
           <div>
-            <label htmlFor='description'>Branch Name</label>
+            <label htmlFor='name'>Branch Name</label>
             <input
-              name='description'
-              id='description'
+              name='name'
+              id='name'
               placeholder='Ex. Jonathan'
               onChange={(e) => setBranchName(e.target.value)}
             ></input>
           </div>
           <div>
-            <label htmlFor='description'>Branch Number</label>
+            <label htmlFor='location'>Branch Location</label>
             <input
-              name='description'
-              id='description'
-              placeholder='Ex. 0000'
+              name='location'
+              id='location'
+              placeholder='Ex. Lekki'
+              onChange={(e) => setBranchLocation(e.target.value)}
             ></input>
           </div>
+          <div>
+            <label htmlFor='number' onClick={() => console.log(phone)}>
+              Branch Number
+            </label>
+            <PhoneInput
+              // containerClass=''
+              inputClass={`input ${
+                phoneError ? ' !border-red-500 !border-[2px]' : ''
+              }`}
+              name='number'
+              id='number'
+              country={'ng'}
+              countryCodeEditable={false}
+              enableTerritories={false}
+              disableDropdown={true}
+              disableSearchIcon={true}
+              showDropdown={false}
+              specialLabel=''
+              value={phone}
+              onChange={(phone) => {
+                setPhone(`+${phone}`);
+                setPhoneErrror('');
+              }}
+            />
+            {phoneError && (
+              <p className=' !text-[1.4rem] !text-red-500'>
+                *{phoneError ?? 'Phone number must be valid'}
+              </p>
+            )}
+          </div>
+
           <hr />
           <div className='btns'>
             <Actions
               setLocation={() => setModal(false)}
               title={'Publish'}
-              onClick={() => {
-                handleAdd(branchName);
-                setModal(false);
-              }}
+              onClick={handleSubmit}
             />
           </div>
         </div>
@@ -95,7 +160,15 @@ const Wrapper = styled.div`
       border-radius: 10px;
       width: 100%;
       padding: 1.5rem 2rem;
-      font-size: 14px;
+      font-size: 1.4rem;
+    }
+    .input {
+      background: #f8f9fd;
+      border: 1px solid #bebdbd;
+      border-radius: 10px;
+      width: 100%;
+      padding: 1.5rem 2rem;
+      font-size: 1.4rem;
     }
     .btns {
       text-align: center;

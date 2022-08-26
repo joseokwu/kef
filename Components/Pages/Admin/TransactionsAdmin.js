@@ -19,7 +19,7 @@ const TransactionsAdmin = () => {
   const [navType, setNavType] = useState('All Sales');
   const [showFilter, setShowFilter] = useState(false);
   const [dateValue, setDateValue] = useState();
-  const [date, setDate] = useState(new Date().toLocaleDateString());
+  const [date, setDate] = useState('');
   const [passError, setPassError] = useState('');
   // const [date, setDate] = useState('');
   const toggleAlertBar = useShowAlert();
@@ -105,16 +105,6 @@ const TransactionsAdmin = () => {
     });
   }, [search, page, type, date]);
 
-  console.log(
-    totalSales,
-    eventTickets,
-    raffleTickets,
-    progressiveToken,
-    liveSession,
-    // transactions,
-    totalPages,
-    date
-  );
   return (
     <Container>
       <section className='grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] gap-[2.6rem]'>
@@ -146,7 +136,7 @@ const TransactionsAdmin = () => {
             handleType(val);
           }}
         />
-        <div className='ml-auto flex  w-[34%]'>
+        <div className='ml-auto flex  w-[34%] relative'>
           <Filter setShowFilter={setShowFilter} showFilter={showFilter} />
           {showFilter && (
             <FilterCard
