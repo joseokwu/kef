@@ -38,7 +38,33 @@ const CreateCampaign = ({ setLocation }) => {
       giftQuantity: 0,
     },
   ]);
-  const [gifts2, setGifts2] = useState([]);
+
+  const [gifts2, setGifts2] = useState([
+    {
+      giftName: 'string',
+      giftQuantity: 0,
+    },
+    {
+      giftName: 'string',
+      giftQuantity: 0,
+    },
+    {
+      giftName: 'string',
+      giftQuantity: 0,
+    },
+    {
+      giftName: 'string',
+      giftQuantity: 0,
+    },
+    {
+      giftName: 'string',
+      giftQuantity: 0,
+    },
+    {
+      giftName: 'string',
+      giftQuantity: 0,
+    },
+  ]);
 
   const [modal, setModal] = useState(false);
   const toggleAlertBar = useShowAlert();
@@ -221,22 +247,93 @@ const CreateCampaign = ({ setLocation }) => {
                 onChange={(e) => setWinnerPerCategory(e.target.value)}
               />
               <div className='gifts'>
-                <h2 onClick={() => console.log(gifts2)}>Gift To Be Won</h2>
-                {gifts2.map((item, index) => {
-                  return (
-                    <div className='gifts-frame' key={index}>
-                      <TimeFrameNoTitle
-                        // category={category3}
-                        trailing={'Item'}
-                        onChange={(e) => handleGifts2(e, index)}
-                      />
-                      {/* <span className='x'>x</span>
-                      <TimeFrameNoTitle2
-                        // category={category3}
-                        trailing={'Number of winners'}
-                        onChange={(e) => handleGifts(e, 'number', index)}
-                      /> */}
-                      {/* <div className='cancel-icon'>
+                <h2>Gift To Be Won</h2>
+
+                <div className='gifts-frame'>
+                  <label htmlFor=''>Category 1</label>
+                  <TimeFrameNoTitle
+                    // category={category3}
+                    trailing={'Item'}
+                    // onChange={(e) => setGifts2([])}
+                  />
+                  <span className='x'>x</span>
+                  <TimeFrameNoTitle2
+                    // category={category3}
+                    trailing={'Number of winners'}
+                    // onChange={(e) => handleGifts(e, 'number', index)}
+                  />
+                </div>
+                <div className='gifts-frame'>
+                  <label htmlFor=''>Category 2</label>
+                  <TimeFrameNoTitle
+                    // category={category3}
+                    trailing={'Item'}
+                    // onChange={(e) => handleGifts2(e, index)}
+                  />
+                  <span className='x'>x</span>
+                  <TimeFrameNoTitle2
+                    // category={category3}
+                    trailing={'Number of winners'}
+                    // onChange={(e) => handleGifts(e, 'number', index)}
+                  />
+                </div>
+                <div className='gifts-frame'>
+                  <label htmlFor=''>Category 3</label>
+                  <TimeFrameNoTitle
+                    // category={category3}
+                    trailing={'Item'}
+                    // onChange={(e) => handleGifts2(e, index)}
+                  />
+                  <span className='x'>x</span>
+                  <TimeFrameNoTitle2
+                    // category={category3}
+                    trailing={'Number of winners'}
+                    // onChange={(e) => handleGifts(e, 'number', index)}
+                  />
+                </div>
+                <div className='gifts-frame'>
+                  <label htmlFor=''>Category 4</label>
+                  <TimeFrameNoTitle
+                    // category={category3}
+                    trailing={'Item'}
+                    // onChange={(e) => handleGifts2(e, index)}
+                  />
+                  <span className='x'>x</span>
+                  <TimeFrameNoTitle2
+                    // category={category3}
+                    trailing={'Number of winners'}
+                    // onChange={(e) => handleGifts(e, 'number', index)}
+                  />
+                </div>
+                <div className='gifts-frame'>
+                  <label htmlFor=''>Category 5</label>
+                  <TimeFrameNoTitle
+                    // category={category3}
+                    trailing={'Item'}
+                    // onChange={(e) => handleGifts2(e, index)}
+                  />
+                  <span className='x'>x</span>
+                  <TimeFrameNoTitle2
+                    // category={category3}
+                    trailing={'Number of winners'}
+                    // onChange={(e) => handleGifts(e, 'number', index)}
+                  />
+                </div>
+                <div className='gifts-frame'>
+                  <label htmlFor=''>Category 6</label>
+                  <TimeFrameNoTitle
+                    // category={category3}
+                    trailing={'Item'}
+                    // onChange={(e) => handleGifts2(e, index)}
+                  />
+                  <span className='x'>x</span>
+                  <TimeFrameNoTitle2
+                    // category={category3}
+                    trailing={'Number of winners'}
+                    // onChange={(e) => handleGifts(e, 'number', index)}
+                  />
+                </div>
+                {/* <div className='cancel-icon'>
                         <Image
                           src={'/cancel.svg'}
                           height={20}
@@ -244,12 +341,9 @@ const CreateCampaign = ({ setLocation }) => {
                           alt={'cancel'}
                         />
                       </div> */}
-                    </div>
-                  );
-                })}
-                <button onClick={() => setGifts2([...gifts2, ''])}>
+                {/* <button onClick={() => setGifts2([...gifts2, ''])}>
                   Add Another Item+
-                </button>
+                </button> */}
               </div>
             </>
           ) : (
@@ -369,8 +463,14 @@ const Wrapper = styled.section`
     display: flex;
     gap: 2rem;
     align-items: center;
-    width: 40%;
+    width: 60%;
     margin-bottom: 2rem;
+    label {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #575757;
+      width: 30%;
+    }
     .x {
       display: block;
       /* margin-top: auto; */

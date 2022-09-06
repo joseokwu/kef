@@ -94,11 +94,11 @@ const MusicPlayerV2 = ({ title, songList, albumTitle, theme = 'dark' }) => {
 
   return (
     <>
-      {title && (
+      {/* {title && (
         <h1 className='mb-[1.6rem] text-primary font-bold text-[2.5rem]'>
           Stream Artiste Music
         </h1>
-      )}
+      )} */}
       <div className='w-[100%] overflow-x-scroll scroll_hide max-w-[79.3rem]'>
         <div className=' w-full border-gray-lighter border-collapse  min-w-[7.3rem] text-[1.2rem]'>
           {/* Header */}
@@ -126,7 +126,7 @@ const MusicPlayerV2 = ({ title, songList, albumTitle, theme = 'dark' }) => {
           </div>
           {/* Body */}
 
-          {songs?.map((el, i) => {
+          {songList?.map((el, i) => {
             return (
               <div
                 style={{
@@ -137,7 +137,7 @@ const MusicPlayerV2 = ({ title, songList, albumTitle, theme = 'dark' }) => {
                 className=' hover:bg-primary rounded-full  grid grid-cols-[1fr_16.2rem_2fr_1fr_3fr_16.2rem] place-items-start items-center justify-start '
                 // onClick={() => playOnClick(i)}
               >
-                <audio ref={audioRef} src={songs[i].src} />
+                <audio ref={audioRef} src={el?.fileUrl} />
 
                 <span
                   className=' border-gray-lighter p-[16px] !py-[14px] text-left align-text-bottom text-[1.4rem] font-medium flex align-middle cursor-pointer'
@@ -175,7 +175,7 @@ const MusicPlayerV2 = ({ title, songList, albumTitle, theme = 'dark' }) => {
                   className=' border-gray-lighter p-[16px] !py-[14px] text-left align-text-bottom text-[1.4rem] font-medium whitespace-nowrap cursor-pointer'
                   onClick={() => playOnClick(i)}
                 >
-                  Artist 1..
+                  {el?.name}
                 </span>
                 <span
                   className=' border-gray-lighter p-[16px] !py-[14px] text-right align-text-bottom text-[1.4rem] font-medium cursor-pointer'
@@ -187,7 +187,7 @@ const MusicPlayerV2 = ({ title, songList, albumTitle, theme = 'dark' }) => {
                   className=' border-gray-lighter p-[16px] !py-[14px]  align-text-bottom text-[1.4rem] font-medium whitespace-nowrap cursor-pointer'
                   onClick={() => playOnClick(i)}
                 >
-                  {albumTitle || el.album}
+                  {albumTitle}
                 </span>
 
                 <span className=' border-gray-lighter p-[16px] !py-[14px] text-right align-text-bottom text-[1.4rem] font-medium  cursor-pointer'>

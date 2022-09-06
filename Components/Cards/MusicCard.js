@@ -2,21 +2,22 @@ import Image from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
 
-const MusicCard = ({ item, setPopUp }) => {
+const MusicCard = ({ item, setPopUp, index, setCatalogueIndex }) => {
   return (
     <Wrapper onClick={() => setPopUp()}>
       <Image
         className='image'
-        src={item.img}
+        src={item.coverImage}
         height={150}
         width={150}
         alt={'Music'}
         onClick={() => {
+          setCatalogueIndex(index);
           setPopUp();
         }}
       />
-      <h4>Concert Mix</h4>
-      <p>2022</p>
+      <h4>{item?.albumTitle}</h4>
+      <p>{item?.yearOfRelease.slice(0, 4)}</p>
     </Wrapper>
   );
 };

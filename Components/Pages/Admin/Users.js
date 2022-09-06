@@ -27,8 +27,6 @@ const Users = () => {
   const { toggleLoad } = useLoading();
   const { setActivePage } = useAuth();
 
-  console.log(date);
-
   const {
     getUsers,
     stateUsers: { totalJoinedToday, totalUser, users, totalPages },
@@ -100,18 +98,20 @@ const Users = () => {
             handleType(val);
           }}
         />
-        <div className='ml-auto flex  w-[34%] relative'>
-          <Filter setShowFilter={setShowFilter} showFilter={showFilter} />
-          {showFilter && (
-            <FilterCard
-              date={date}
-              setDate={setDate}
-              type={'users'}
-              setDateValue={setDateValue}
-              handleFilter={() => setShowFilter(false)}
-              dateValue={dateValue}
-            />
-          )}
+        <div className='ml-auto flex  w-[34%]'>
+          <div className='relative'>
+            <Filter setShowFilter={setShowFilter} showFilter={showFilter} />
+            {showFilter && (
+              <FilterCard
+                date={date}
+                setDate={setDate}
+                type={'users'}
+                setDateValue={setDateValue}
+                handleFilter={() => setShowFilter(false)}
+                dateValue={dateValue}
+              />
+            )}
+          </div>
           <SearchAdmin
             onChange={(e) => setSearch(e.target.value)}
           ></SearchAdmin>

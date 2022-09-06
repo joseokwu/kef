@@ -8,29 +8,27 @@ import AdminDatePicker from './Form/AdminDatePicker';
 const FilterCard = (props) => {
   const [showDateInput, setShowDateInput] = useState(false);
 
-  const transaction = [
-    'Yesterday',
-    'Last 3 Days',
-    'Last 7 days',
-    'Custom Date',
-  ];
+  const transaction = ['Yesterday', 'Last 3 Days', 'Last 7 days', 'All'];
   const users = ['All', 'Delivered', 'Not Delivered'];
   const raffle = ['All', 'Weekly', 'Interval'];
 
   function getPreviousDate(number) {
     const oldDate = new Date(new Date().getTime() - number * 60 * 60 * 1000);
-    return oldDate.toLocaleDateString();
+    return oldDate.toISOString();
   }
 
   const handleOnChange = (e) => {
     const value = e.target.value;
     const isChecked = e.target.checked;
-    if (value === 'Custom Date' && isChecked) {
-      setShowDateInput(true);
+    if (value === 'All' && isChecked) {
+      // setShowDateInput(true);
+      props.setDate('');
       props.setDateValue(value);
+      props.handleFilter();
     }
     if (value === 'Yesterday' && isChecked) {
       setShowDateInput(false);
+      console.log(getPreviousDate(24));
       props.setDate(getPreviousDate(24));
       props.setDateValue(value);
       props.handleFilter();
@@ -55,11 +53,7 @@ const FilterCard = (props) => {
     }
   }, [props.dateValue]);
   return (
-    <Wrapper
-      style={{
-        marginLeft: `${props.type === 'raffle' ? '28rem' : '0rem'}`,
-      }}
-    >
+    <Wrapper>
       <div className='timeframe'>
         <h3>Filter</h3>
         {transaction.map((item, index) => {
@@ -145,8 +139,8 @@ const Wrapper = styled.div`
   gap: 2rem;
   position: absolute;
   /* height: 25rem; */
-  width: 24rem;
-  margin-top: 4.4rem;
+  width: 18rem;
+  top: 100%;
   z-index: 999;
   font-size: 1.4rem;
   font-weight: 400;

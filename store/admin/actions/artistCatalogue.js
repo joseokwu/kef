@@ -9,7 +9,6 @@ export const getArtistCatalogue = ({
   toggleAlertBar,
   setPassError,
   page,
-  type,
   search,
   date,
 }) => {
@@ -17,7 +16,7 @@ export const getArtistCatalogue = ({
     toggleLoad();
     try {
       const response = await authFetch.get(
-        `/admin/get-artist-catalogue-analystics?search=${search}&type=${type}&page=${page}&date=${date}`
+        `/admin/get-artist-catalogue-analystics?search=${search}&page=${page}&date=${date}`
       );
       console.log(response);
       const { data } = response;
@@ -96,12 +95,15 @@ export const getSingleCatalogue = ({
   return async (dispatch) => {
     toggleLoad();
     try {
-      const response = await authFetch.get(`/admin/catalogue/${id}`);
+      const response = await authFetch.get(`/admin/artist-catalogue/${id}`);
       console.log(response);
-      const { data } = response;
+      const {
+        data: { artist },
+      } = response;
+      const mainData = artist[0];
       dispatch({
         type: GET_SINGLE_CATALOGUE,
-        payload: data,
+        payload: mainData,
       });
       toggleLoad();
     } catch (error) {

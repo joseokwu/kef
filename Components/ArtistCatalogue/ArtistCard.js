@@ -38,37 +38,39 @@ const ArtistCard = ({ item, setView, setModal }) => {
   }, [success]);
   return (
     <Wrapper>
-      <span className='image'>
-        <h1>{item.artistName.slice(0, 2).toUpperCase()}</h1>
-      </span>
       <div className='info'>
-        <h2>{item?.artistName}</h2>
-        <p>Music Artist</p>
-        <div className='btn-container'>
-          <button
-            className={item?.isPublished ? 'unpublish' : 'publish'}
-            onClick={() => handlePublish(!item?.isPublished)}
-          >
-            {isLoading ? (
-              <LoadingSmall></LoadingSmall>
-            ) : item?.isPublished ? (
-              'Unpublish'
-            ) : (
-              'Publish'
-            )}
-          </button>
-          <button
-            className='view'
-            onClick={() =>
-              router.push({
-                pathname: '/single-catalogue',
-                query: { id: item?.uuid },
-              })
-            }
-          >
-            View Catalogue
-          </button>
-        </div>
+        <span className='image'>
+          <h1>{item.artistName.slice(0, 2).toUpperCase()}</h1>
+        </span>
+        <span className='name'>
+          <h2>{item?.artistName}</h2>
+          <p>{item?.isProducer ? 'Music Producer' : 'Music Artist'}</p>
+        </span>
+      </div>
+      <div className='btn-container'>
+        <button
+          className={item?.isPublished ? 'unpublish' : 'publish'}
+          onClick={() => handlePublish(!item?.isPublished)}
+        >
+          {isLoading ? (
+            <LoadingSmall></LoadingSmall>
+          ) : item?.isPublished ? (
+            'Unpublish'
+          ) : (
+            'Publish'
+          )}
+        </button>
+        <button
+          className='view'
+          onClick={() =>
+            router.push({
+              pathname: '/single-catalogue',
+              query: { id: item?.uuid },
+            })
+          }
+        >
+          View Catalogue
+        </button>
       </div>
     </Wrapper>
   );
@@ -77,8 +79,8 @@ const ArtistCard = ({ item, setView, setModal }) => {
 export default ArtistCard;
 
 const Wrapper = styled.div`
-  display: flex;
-  gap: 2rem;
+  /* display: flex;
+  gap: 2rem; */
   border: 1px solid #a307a8;
   border-radius: 20px;
   /* width: 30rem; */
@@ -86,6 +88,10 @@ const Wrapper = styled.div`
   /* .info {
     width: 100%;
   } */
+  .info {
+    display: flex;
+    gap: 2rem;
+  }
   .image {
     display: flex;
     align-items: center;
@@ -116,8 +122,9 @@ const Wrapper = styled.div`
   }
   .btn-container {
     display: flex;
+    justify-content: flex-end;
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
     button {
       font-size: 10px;
       font-weight: 600;

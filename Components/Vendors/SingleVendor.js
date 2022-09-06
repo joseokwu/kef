@@ -17,6 +17,7 @@ const SingleVendor = () => {
   const [list, setList] = useState();
   const [modal, setModal] = useState(false);
   const [passError, setPassError] = useState('');
+  const [loading, setLoading] = useState(false);
   const toggleAlertBar = useShowAlert();
   const { toggleLoad } = useLoading();
   const router = useRouter();
@@ -64,7 +65,13 @@ const SingleVendor = () => {
 
   useEffect(() => {
     if (id) {
-      getSingleVendor({ toggleAlertBar, toggleLoad, setPassError, uuid: id });
+      getSingleVendor({
+        setLoading,
+        toggleAlertBar,
+        toggleLoad,
+        setPassError,
+        uuid: id,
+      });
     }
   }, [router]);
 
@@ -105,12 +112,14 @@ const SingleVendor = () => {
                 Add Branch
               </button>
             </div>
-            {branches.length > 0 ? (
+            {loading ? (
+              <Loading />
+            ) : branches.length > 0 ? (
               branches?.map((item, index) => {
                 return <BranchCard item={item} key={index} />;
               })
             ) : (
-              <Loading />
+              <Wrapper1>No Branch Available</Wrapper1>
             )}
           </div>
         </Wrapper2>
@@ -196,4 +205,18 @@ const Wrapper3 = styled.section`
   grid-template-columns: 0.5fr 1fr 1fr;
   gap: 2rem;
   width: 90%;
+`;
+
+const Wrapper1 = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8rem;
+  color: gray;
+  border: 1px solid #cecccc;
+  border-radius: 20px;
+  height: 30rem;
+  width: 100%;
+  padding: 3rem 3rem;
+  box-shadow: 0px 4px 44px rgba(163, 7, 168, 0.1);
 `;

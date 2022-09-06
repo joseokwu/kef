@@ -1,5 +1,8 @@
 import { artistCatalogueState } from '../initialStates';
-import { GET_ARTIST_CATALOGUE_SUCCESS } from '../actions/actionTypes';
+import {
+  GET_ARTIST_CATALOGUE_SUCCESS,
+  GET_SINGLE_CATALOGUE,
+} from '../actions/actionTypes';
 
 const reducer = (state = artistCatalogueState, action) => {
   switch (action.type) {
@@ -12,6 +15,12 @@ const reducer = (state = artistCatalogueState, action) => {
         totalJoinedToday,
         totalPages,
         artists,
+      };
+    case GET_SINGLE_CATALOGUE:
+      action.payload;
+      return {
+        ...state,
+        singleCatalogue: action.payload,
       };
     default:
       return state;

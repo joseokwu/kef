@@ -88,16 +88,18 @@ const Cards = () => {
           }}
         />
         <div className='ml-auto flex  w-[34%]'>
-          <Filter setShowFilter={setShowFilter} showFilter={showFilter} />
-          {showFilter && (
-            <FilterCard
-              date={date}
-              setDate={setDate}
-              setDateValue={setDateValue}
-              handleFilter={() => setShowFilter(false)}
-              dateValue={dateValue}
-            />
-          )}
+          <div className='relative'>
+            <Filter setShowFilter={setShowFilter} showFilter={showFilter} />
+            {showFilter && (
+              <FilterCard
+                date={date}
+                setDate={setDate}
+                setDateValue={setDateValue}
+                handleFilter={() => setShowFilter(false)}
+                dateValue={dateValue}
+              />
+            )}
+          </div>
           <SearchAdmin
             onChange={(e) => setSearch(e.target.value)}
           ></SearchAdmin>

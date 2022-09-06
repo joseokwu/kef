@@ -14,6 +14,7 @@ const Filter = ({ setShowFilter, showFilter }) => {
 export default Filter;
 
 const Wrapper = styled.div`
+  height: 100%;
   width: 9rem;
   display: flex;
   align-items: center;

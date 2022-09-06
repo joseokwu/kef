@@ -88,7 +88,7 @@ const AddVendorModal = ({ setModal, modal, startDraw }) => {
         </div>
         <div className='content'>
           <div className='title'>
-            <h3>Add Vendor</h3>
+            <h3 onClick={() => console.log(details)}>Add Vendor</h3>
             <p>Provide vendor details to manage transactions</p>
           </div>
           <div className='input'>

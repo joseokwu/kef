@@ -14,16 +14,20 @@ import useLoading from '../../hooks/useLoading';
 const SingleArtistCatalogue = () => {
   const [activeNav, setActiveNav] = useState('Albums');
   const [popUp, setPopUp] = useState(false);
+  const [catalogueIndex, setCatalogueIndex] = useState();
   const toggleAlertBar = useShowAlert();
   const { toggleLoad } = useLoading();
   const [passError, setPassError] = useState('');
 
   const router = useRouter();
-  const { getSingleCatalogue, stateArtistCatalogue } = useArtistCatalogue();
+  const {
+    getSingleCatalogue,
+    stateArtistCatalogue: {
+      singleCatalogue: { catalogues },
+    },
+  } = useArtistCatalogue();
 
   const { id } = router.query;
-
-  console.log(id);
 
   const data = [
     {
@@ -74,8 +78,10 @@ const SingleArtistCatalogue = () => {
   ];
 
   useEffect(() => {
-    getSingleCatalogue({ toggleAlertBar, toggleLoad, setPassError, id: id });
-  }, []);
+    if (id) {
+      getSingleCatalogue({ toggleAlertBar, toggleLoad, setPassError, id: id });
+    }
+  }, [id]);
   return (
     <Wrapper>
       <GoBack text={'Go Back'} onClick={() => router.back()} />
@@ -100,18 +106,30 @@ const SingleArtistCatalogue = () => {
         </span>
       </div>
       <div className='music-list'>
-        {data.map((item, index) => {
-          return (
-            <MusicCard
-              item={item}
-              key={index}
-              popUp={popUp}
-              setPopUp={() => setPopUp(true)}
-            />
-          );
-        })}
+        {catalogues?.length > 0 ? (
+          catalogues?.map((item, index) => {
+            return (
+              <MusicCard
+                item={item}
+                index={index}
+                setCatalogueIndex={setCatalogueIndex}
+                key={index}
+                popUp={popUp}
+                setPopUp={() => setPopUp(true)}
+              />
+            );
+          })
+        ) : (
+          <Wrapper1>No Catalogue Available</Wrapper1>
+        )}
+        {popUp && (
+          <MusicPopUp
+            popUp={popUp}
+            setPopUp={setPopUp}
+            info={catalogues[catalogueIndex]}
+          />
+        )}
       </div>
-      {popUp && <MusicPopUp popUp={popUp} setPopUp={setPopUp} />}
     </Wrapper>
   );
 };
@@ -119,7 +137,7 @@ const SingleArtistCatalogue = () => {
 export default SingleArtistCatalogue;
 
 const Wrapper = styled.section`
-  /* position: relative; */
+  position: relative;
   .music-list {
     display: flex;
     flex-wrap: wrap;
@@ -168,4 +186,18 @@ const BtnWrapper = styled.div`
     color: black;
     cursor: pointer;
   }
+`;
+
+const Wrapper1 = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8rem;
+  color: gray;
+  border: 1px solid #cecccc;
+  border-radius: 20px;
+  height: 30rem;
+  width: 100%;
+  padding: 3rem 3rem;
+  box-shadow: 0px 4px 44px rgba(163, 7, 168, 0.1);
 `;

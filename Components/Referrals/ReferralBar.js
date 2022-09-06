@@ -3,6 +3,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
+import { home_url } from '../../utils/variables';
 
 const ReferralBar = ({ item, index }) => {
   const [check, setCheck] = useState(false);
@@ -34,7 +35,9 @@ const ReferralBar = ({ item, index }) => {
             width={18}
             alt={'copy'}
             onClick={() => {
-              navigator.clipboard.writeText(item?.referalCode);
+              navigator.clipboard.writeText(
+                `${home_url}sign-up?ref=${item?.referalCode}`
+              );
               setCheck(true);
             }}
           />

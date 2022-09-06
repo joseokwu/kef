@@ -21,7 +21,7 @@ const ArtistCatalogue = () => {
   const [active, setActive] = useState('All Artists');
   const [passError, setPassError] = useState('');
   // const [date, setDate] = useState('');
-  const [type, setType] = useState('all');
+  const [isProducer, setIsProducer] = useState(false);
   const [navType, setNavType] = useState('All Artists');
   const [search, setSearch] = useState('');
   const toggleAlertBar = useShowAlert();
@@ -44,101 +44,19 @@ const ArtistCatalogue = () => {
   } = useArtistCatalogue();
 
   const navs = ['All Artists', 'Artists', 'Producers'];
-  const data = [
-    {
-      number: '01',
-      name: 'Joshua Nwagu',
-      ticket: '1233334444',
-      prize: 'N100,000',
-      category: '1',
-      type: 'Publish',
-    },
-    {
-      number: '02',
-      name: 'Joshua Nwagu',
-      ticket: '1233334444',
-      prize: 'N100,000',
-      category: '1',
-      type: 'Unpublish',
-    },
-    {
-      number: '03',
-      name: 'Joshua Nwagu',
-      ticket: '1233334444',
-      prize: 'N100,000',
-      category: '1',
-      type: 'Publish',
-    },
-    {
-      number: '04',
-      name: 'Joshua Nwagu',
-      ticket: '1233334444',
-      prize: 'N100,000',
-      category: '1',
-      type: 'Publish',
-    },
-    {
-      number: '05',
-      name: 'Joshua Nwagu',
-      ticket: '1233334444',
-      prize: 'N100,000',
-      category: '1',
-      type: 'Unpublish',
-    },
-    {
-      number: '06',
-      name: 'Joshua Nwagu',
-      ticket: '1233334444',
-      prize: 'N100,000',
-      category: '1',
-      type: 'Publish',
-    },
-    {
-      number: '07',
-      name: 'Joshua Nwagu',
-      ticket: '1233334444',
-      prize: 'N100,000',
-      category: '1',
-      type: 'Unpublish',
-    },
-    {
-      number: '08',
-      name: 'Joshua Nwagu',
-      ticket: '1233334444',
-      prize: 'N100,000',
-      category: '1',
-      type: 'Publish',
-    },
-    {
-      number: '09',
-      name: 'Joshua Nwagu',
-      ticket: '1233334444',
-      prize: 'N100,000',
-      category: '1',
-      type: 'Publish',
-    },
-    {
-      number: '10',
-      name: 'Joshua Nwagu',
-      ticket: '1233334444',
-      prize: 'N100,000',
-      category: '1',
-      type: 'Unpublish',
-    },
-  ];
-  console.log(artists);
+
   const handleType = (val) => {
     if (val === 'All Artists') {
       setNavType('All Artists');
-      setType('all');
+      setIsProducer('');
     }
     if (val === 'Artists') {
       setNavType('Artists');
-      setType('artists');
+      setIsProducer(false);
     }
     if (val === 'Producers') {
       setNavType('Producers');
-      setType('producers');
+      setIsProducer(true);
     }
     setPage(1);
   };
@@ -164,10 +82,9 @@ const ArtistCatalogue = () => {
       toggleLoad,
       page,
       search,
-      type,
       date,
     });
-  }, [search, page, type, date]);
+  }, [search, page, date]);
 
   return (
     <>
@@ -194,17 +111,19 @@ const ArtistCatalogue = () => {
                 handleType(val);
               }}
             />
-            <div className='ml-auto flex  w-[34%] relative'>
-              <Filter setShowFilter={setShowFilter} showFilter={showFilter} />
-              {showFilter && (
-                <FilterCard
-                  date={date}
-                  setDate={setDate}
-                  handleFilter={() => setShowFilter(false)}
-                  setDateValue={setDateValue}
-                  dateValue={dateValue}
-                />
-              )}
+            <div className='ml-auto flex  w-[34%]'>
+              <div className='relative'>
+                <Filter setShowFilter={setShowFilter} showFilter={showFilter} />
+                {showFilter && (
+                  <FilterCard
+                    date={date}
+                    setDate={setDate}
+                    handleFilter={() => setShowFilter(false)}
+                    setDateValue={setDateValue}
+                    dateValue={dateValue}
+                  />
+                )}
+              </div>
               <SearchAdmin
                 onChange={(e) => setSearch(e.target.value)}
               ></SearchAdmin>
@@ -212,7 +131,7 @@ const ArtistCatalogue = () => {
           </section>
 
           <Wrapper2>
-            <div className='card-container'>
+            <div className='grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] gap-[2.6rem] mb-14'>
               {artists?.map((item, index) => {
                 return (
                   <ArtistCard
@@ -291,8 +210,10 @@ const Wrapper2 = styled.section`
   padding: 4rem 4rem;
 
   .card-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /* grid-template-columns: 1fr 1fr 1fr; */
     /* flex-wrap: wrap; */
     gap: 2rem;
   }

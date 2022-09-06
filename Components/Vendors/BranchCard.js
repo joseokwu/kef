@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { home_url } from '../../utils/variables';
 
 const BranchCard = ({ item, index }) => {
   const [check, setCheck] = useState(false);
@@ -36,7 +37,9 @@ const BranchCard = ({ item, index }) => {
             width={18}
             alt={'copy'}
             onClick={() => {
-              navigator.clipboard.writeText(item?.link);
+              navigator.clipboard.writeText(
+                `${home_url}vendor?vendorId=${item?.link}`
+              );
               setCheck(true);
             }}
           />

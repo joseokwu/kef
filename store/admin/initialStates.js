@@ -26,6 +26,9 @@ export const raffleState = {
   campaigns: [],
   drawHistoryRepo: 0,
   totalCampaign: 0,
+  totalProgressiveDraw: 0,
+  raffleDrawCompleted: 0,
+  campaignsCreated: 0,
   totalPages: 0,
   fullScreen: false,
   progressiveDrawDetails: {
@@ -75,6 +78,7 @@ export const artistCatalogueState = {
   artists: [],
   totalPages: 1,
   page: 1,
+  singleCatalogue: [],
 };
 
 export const cardsState = {

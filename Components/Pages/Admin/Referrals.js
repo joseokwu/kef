@@ -99,7 +99,7 @@ const Referrals = () => {
       />
 
       <>
-        <Wrapper3 className=''>
+        <Wrapper3 className='grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] gap-[2.6rem] mb-14'>
           <StatV2
             value={totalCelebrities ? totalCelebrities : 0}
             title={'Total Celebrities'}

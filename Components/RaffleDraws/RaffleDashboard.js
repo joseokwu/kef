@@ -27,6 +27,7 @@ const RaffleDashboard = () => {
     stateRaffleDraw: {
       campaigns,
       campaignsCreated,
+      totalProgressiveDraw,
       raffleDrawCompleted,
       totalPages,
     },
@@ -138,12 +139,15 @@ const RaffleDashboard = () => {
           title={'Raffle Draw Completed'}
         ></StatV2>
         <StatV2 value={10} title={'Total Weekly Draws'}></StatV2>
-        <StatV2 value={10} title={'Total Progressive Draws'}></StatV2>
+        <StatV2
+          value={totalProgressiveDraw && totalProgressiveDraw}
+          title={'Total Progressive Draws'}
+        ></StatV2>
       </section>
 
       {/*  */}
       <section className='mt-[4.6rem] flex justify-between mb-[3.2rem] h-[4.2rem]'>
-        <div className='flex gap-[1rem] w-[38%] relative'>
+        <div className='flex gap-[1rem] w-[38%]'>
           <SearchAdmin2
             onChange={(e) => setSearch(e.target.value)}
           ></SearchAdmin2>
@@ -154,20 +158,22 @@ const RaffleDashboard = () => {
             handleType(val);
           }}
         /> */}
-          <Filter
-            setShowFilter={setShowFilter}
-            showFilter={showFilter}
-          ></Filter>
-          {showFilter && (
-            <FilterCard
-              date={date}
-              setDate={setDate}
-              type={'raffle'}
-              handleFilter={() => setShowFilter(false)}
-              setDateValue={setDateValue}
-              dateValue={dateValue}
-            />
-          )}
+          <div className='relative'>
+            <Filter
+              setShowFilter={setShowFilter}
+              showFilter={showFilter}
+            ></Filter>
+            {showFilter && (
+              <FilterCard
+                date={date}
+                setDate={setDate}
+                type={'raffle'}
+                handleFilter={() => setShowFilter(false)}
+                setDateValue={setDateValue}
+                dateValue={dateValue}
+              />
+            )}
+          </div>
         </div>
 
         <BtnWrapper
@@ -226,57 +232,55 @@ const RaffleDashboard = () => {
             </tr>
           </thead>
           <tbody className='caption_light text-black-default whitespace-nowrap h-[48px]'>
-            {campaigns?.map((el) => {
+            {campaigns?.map((el, i) => {
               return (
-                <>
-                  <tr className=''>
-                    <td className=' border-gray-lighter p-[16px] text-left align-text-bottom font-semibold text-[1.2rem] pl-[5.8rem]'>
-                      {el?.campaignTitle}
-                    </td>
-                    <td className=' border-gray-lighter p-[16px] text-left align-text-bottom font-semibold text-[1.2rem]'>
-                      {formatDate(el?.createdAt)}
-                    </td>
-                    <td className=' border-gray-lighter p-[16px] text-left align-text-bottom font-semibold text-[1.2rem]'>
-                      {el?.campaignDuration}
-                    </td>
-                    <td className=' border-gray-lighter p-[16px] text-left align-text-bottom font-semibold text-[1.2rem]'>
-                      {el?.typeOfDraw}
-                    </td>
-                    <td className=' border-gray-lighter p-[16px] text-left align-text-bottom font-semibold text-[1.2rem]'>
-                      {el?.subscribers}
-                    </td>
-                    <td className=' border-gray-lighter p-[16px] text-left align-text-bottom font-semibold text-[1.2rem]'>
-                      <span
-                        className={`px-[11px] text-lg font-semibold py-[5px] rounded-full ${
-                          el?.status === 'Active'
-                            ? 'bg-[#ECFFF2] text-[#348B52]'
-                            : el?.status === 'Pending'
-                            ? 'bg-[#FFF7EC] text-[#FCAC0D]'
-                            : 'bg-[#F0F0F0] text-[#252525]'
-                        }`}
-                      >
-                        {el?.status}
-                      </span>
-                    </td>
-                    <td className='border-gray-lighter p-[16px] text-right align-text-bottom font-semibold text-[1.2rem] pr-[6.5rem]'>
-                      <button
-                        className='border border-[#252525] text-[#252525] px-6 py-1 rounded-lg'
-                        onClick={() =>
-                          router.push({
-                            pathname: '/view-campaign',
-                            query: {
-                              id: el?.id,
-                              type: el?.typeOfDraw,
-                              status: el?.status,
-                            },
-                          })
-                        }
-                      >
-                        View Campaign
-                      </button>
-                    </td>
-                  </tr>
-                </>
+                <tr className='' key={i}>
+                  <td className=' border-gray-lighter p-[16px] text-left align-text-bottom font-semibold text-[1.2rem] pl-[5.8rem]'>
+                    {el?.campaignTitle}
+                  </td>
+                  <td className=' border-gray-lighter p-[16px] text-left align-text-bottom font-semibold text-[1.2rem]'>
+                    {formatDate(el?.createdAt)}
+                  </td>
+                  <td className=' border-gray-lighter p-[16px] text-left align-text-bottom font-semibold text-[1.2rem]'>
+                    {el?.campaignDuration}
+                  </td>
+                  <td className=' border-gray-lighter p-[16px] text-left align-text-bottom font-semibold text-[1.2rem]'>
+                    {el?.typeOfDraw}
+                  </td>
+                  <td className=' border-gray-lighter p-[16px] text-left align-text-bottom font-semibold text-[1.2rem]'>
+                    {el?.subscribers}
+                  </td>
+                  <td className=' border-gray-lighter p-[16px] text-left align-text-bottom font-semibold text-[1.2rem]'>
+                    <span
+                      className={`px-[11px] text-lg font-semibold py-[5px] rounded-full ${
+                        el?.status === 'Active'
+                          ? 'bg-[#ECFFF2] text-[#348B52]'
+                          : el?.status === 'Pending'
+                          ? 'bg-[#FFF7EC] text-[#FCAC0D]'
+                          : 'bg-[#F0F0F0] text-[#252525]'
+                      }`}
+                    >
+                      {el?.status}
+                    </span>
+                  </td>
+                  <td className='border-gray-lighter p-[16px] text-right align-text-bottom font-semibold text-[1.2rem] pr-[6.5rem]'>
+                    <button
+                      className='border border-[#252525] text-[#252525] px-6 py-1 rounded-lg'
+                      onClick={() =>
+                        router.push({
+                          pathname: '/view-campaign',
+                          query: {
+                            id: el?.id,
+                            type: el?.typeOfDraw,
+                            status: el?.status,
+                          },
+                        })
+                      }
+                    >
+                      View Campaign
+                    </button>
+                  </td>
+                </tr>
               );
             })}
           </tbody>

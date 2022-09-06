@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import styled from 'styled-components';
 
@@ -17,11 +17,15 @@ const RenderTime = ({ remainingTime }) => {
   }
 
   // force one last re-render when the time is over to tirgger the last animation
-  if (remainingTime === 0) {
-    setTimeout(() => {
-      setOneLastRerender((val) => val + 1);
-    }, 20);
-  }
+  useEffect(() => {
+    let t;
+    if (remainingTime === 0) {
+      t = setTimeout(() => {
+        setOneLastRerender((val) => val + 1);
+      }, 20);
+    }
+    return () => clearTimeout(t);
+  }, [remainingTime]);
 
   const isTimeUp = isNewTimeFirstTick.current;
 
@@ -47,22 +51,11 @@ const RenderTime = ({ remainingTime }) => {
 const CircularCountdown = ({ onComplete, title }) => (
   <Wrapper>
     <h3>{title} Complete</h3>
-    <p>
-      {title === 'Category 1'
-        ? 'Category 2'
-        : title === 'Category 2'
-        ? 'Category 3'
-        : title === 'Category 3'
-        ? 'Category 4'
-        : title === 'Category 4'
-        ? 'Category 5'
-        : 'Category 6'}{' '}
-      starts in:{' '}
-    </p>
+    <p>Next round starts in: </p>
     <div className='timer-wrapper'>
       <CountdownCircleTimer
         isPlaying={true}
-        duration={10}
+        duration={5}
         colors={['#C6155F', '#A608A3', '#A608A3', '#D82023', '#C6155F']}
         colorsTime={[10, 8, 6, 4, 2]}
         strokeWidth={20}

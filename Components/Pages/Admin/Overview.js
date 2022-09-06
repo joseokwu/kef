@@ -49,7 +49,12 @@ const Overview = ({ link, setShow }) => {
           value={totalTicketsSold && totalTicketsSold}
           title={'Total Tickets Sold'}
         ></StatV2>
-        <StatV2 value={0} title={'Total Tickets Won'}></StatV2>
+        <StatV2
+          value={
+            totalAmountSold && `₦${totalAmountSold.toLocaleString('en-US')}`
+          }
+          title={'Total Amount Sold'}
+        ></StatV2>
       </section>
       <h4 className='text-[1.8rem] font-bold text-[#A307A8] mb-4'>
         Raffle Analytics
@@ -75,18 +80,19 @@ const Overview = ({ link, setShow }) => {
       <h4 className='text-[1.8rem] font-bold text-[#A307A8] mb-4'>
         Vendor Analytics
       </h4>
-      <section className='grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] gap-[2.6rem]'>
+      <section className='grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] xl:!grid-cols-[repeat(auto-fit,_minmax(28rem,_32rem))] gap-[2.6rem]'>
         <StatV2 value={vendors && vendors} title={'Vendors'}></StatV2>
         <StatV2
           value={
-            totalAmountSold && `₦${totalAmountSold.toLocaleString('en-US')}`
+            totalVendorTransactions &&
+            `₦${totalVendorTransactions.toLocaleString('en-US')}`
           }
           title={'Total Amount Sold'}
         ></StatV2>
-        <StatV2
+        {/* <StatV2
           value={totalVendorTransactions && totalVendorTransactions}
           title={'Tickets Sold'}
-        ></StatV2>
+        ></StatV2> */}
       </section>
     </Container>
   );

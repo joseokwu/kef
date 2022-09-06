@@ -1,9 +1,15 @@
 import authFetch from '../../../axios/admin';
 import { ADD_VENDOR, GET_SINGLE_VENDOR, GET_VENDORS } from './actionTypes';
 
-export const getVendors = ({ toggleLoad, toggleAlertBar, setPassError }) => {
+export const getVendors = ({
+  setLoading,
+  toggleLoad,
+  toggleAlertBar,
+  setPassError,
+}) => {
   return async (dispatch) => {
     toggleLoad();
+    setLoading(true);
     try {
       const response = await authFetch.get(`/admin/vendors`);
       console.log(response);
@@ -13,8 +19,10 @@ export const getVendors = ({ toggleLoad, toggleAlertBar, setPassError }) => {
         payload: data,
       });
       toggleLoad();
+      setLoading(false);
     } catch (error) {
       console.log(error.response);
+      setLoading(false);
       toggleLoad();
       if (!error.response) {
         console.log('No response from the server');
@@ -83,9 +91,11 @@ export const getSingleVendor = ({
   toggleAlertBar,
   setPassError,
   uuid,
+  setLoading,
 }) => {
   return async (dispatch) => {
     toggleLoad();
+    setLoading(true);
     try {
       const response = await authFetch.get(`/admin/vendors/${uuid}`);
       console.log(response);
@@ -95,8 +105,10 @@ export const getSingleVendor = ({
         payload: data,
       });
       toggleLoad();
+      setLoading(false);
     } catch (error) {
       console.log(error.response);
+      setLoading(false);
       toggleLoad();
       if (!error.response) {
         console.log('No response from the server');

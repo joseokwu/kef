@@ -14,6 +14,7 @@ import useVendors from '../../../hooks/admin/useVendors';
 const Vendors = ({ link, setShow }) => {
   const [page, setPage] = useState(1);
   const [passError, setPassError] = useState('');
+  const [loading, setLoading] = useState(false);
   const toggleAlertBar = useShowAlert();
   const { toggleLoad } = useLoading();
   const router = useRouter();
@@ -54,7 +55,7 @@ const Vendors = ({ link, setShow }) => {
 
   useEffect(() => {
     setActivePage('Vendors');
-    getVendors({ toggleAlertBar, toggleLoad, setPassError });
+    getVendors({ setLoading, toggleAlertBar, toggleLoad, setPassError });
   }, []);
 
   return (
@@ -84,12 +85,10 @@ const Vendors = ({ link, setShow }) => {
                 Add Vendor
               </button>
             </div>
-            <section
-              className={`flex px-12 ${
-                vendors?.length > 0 ? 'justify-between' : 'justify-around'
-              } flex-wrap mt-[2rem]`}
-            >
-              {vendors?.length > 0 ? (
+            <section className='grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] gap-[2.6rem] mb-14'>
+              {loading ? (
+                <Loading />
+              ) : vendors?.length > 0 ? (
                 vendors?.map((item, index) => {
                   return (
                     <VendorCard
@@ -105,7 +104,7 @@ const Vendors = ({ link, setShow }) => {
                   );
                 })
               ) : (
-                <Loading />
+                <Wrapper1>No Vendors Available</Wrapper1>
               )}
             </section>
           </div>
@@ -156,7 +155,7 @@ const Wrapper = styled.main`
 const Wrapper2 = styled.section`
   border: 1px solid #cecccc;
   border-radius: 20px;
-  width: 80%;
+  width: 90%;
   padding: 3rem 3rem;
 
   .card-container {
@@ -185,4 +184,18 @@ const Wrapper2 = styled.section`
     background: linear-gradient(to right, #a608a3, #c6155f, #d82023);
     color: white;
   }
+`;
+
+const Wrapper1 = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8rem;
+  color: gray;
+  border: 1px solid #cecccc;
+  border-radius: 20px;
+  height: 30rem;
+  width: 100%;
+  padding: 3rem 3rem;
+  box-shadow: 0px 4px 44px rgba(163, 7, 168, 0.1);
 `;

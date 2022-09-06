@@ -3,36 +3,40 @@ import Slide from '@mui/material/Slide';
 import styled from 'styled-components';
 import MusicPlayerV2 from '../MusicPlayer-v2';
 
-const MusicPopUp = ({ popUp, setPopUp }) => {
+const MusicPopUp = ({ popUp, setPopUp, info }) => {
   return (
     <>
       <Tint onClick={() => setPopUp(false)} />
       <Wrapper>
         <div className={`container ${popUp === true && 'show-modal'}`}>
           <div className='image'>
-            <img src='/party-phone.svg' alt='party' />
+            <img src={info?.coverImage} alt='party' />
           </div>
           <div className='main-section'>
             <div className='right-top'>
               <div className='right-top-first'>
-                <h1>Concert Mix</h1>
+                <h1>{info?.albumTitle}</h1>
                 <div className='album'>
                   <h4>
-                    Album <span> - Kalakuta Republic</span>
+                    Album <span> - {info?.albumTitle}</span>
                   </h4>
                   <h4>
-                    Year of release <span> - 2022</span>
+                    Year of release{' '}
+                    <span> - {info?.yearOfRelease.slice(0, 4)}</span>
                   </h4>
                 </div>
                 <h4>
-                  Record Label <span> - Gang Bangers</span>
+                  Record Label <span> - {info?.recordLabel}</span>
                 </h4>
               </div>
-              <button>Edit Catalogue</button>
+              {/* <button>Edit Catalogue</button> */}
             </div>
             <hr />
             <div className='right-bottom'>
-              <MusicPlayerV2 />
+              <MusicPlayerV2
+                songList={info?.songTracks}
+                albumTitle={info?.albumTitle}
+              />
             </div>
           </div>
         </div>
@@ -54,17 +58,18 @@ export const Tint = styled.div`
 `;
 
 const Wrapper = styled.div`
-  position: fixed;
-  top: 30vh;
-  bottom: 0;
-  right: 0;
-  width: 77.5%;
+  position: absolute;
+  top: 20%;
+  left: 0;
+  width: 100%;
   z-index: 999;
+
   .container {
     display: flex;
     /* width: 90%; */
+
     padding: 5rem 5rem;
-    height: calc(70vh);
+    height: 68vh;
     /* margin-left: auto;
     margin-right: auto; */
     transition: 0.3s ease-in-out all;

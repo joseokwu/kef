@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import StatV2 from '../Cards/Stats-v2';
@@ -21,16 +21,17 @@ import Loading from '../Loading';
 import { useRouter } from 'next/router';
 import useShowAlert from '../../hooks/useShowAlert';
 import useLoading from '../../hooks/useLoading';
+import authFetch from '../../axios/admin';
 
 const MainDraw = ({ list, id }) => {
   // const [list, setList] = useState();
   const [loading, setLoading] = useState(false);
-  const [initialTime, setInitialTime] = useState(120000);
-  const [time, setTime] = useState(initialTime);
+  const [initialTime, setInitialTime] = useState();
+  const [time, setTime] = useState(0);
   const [timePct, setTimePct] = useState(100);
-  const [winners, setWinners] = useState([[], [], [], [], [], []]);
+  const [winners, setWinners] = useState([]);
   const [modal, setModal] = useState(false);
-  const [title, setTitle] = useState('Category 1');
+  const [title, setTitle] = useState('');
   const [confetti, setConfetti] = useState(false);
   const [listIndex, setListIndex] = useState(0);
   const [index, setIndex] = useState(1);
@@ -39,7 +40,11 @@ const MainDraw = ({ list, id }) => {
   const [passError, setPassError] = useState('');
   const [showFilter, setShowFilter] = useState(false);
   const [dateValue, setDateValue] = useState();
+  const [startFetching, setStartFetching] = useState(true);
+  const [waiting, setWaiting] = useState(true);
+  const [resData, setResData] = useState();
   const [date, setDate] = useState('');
+  const [navs, setNavs] = useState([]);
   const toggleAlertBar = useShowAlert();
   const { toggleLoad } = useLoading();
   const router = useRouter();
@@ -76,9 +81,7 @@ const MainDraw = ({ list, id }) => {
     'December',
   ];
 
-  const d = Date.now(nextTime);
-
-  console.log(d);
+  // const nextTime = '2022-09-05T00:10:40.349Z';
 
   function formatDate(dateToFormat) {
     return `${new Date(dateToFormat).getDate()} ${
@@ -86,449 +89,424 @@ const MainDraw = ({ list, id }) => {
     }, ${new Date(dateToFormat).getFullYear()}`;
   }
 
-  const navs = [
-    'Category 1',
-    'Category 2',
-    'Category 3',
-    'Category 4',
-    'Category 5',
-    'Category 6',
-  ];
+  // const navs = [
+
+  // ];
 
   const data = [
-    [
-      {
-        number: '01',
-        name: 'Joshua Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '02',
-        name: 'Joshua Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '03',
-        name: 'Joshua Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '04',
-        name: 'Joshua Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '05',
-        name: 'Joshua Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '06',
-        name: 'Joshua Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '07',
-        name: 'Joshua Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '08',
-        name: 'Joshua Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '09',
-        name: 'Joshua Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '10',
-        name: 'Joshua Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-    ],
-    [
-      {
-        number: '01',
-        name: 'Joshua Parag',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '02',
-        name: 'Joshua Parag',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '03',
-        name: 'Joshua Parag',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '04',
-        name: 'Joshua Parag',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '05',
-        name: 'Joshua Parag',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '06',
-        name: 'Joshua Parag',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '07',
-        name: 'Joshua Parag',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '08',
-        name: 'Joshua Parag',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '09',
-        name: 'Joshua Parag',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '10',
-        name: 'Joshua Parag',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-    ],
-    [
-      {
-        number: '01',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '02',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '03',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '04',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '05',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '06',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '07',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '08',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '09',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '10',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-    ],
-    [
-      {
-        number: '01',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '02',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '03',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '04',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '05',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '06',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '07',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '08',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '09',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '10',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-    ],
-    [
-      {
-        number: '01',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '02',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '03',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '04',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '05',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '06',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '07',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '08',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '09',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '10',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-    ],
-    [
-      {
-        number: '01',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '02',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '03',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '04',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '05',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '06',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '07',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '08',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '09',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-      {
-        number: '10',
-        name: 'Martin Nwagu',
-        ticket: '1233334444',
-        prize: 'N100,000',
-        category: '1',
-      },
-    ],
+    {
+      winners: [
+        {
+          number: '01',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '02',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '03',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '04',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '05',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '06',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '07',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '08',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '09',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '10',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+      ],
+      status: 'Completed',
+    },
+    {
+      winners: [
+        {
+          number: '01',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '02',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '03',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '04',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '05',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '06',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '07',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '08',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '09',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '10',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+      ],
+      status: 'Completed',
+    },
+    {
+      winners: [
+        {
+          number: '01',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '02',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '03',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '04',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '05',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '06',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '07',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '08',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '09',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '10',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+      ],
+      status: 'Pending',
+    },
+    {
+      winners: [
+        {
+          number: '01',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '02',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '03',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '04',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '05',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '06',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '07',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '08',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '09',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '10',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+      ],
+    },
+    {
+      winners: [
+        {
+          number: '01',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '02',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '03',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '04',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '05',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '06',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '07',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '08',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '09',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+        {
+          number: '10',
+          name: 'Joshua Nwagu',
+          ticket: '1233334444',
+          prize: 'N100,000',
+          category: '1',
+        },
+      ],
+    },
   ];
+
+  useEffect(() => {
+    if (cycles) {
+      let tempWinners = [];
+      for (let index = 0; index < cycles; index++) {
+        tempWinners.push(new Array());
+      }
+      setWinners(tempWinners);
+    }
+  }, [cycles]);
+  console.log(winners);
+
+  // function useInterval(callback, delay) {
+  //   const savedCallback = useRef();
+  //   //Remember the latest callback
+  //   useEffect(() => {
+  //     savedCallback.current = callback;
+  //   }, [callback]);
+
+  //   // Set up the interval
+  //   useEffect(() => {
+  //     function tick() {
+  //       savedCallback.current();
+  //     }
+  //     if (delay !== null) {
+  //       const id = setInterval(tick, delay);
+  //       return () => {
+  //         clearInterval(id);
+  //       };
+  //     }
+  //   }, [callback, delay]);
+  // }
+
+  // useInterval(async () => {
+  //   console.log('Checking if ready to download');
+  //   const data = await authFetch.get(`/draw/get-active-draws/${id}`);
+  //   console.log(resData);
+  //   setResData(data);
+  // }, 15000);
 
   const handleOnComplete = () => {
     setListIndex(listIndex + 1);
@@ -540,92 +518,82 @@ const MainDraw = ({ list, id }) => {
       return;
     }
     setTitle(val);
-    if (val === 'Category 1') {
-      setListIndex(0);
-    }
-    if (val === 'Category 2') {
-      setListIndex(1);
-    }
-    if (val === 'Category 3') {
-      setListIndex(2);
-    }
-    if (val === 'Category 4') {
-      setListIndex(3);
-    }
-    if (val === 'Category 5') {
-      setListIndex(4);
-    }
-    if (val === 'Category 6') {
-      setListIndex(5);
-    }
+    const navIndex = navs.indexOf(val);
+    setListIndex(navIndex);
+
+    // if (val === 'Category 1') {
+    //   setListIndex(0);
+    // }
   };
 
   useEffect(() => {
-    getActiveDraws({
-      toggleAlertBar,
-      toggleLoad,
-      setPassError,
-      uuid: id,
-      setLoading,
-    });
-  }, [id]);
-
-  // useEffect(() => {
-  //   if (nextTime) {
-  //     const newTime = new Date(nextTime) - new Date(Date.now());
-  //     console.log(newTime);
-  //     setInitialTime(newTime);
-  //   }
-  // }, [nextTime]);
+    if (startFetching) {
+      getActiveDraws({
+        toggleAlertBar,
+        toggleLoad,
+        setPassError,
+        uuid: id,
+        setLoading,
+      });
+    }
+    setStartFetching(false);
+  }, [id, startFetching]);
 
   useEffect(() => {
-    if (winners[5]?.length === data[5]?.length) {
-      if (activateNav) {
+    if (nextTime) {
+      const d = Date.parse(nextTime) - Date.parse(new Date());
+      setTime(d);
+      setInitialTime(d);
+      console.log(d);
+    }
+  }, [nextTime]);
+
+  useEffect(() => {
+    if (winners.length > 0) {
+      let tempNavs = [...navs];
+      if (!tempNavs.includes(`Iteration ${listIndex + 1}`)) {
+        tempNavs.push(`Iteration ${listIndex + 1}`);
+        setNavs(tempNavs);
+      }
+      setTitle(`Iteration ${listIndex + 1}`);
+      if (
+        winners[parseInt(cycles) - 1]?.length ===
+        data[parseInt(cycles) - 1]?.winners?.length
+      ) {
+        console.log('finished');
+        if (activateNav) {
+          console.log('hihu');
+          return;
+        }
+        setConfetti(true);
+        setActivateNav(true);
         return;
       }
-      setConfetti(true);
-      setActivateNav(true);
-      return;
-    }
 
-    if (list) {
-      if (listIndex === 0) {
-        setTitle('Category 1');
-      }
-      if (listIndex === 1) {
-        setTitle('Category 2');
-      }
-      if (listIndex === 2) {
-        setTitle('Category 3');
-      }
-      if (listIndex === 3) {
-        setTitle('Category 4');
-      }
-      if (listIndex === 4) {
-        setTitle('Category 5');
-      }
-      if (listIndex === 5) {
-        setTitle('Category 6');
-      }
-
-      if (winners[listIndex]?.length === data[listIndex]?.length) {
-        setIndex(1);
-        setShowCountdown(true);
-        // setListIndex(listIndex + 1);
-      } else {
-        setIndex(index + 1);
-      }
-      const interval = setInterval(() => {
-        if (winners[listIndex]?.length < data[listIndex]?.length) {
-          setWinners(() => {
-            let newWinners = [...winners];
-            newWinners[listIndex]?.push(data[listIndex][index - 1]);
-            return newWinners;
-          });
+      if (data[listIndex]?.status === 'Completed') {
+        if (winners[listIndex]?.length === data[listIndex]?.winners?.length) {
+          setIndex(1);
+          // setListIndex(listIndex + 1);
+          setShowCountdown(true);
+        } else {
+          setIndex(index + 1);
         }
-      }, 2000);
+        const interval = setInterval(() => {
+          console.log('hih');
+          if (winners[listIndex]?.length < data[listIndex]?.winners?.length) {
+            console.log('hihu');
+            setWinners(() => {
+              let newWinners = [...winners];
+              newWinners[listIndex]?.push(data[listIndex]?.winners[index - 1]);
+              return newWinners;
+            });
+          }
+        }, 2000);
 
-      return () => clearInterval(interval);
+        return () => clearInterval(interval);
+      } else {
+        setWaiting(true);
+      }
     }
   }, [winners, listIndex, list]);
 
@@ -639,15 +607,15 @@ const MainDraw = ({ list, id }) => {
   }, [confetti]);
 
   useEffect(() => {
-    // if (initialTime <= 0) {
-    //   setTime(0);
-    //   setTimePct(0);
-    //   return;
-    // }
+    if (time <= 0) {
+      setStartFetching(true);
+      return;
+    }
     const interval = setInterval(() => {
       if (time >= 0) {
         setTime(time - 1000);
-        setTimePct((time / initialTime) * 100);
+        const perc = (time / initialTime) * 100;
+        setTimePct((prev) => perc);
       }
     }, 1000);
     return () => clearInterval(interval);
@@ -659,7 +627,7 @@ const MainDraw = ({ list, id }) => {
         <CircularCountdown onComplete={handleOnComplete} title={title} />
       )}
       <Wrapper>
-        <div className={fullScreen && 'b'}>
+        <div className={fullScreen ? 'b' : ''}>
           {fullScreen ? (
             <span
               className='fullscreen'
@@ -678,11 +646,7 @@ const MainDraw = ({ list, id }) => {
           <div className='top'>
             <div className='top-left'>
               <div className='top-text'>
-                {typeOfDraw === 'Progressive' ? (
-                  <h3>Cycle {draw && draw}</h3>
-                ) : (
-                  <h3>Week 1 of 6</h3>
-                )}
+                <h3>Cycle {draw && draw}</h3>
                 {status === 'Completed' ? (
                   ''
                 ) : (
@@ -692,11 +656,11 @@ const MainDraw = ({ list, id }) => {
                 )}
               </div>
               <div className='timer'>
-                {status === 'Completed' ? (
+                {/* {status === 'Complete' ? (
                   <p className='status'>Completed</p>
-                ) : (
-                  <CountDown time={time} />
-                )}
+                ) : ( */}
+                <CountDown time={time} />
+                {/* )} */}
               </div>
             </div>
             <div className='start-draw2'>
@@ -726,28 +690,28 @@ const MainDraw = ({ list, id }) => {
                 handleType(val);
               }}
             />
-            {!fullScreen && activateNav && (
+            {/* {!fullScreen && activateNav && (
               <div className='ml-auto flex gap-4 w-[38%]'>
                 <Filter />
                 <SearchAdmin
                 // onChange={(e) => setSearch(e.target.value)}
                 ></SearchAdmin>
               </div>
-            )}
+            )} */}
           </section>
           <Wrapper2>
             <div className='card-container'>
               <h2 className='title'>{title} Winners</h2>
               {loading ? (
                 <Loading />
-              ) : winners[listIndex].length > 0 ? (
+              ) : winners[listIndex]?.length > 0 ? (
                 winners[listIndex]
                   ?.map((item, index) => {
                     return <RaffleCard item={item} index={index} key={index} />;
                   })
                   .reverse()
               ) : (
-                <Wrapper4>No Winners Available</Wrapper4>
+                <Wrapper4>Awaiting Winners</Wrapper4>
               )}
             </div>
           </Wrapper2>

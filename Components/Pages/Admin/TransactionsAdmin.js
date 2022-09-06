@@ -21,7 +21,6 @@ const TransactionsAdmin = () => {
   const [dateValue, setDateValue] = useState();
   const [date, setDate] = useState('');
   const [passError, setPassError] = useState('');
-  // const [date, setDate] = useState('');
   const toggleAlertBar = useShowAlert();
   const { toggleLoad } = useLoading();
   const { setActivePage } = useAuth();
@@ -136,17 +135,19 @@ const TransactionsAdmin = () => {
             handleType(val);
           }}
         />
-        <div className='ml-auto flex  w-[34%] relative'>
-          <Filter setShowFilter={setShowFilter} showFilter={showFilter} />
-          {showFilter && (
-            <FilterCard
-              date={date}
-              setDate={setDate}
-              handleFilter={() => setShowFilter(false)}
-              setDateValue={setDateValue}
-              dateValue={dateValue}
-            />
-          )}
+        <div className='ml-auto flex  w-[34%] '>
+          <div className='relative'>
+            <Filter setShowFilter={setShowFilter} showFilter={showFilter} />
+            {showFilter && (
+              <FilterCard
+                date={date}
+                setDate={setDate}
+                handleFilter={() => setShowFilter(false)}
+                setDateValue={setDateValue}
+                dateValue={dateValue}
+              />
+            )}
+          </div>
           <SearchAdmin
             onChange={(e) => setSearch(e.target.value)}
           ></SearchAdmin>
