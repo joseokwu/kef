@@ -68,7 +68,10 @@ const Vendors = () => {
       <section className='grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] xl:!grid-cols-[repeat(auto-fit,_minmax(28rem,_32rem))] gap-[2.6rem]'>
         <StatV2 value={totalVendors && totalVendors} title={'Vendors'}></StatV2>
         <StatV2
-          value={totalVendorPayments && totalVendorPayments}
+          value={
+            totalVendorPayments &&
+            `₦${totalVendorPayments.toLocaleString('en-US')}`
+          }
           title={'Total Transactions'}
         ></StatV2>
         <StatV2

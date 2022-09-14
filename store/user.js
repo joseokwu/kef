@@ -1,8 +1,8 @@
-import { baseInstance } from "../axios";
+import { baseInstanceAPI } from '../axios';
 
 const initialState = {
   user: null,
-  error: { status: false, message: "" },
+  error: { status: false, message: '' },
   loggedIn: false,
   processsing: false,
   data: null,
@@ -16,17 +16,17 @@ const initialState = {
 // Reducer
 export const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "login":
+    case 'login':
       return { ...state, user: action?.user };
-    case "sigin":
+    case 'sigin':
       return { ...state, user: action?.user };
-    case "logout":
+    case 'logout':
       return { ...state, user: null };
-    case "setLoginStatus":
+    case 'setLoginStatus':
       return { ...state, loggedIn: action?.status };
-    case "setUser":
+    case 'setUser':
       return { ...state, user: action?.user };
-    case "setDashboardHistory":
+    case 'setDashboardHistory':
       return { ...state, dashboardHistory: action?.data };
     default:
       return { ...state };
@@ -51,12 +51,12 @@ export const getDashHistory = (state) => {
 export const login = ({ username, password }) => {
   return async (dispatch) => {
     //   make api call to log user in
-    console.log("running login dispatch");
+    console.log('running login dispatch');
     try {
-      const response = await baseInstance.post("/account/login");
+      const response = await baseInstanceAPI.post('/account/login');
       console.log(response);
     } catch (error) {
-      console.log("There was an error", error);
+      console.log('There was an error', error);
     }
     // on success: setLocal Storage and dispaych login reducer
     //
@@ -64,23 +64,23 @@ export const login = ({ username, password }) => {
 };
 
 export const setUser = (user) => {
-  console.log("setting user", user);
+  console.log('setting user', user);
   return {
-    type: "setUser",
+    type: 'setUser',
     user,
   };
 };
 export const setDashboardHistory = (data) => {
-  console.log("setting history", data);
+  console.log('setting history', data);
   return {
-    type: "setDashboardHistory",
+    type: 'setDashboardHistory',
     data,
   };
 };
 
 export const setLoginStatus = (status) => {
   return {
-    type: "setLoginStatus",
+    type: 'setLoginStatus',
     status,
   };
 };
