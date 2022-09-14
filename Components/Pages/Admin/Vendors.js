@@ -11,7 +11,7 @@ import styled from 'styled-components';
 import AddVendorModal from '../../Vendors/AddVendorModal';
 import useVendors from '../../../hooks/admin/useVendors';
 
-const Vendors = ({ link, setShow }) => {
+const Vendors = () => {
   const [page, setPage] = useState(1);
   const [passError, setPassError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -85,7 +85,7 @@ const Vendors = ({ link, setShow }) => {
                 Add Vendor
               </button>
             </div>
-            <section className='grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] gap-[2.6rem] mb-14'>
+            <section className='grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] gap-[2.6rem] mb-14 '>
               {loading ? (
                 <Loading />
               ) : vendors?.length > 0 ? (
@@ -126,7 +126,6 @@ const Wrapper = styled.main`
     gap: 5rem;
     align-items: center;
     margin-top: 3rem;
-    /* height: 20rem; */
 
     .top-left {
       display: flex;
@@ -134,7 +133,7 @@ const Wrapper = styled.main`
       background: #f0f0f0;
       border-radius: 20px;
       width: 60%;
-      /* height: 60%; */
+
       padding: 2rem;
       h3 {
         font-size: 1.8rem;
