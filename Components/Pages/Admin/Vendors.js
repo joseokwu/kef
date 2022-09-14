@@ -85,7 +85,7 @@ const Vendors = () => {
                 Add Vendor
               </button>
             </div>
-            <section className='grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] gap-[2.6rem] mb-14 '>
+            <section className='grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] gap-[2.6rem] mb-14'>
               {loading ? (
                 <Loading />
               ) : vendors?.length > 0 ? (
