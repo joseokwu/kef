@@ -37,9 +37,7 @@ const BranchCard = ({ item, index }) => {
             width={18}
             alt={'copy'}
             onClick={() => {
-              navigator.clipboard.writeText(
-                `${home_url}vendor?vendorId=${item?.link}`
-              );
+              navigator.clipboard.writeText(`${home_url}vendor${item?.link}`);
               setCheck(true);
             }}
           />

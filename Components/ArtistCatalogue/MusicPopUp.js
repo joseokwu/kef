@@ -58,10 +58,10 @@ export const Tint = styled.div`
 `;
 
 const Wrapper = styled.div`
-  position: absolute;
-  top: 20%;
-  left: 0;
-  width: 100%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 77.8%;
   z-index: 999;
 
   .container {
@@ -90,9 +90,11 @@ const Wrapper = styled.div`
   .image {
     margin-top: -15rem;
     width: 30%;
+    border-radius: 10px;
     img {
       width: 25rem;
       height: 25rem;
+      border-radius: 10px;
     }
   }
 

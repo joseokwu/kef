@@ -29,7 +29,7 @@ const MainDraw = ({ list, id }) => {
   const [initialTime, setInitialTime] = useState();
   const [time, setTime] = useState(0);
   const [timePct, setTimePct] = useState(100);
-  const [winners, setWinners] = useState([]);
+  const [winners, setWinners] = useState([[]]);
   const [modal, setModal] = useState(false);
   const [title, setTitle] = useState('');
   const [confetti, setConfetti] = useState(false);
@@ -469,16 +469,16 @@ const MainDraw = ({ list, id }) => {
     },
   ];
 
-  useEffect(() => {
-    if (cycles) {
-      let tempWinners = [];
-      for (let index = 0; index < cycles; index++) {
-        tempWinners.push(new Array());
-      }
-      setWinners(tempWinners);
-    }
-  }, [cycles]);
-  console.log(winners);
+  // useEffect(() => {
+  //   if (cycles) {
+  //     let tempWinners = [];
+  //     // for (let index = 0; index < cycles; index++) {
+  //     //   tempWinners.push(new Array());
+  //     // }
+  //     setWinners([]);
+  //   }
+  // }, [cycles]);
+  // console.log(winners);
 
   // function useInterval(callback, delay) {
   //   const savedCallback = useRef();
@@ -549,16 +549,77 @@ const MainDraw = ({ list, id }) => {
   }, [nextTime]);
 
   useEffect(() => {
-    if (winners.length > 0) {
-      let tempNavs = [...navs];
-      if (!tempNavs.includes(`Iteration ${listIndex + 1}`)) {
-        tempNavs.push(`Iteration ${listIndex + 1}`);
-        setNavs(tempNavs);
+    if (winners.length > 0 && iterations.length > 0) {
+      console.log('winners list greater than 0');
+      console.log(winners.length, parseInt(cycles));
+      if (navs.length < parseInt(cycles)) {
+        console.log('add nav');
+
+        let tempNavs = [...navs];
+        if (!tempNavs.includes(`Iteration ${listIndex + 1}`)) {
+          tempNavs.push(`Iteration ${listIndex + 1}`);
+          setNavs(tempNavs);
+        }
+        setTitle(`Iteration ${listIndex + 1}`);
       }
-      setTitle(`Iteration ${listIndex + 1}`);
+
+      // if (
+      //   winners?.length === parseInt(cycles) &&
+      //   winners[parseInt(cycles) - 1]?.length ===
+      //     iterations[parseInt(cycles) - 1]?.winners?.length
+      // ) {
+      //   console.log('finished');
+      //   if (activateNav) {
+      //     console.log('hihu');
+      //     return;
+      //   }
+      //   setConfetti(true);
+      //   setActivateNav(true);
+      //   return;
+      // }
+      console.log(iterations[listIndex]?.status);
+      if (iterations[listIndex]?.status === 'Completed') {
+        console.log('check if winners in data list completed');
+        if (
+          winners[listIndex]?.length === iterations[listIndex]?.winners?.length
+        ) {
+          console.log('check if winners list finished pushing');
+          setIndex(1);
+          // setListIndex(listIndex + 1);
+          setShowCountdown(true);
+          if (winners?.length < parseInt(cycles)) {
+            console.log('push new list to winners');
+            setWinners([...winners, []]);
+          }
+        } else {
+          console.log('push another winner');
+          setIndex(index + 1);
+        }
+        const interval = setInterval(() => {
+          console.log('interval start');
+          if (
+            winners[listIndex]?.length < iterations[listIndex]?.winners?.length
+          ) {
+            console.log('winners list not yet complete');
+            setWinners(() => {
+              let newWinners = [...winners];
+              newWinners[listIndex]?.push(
+                iterations[listIndex]?.winners[index - 1]
+              );
+              return newWinners;
+            });
+          }
+        }, 2000);
+
+        return () => clearInterval(interval);
+      } else {
+        console.log('waiting');
+        setWaiting(true);
+      }
       if (
+        winners?.length === parseInt(cycles) &&
         winners[parseInt(cycles) - 1]?.length ===
-        data[parseInt(cycles) - 1]?.winners?.length
+          iterations[parseInt(cycles) - 1]?.winners?.length
       ) {
         console.log('finished');
         if (activateNav) {
@@ -569,33 +630,8 @@ const MainDraw = ({ list, id }) => {
         setActivateNav(true);
         return;
       }
-
-      if (data[listIndex]?.status === 'Completed') {
-        if (winners[listIndex]?.length === data[listIndex]?.winners?.length) {
-          setIndex(1);
-          // setListIndex(listIndex + 1);
-          setShowCountdown(true);
-        } else {
-          setIndex(index + 1);
-        }
-        const interval = setInterval(() => {
-          console.log('hih');
-          if (winners[listIndex]?.length < data[listIndex]?.winners?.length) {
-            console.log('hihu');
-            setWinners(() => {
-              let newWinners = [...winners];
-              newWinners[listIndex]?.push(data[listIndex]?.winners[index - 1]);
-              return newWinners;
-            });
-          }
-        }, 2000);
-
-        return () => clearInterval(interval);
-      } else {
-        setWaiting(true);
-      }
     }
-  }, [winners, listIndex, list]);
+  }, [winners, listIndex, list, iterations]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -646,7 +682,9 @@ const MainDraw = ({ list, id }) => {
           <div className='top'>
             <div className='top-left'>
               <div className='top-text'>
-                <h3>Cycle {draw && draw}</h3>
+                <h3 onClick={() => console.log(winners.length)}>
+                  Cycle {draw && draw}
+                </h3>
                 {status === 'Completed' ? (
                   ''
                 ) : (
@@ -711,7 +749,7 @@ const MainDraw = ({ list, id }) => {
                   })
                   .reverse()
               ) : (
-                <Wrapper4>Awaiting Winners</Wrapper4>
+                <Wrapper4>No Winners Available</Wrapper4>
               )}
             </div>
           </Wrapper2>

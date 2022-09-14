@@ -7,12 +7,12 @@ import {
 const reducer = (state = artistCatalogueState, action) => {
   switch (action.type) {
     case GET_ARTIST_CATALOGUE_SUCCESS:
-      const { totalArtists, totalJoinedToday, artists, totalPages } =
+      const { totalArtists, totalCatalogue, artists, totalPages } =
         action.payload;
       return {
         ...state,
         totalArtists,
-        totalJoinedToday,
+        totalCatalogue,
         totalPages,
         artists,
       };

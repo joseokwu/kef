@@ -22,6 +22,7 @@ const SideBar = ({ setActivePage }) => {
     'Artist Catalogue',
     'Vendors',
     'Referrals',
+    'Settings',
   ];
   const icons = [
     'Dashboard',
@@ -42,6 +43,7 @@ const SideBar = ({ setActivePage }) => {
     'artist',
     'vendors',
     'referrals',
+    'settings',
   ];
   const [admin, setIsAdmin] = useState(false);
   // const [active, setActive] = useState("Dashboard");
@@ -76,6 +78,9 @@ const SideBar = ({ setActivePage }) => {
         break;
       case 'Referrals':
         router.push('/referrals');
+        break;
+      case 'Settings':
+        router.push('/settings');
         break;
       default:
         break;

@@ -35,12 +35,7 @@ const ArtistCatalogue = () => {
 
   const {
     getArtistCatalogue,
-    stateArtistCatalogue: {
-      totalArtists,
-      artistsJoinedToday,
-      artists,
-      totalPages,
-    },
+    stateArtistCatalogue: { totalArtists, totalCatalogue, artists, totalPages },
   } = useArtistCatalogue();
 
   const navs = ['All Artists', 'Artists', 'Producers'];
@@ -83,8 +78,9 @@ const ArtistCatalogue = () => {
       page,
       search,
       date,
+      isProducer,
     });
-  }, [search, page, date]);
+  }, [search, page, date, isProducer]);
 
   return (
     <>
@@ -94,11 +90,11 @@ const ArtistCatalogue = () => {
           <section className='grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] xl:!grid-cols-[repeat(auto-fit,_minmax(28rem,_32rem))] gap-[2.6rem]'>
             <StatV2
               value={totalArtists && totalArtists}
-              title={'Total Artist'}
+              title={'Total Artists'}
             ></StatV2>
             <StatV2
-              value={artistsJoinedToday && artistsJoinedToday}
-              title={'Artists Joined Today'}
+              value={totalCatalogue && totalCatalogue}
+              title={'Total Catalogues'}
             ></StatV2>
           </section>
 

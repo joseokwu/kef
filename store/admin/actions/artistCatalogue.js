@@ -11,12 +11,13 @@ export const getArtistCatalogue = ({
   page,
   search,
   date,
+  isProducer,
 }) => {
   return async (dispatch) => {
     toggleLoad();
     try {
       const response = await authFetch.get(
-        `/admin/get-artist-catalogue-analystics?search=${search}&page=${page}&date=${date}`
+        `/admin/get-artist-catalogue-analystics?isProducer=${isProducer}&search=${search}&page=${page}&date=${date}`
       );
       console.log(response);
       const { data } = response;
@@ -95,7 +96,9 @@ export const getSingleCatalogue = ({
   return async (dispatch) => {
     toggleLoad();
     try {
-      const response = await authFetch.get(`/admin/artist-catalogue/${id}`);
+      const response = await authFetch.get(
+        `/admin/artist-catalogue/${id}?track=${false}`
+      );
       console.log(response);
       const {
         data: { artist },

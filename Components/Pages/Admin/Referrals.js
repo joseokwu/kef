@@ -188,7 +188,7 @@ const Wrapper2 = styled.section`
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    transition: 0.6s ease-in;
+    transition: all 0.6s ease-in;
     .title {
       font-size: 20px;
       font-weight: 700;

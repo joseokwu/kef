@@ -53,7 +53,7 @@ const ViewCampaign = () => {
   };
 
   useEffect(() => {
-    setActivePage('Raffle Draws');
+    // setActivePage('Raffle Draws');
     if (status === 'Active' && type === 'Progressive') {
       getProgressiveDrawDetails({
         setPassError,

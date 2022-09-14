@@ -15,6 +15,19 @@ const reducer = (state = overviewState, action) => {
         totalTicketsSold,
         totalVendorTransactions,
         vendors,
+        totalUser,
+
+        eventTicketTransactions,
+
+        liveStreamTransactions,
+        progressiveTokenTransaction,
+        raffleTicketTransactions,
+
+        totalArtists,
+        totalCatalogue,
+        totalJoinedToday,
+
+        totalTransactions,
       } = action.payload;
       return {
         ...state,
@@ -27,6 +40,19 @@ const reducer = (state = overviewState, action) => {
         totalTicketsSold,
         totalVendorTransactions,
         vendors,
+        totalUser,
+
+        eventTicketTransactions,
+
+        liveStreamTransactions,
+        progressiveTokenTransaction,
+        raffleTicketTransactions,
+
+        totalArtists,
+        totalCatalogue,
+        totalJoinedToday,
+
+        totalTransactions,
       };
     default:
       return state;

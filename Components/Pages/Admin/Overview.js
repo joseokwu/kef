@@ -24,6 +24,19 @@ const Overview = ({ link, setShow }) => {
       totalTicketsSold,
       totalVendorTransactions,
       vendors,
+      totalUser,
+
+      eventTicketTransactions,
+
+      liveStreamTransactions,
+      progressiveTokenTransaction,
+      raffleTicketTransactions,
+
+      totalArtists,
+      totalCatalogue,
+      totalJoinedToday,
+
+      totalTransactions,
     },
   } = useOverview();
   const [active, setActive] = useState('All users');
@@ -37,6 +50,54 @@ const Overview = ({ link, setShow }) => {
 
   return (
     <Container>
+      <h4 className='text-[1.8rem] font-bold text-[#A307A8] mb-4'>
+        User Analytics
+      </h4>
+      <section className='grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] xl:!grid-cols-[repeat(auto-fit,_minmax(28rem,_32rem))] gap-[2.6rem] mb-14'>
+        <StatV2 value={totalUser && totalUser} title={'Total Users'}></StatV2>
+        <StatV2
+          value={totalJoinedToday && totalJoinedToday}
+          title={'Joined Today'}
+        ></StatV2>
+      </section>
+      <h4 className='text-[1.8rem] font-bold text-[#A307A8] mb-4'>
+        Transaction Analytics
+      </h4>
+      <section className='grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] gap-[2.6rem] mb-14'>
+        <StatV2
+          value={totalTransactions && totalTransactions}
+          title={'Total Sales'}
+        ></StatV2>
+        <StatV2
+          value={eventTicketTransactions && eventTicketTransactions}
+          title={'Event Tickets'}
+        ></StatV2>
+        <StatV2
+          value={raffleTicketTransactions && raffleTicketTransactions}
+          title={'Raffle Tickets'}
+        ></StatV2>
+        <StatV2
+          value={progressiveTokenTransaction && progressiveTokenTransaction}
+          title={'Progressive Token'}
+        ></StatV2>
+        <StatV2
+          value={liveStreamTransactions && liveStreamTransactions}
+          title={'Live Session'}
+        ></StatV2>
+      </section>
+      <h4 className='text-[1.8rem] font-bold text-[#A307A8] mb-4'>
+        Artist Catalogue
+      </h4>
+      <section className='grid !grid-cols-[repeat(auto-fit,_minmax(28rem,_1fr))] xl:!grid-cols-[repeat(auto-fit,_minmax(28rem,_32rem))] gap-[2.6rem] mb-14'>
+        <StatV2
+          value={totalArtists && totalArtists}
+          title={'Total Artists'}
+        ></StatV2>
+        <StatV2
+          value={totalCatalogue && totalCatalogue}
+          title={'Total Catalogues'}
+        ></StatV2>
+      </section>
       <h4 className='text-[1.8rem] font-bold text-[#A307A8] mb-4'>
         Event Analytics
       </h4>

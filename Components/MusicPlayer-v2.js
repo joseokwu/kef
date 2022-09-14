@@ -6,24 +6,24 @@ const MusicPlayerV2 = ({ title, songList, albumTitle, theme = 'dark' }) => {
   const [playingIndex, setPlayingIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   // const [songs, setSongs] = useState(songList);
-  const [songs, setSongs] = useState([
-    {
-      name: 'On the low',
-      src: 'https://cdn.kennismusic.app/38a89545-40a8-4f69-bdde-34de37cf4a9d.mp3',
-      album: 'Kalakuta Republic',
-    },
-    { name: 'Power rangers', src: '/Teni.mp3', album: 'Joeboy Republic' },
-    {
-      name: "Don't call me back",
-      src: '/Joeboy.mp3',
-      album: 'Joeboy Republic',
-    },
-    {
-      name: 'Rise of the sunset',
-      src: '/Lauv.mp3',
-      album: 'Kalakuta Republic',
-    },
-  ]);
+  // const [songs, setSongs] = useState([
+  //   {
+  //     name: 'On the low',
+  //     src: 'https://cdn.kennismusic.app/38a89545-40a8-4f69-bdde-34de37cf4a9d.mp3',
+  //     album: 'Kalakuta Republic',
+  //   },
+  //   { name: 'Power rangers', src: '/Teni.mp3', album: 'Joeboy Republic' },
+  //   {
+  //     name: "Don't call me back",
+  //     src: '/Joeboy.mp3',
+  //     album: 'Joeboy Republic',
+  //   },
+  //   {
+  //     name: 'Rise of the sunset',
+  //     src: '/Lauv.mp3',
+  //     album: 'Kalakuta Republic',
+  //   },
+  // ]);
 
   // useEffect(() => {
   //   console.log('In Music player...:', songList);
@@ -31,12 +31,12 @@ const MusicPlayerV2 = ({ title, songList, albumTitle, theme = 'dark' }) => {
   // }, [songList]);
 
   const togglePlay = (i) => {
-    console.log('playing song is', songs[i].src);
+    console.log('playing song is', songList[i].src);
     if (playing) {
       audioRef.current.pause();
       setPlaying(false);
     } else {
-      audioRef.current.src = songs[i].src;
+      audioRef.current.src = songList[i].src;
       audioRef.current.play();
       setPlaying(true);
     }
@@ -53,7 +53,7 @@ const MusicPlayerV2 = ({ title, songList, albumTitle, theme = 'dark' }) => {
         setPlaying(true);
       }
     } else {
-      audioRef.current.src = songs[i].src;
+      audioRef.current.src = songList[i].src;
       setPlayingIndex(i);
       audioRef.current.play();
       setPlaying(true);
@@ -72,10 +72,10 @@ const MusicPlayerV2 = ({ title, songList, albumTitle, theme = 'dark' }) => {
   };
 
   const onNext = (i) => {
-    if (playingIndex == songs.length - 1) {
+    if (playingIndex === songList.length - 1) {
       return;
     } else {
-      audioRef.current.src = `${songs[i + 1].src}`;
+      audioRef.current.src = `${songList[i + 1].src}`;
       setPlayingIndex(i + 1);
       audioRef.current.play();
       setPlaying(true);
@@ -85,7 +85,7 @@ const MusicPlayerV2 = ({ title, songList, albumTitle, theme = 'dark' }) => {
     if (playingIndex === 0) {
       return;
     } else {
-      audioRef.current.src = `${songs[i - 1].src}`;
+      audioRef.current.src = `${songList[i - 1].src}`;
       setPlayingIndex(i - 1);
       audioRef.current.play();
       setPlaying(true);
@@ -103,26 +103,26 @@ const MusicPlayerV2 = ({ title, songList, albumTitle, theme = 'dark' }) => {
         <div className=' w-full border-gray-lighter border-collapse  min-w-[7.3rem] text-[1.2rem]'>
           {/* Header */}
           <div className=' text-[#838383] whitespace-nowrap  grid grid-cols-[1fr_16.2rem_2fr_1fr_3fr_16.2rem] mb-[1.6rem]'>
-            <span className=' align-text-bottom  border-gray-lighter font-medium text-left pt-[10px] px-[16px]'>
+            <span className='align-text-bottom border-gray-lighter font-medium text-left pt-[10px] px-[16px]'>
               #
             </span>
 
-            <span className=' align-text-bottom border-gray-lighter font-medium text-left pt-[10px] px-[16px]'>
+            <span className='align-text-bottom border-gray-lighter font-medium text-left pt-[10px] px-[16px]'>
               Title
             </span>
 
-            <span className=' align-text-bottom border-gray-lighter font-medium text-left pt-[10px] px-[16px]'>
+            <span className='align-text-bottom border-gray-lighter font-medium text-left pt-[10px] px-[16px]'>
               Artist
             </span>
 
-            <span className=' align-text-bottom border-gray-lighter font-medium text-left pt-[10px] px-[16px] '>
+            <span className='align-text-bottom border-gray-lighter font-medium text-left pt-[10px] px-[16px] '>
               Time
             </span>
 
-            <span className=' align-text-bottom border-gray-lighter font-medium text-left pt-[10px] px-[16px] '>
+            <span className='align-text-bottom border-gray-lighter font-medium text-left pt-[10px] px-[16px] '>
               Album
             </span>
-            <span className=' align-text-bottom border-gray-lighter font-medium text-left pt-[10px] px-[16px]'></span>
+            <span className='align-text-bottom border-gray-lighter font-medium text-left pt-[10px] px-[16px]'></span>
           </div>
           {/* Body */}
 
@@ -166,8 +166,8 @@ const MusicPlayerV2 = ({ title, songList, albumTitle, theme = 'dark' }) => {
                   onClick={() => playOnClick(i)}
                 >
                   <div className='flex items-center'>
-                    <span className=' ml-4 text-ellipsis overflow-hidden max-w-[12rem]'>
-                      {el.name}
+                    <span className=' text-ellipsis overflow-hidden max-w-[12rem]'>
+                      {el.name.slice(0, 5) + '...'}
                     </span>
                   </div>
                 </span>
@@ -175,7 +175,7 @@ const MusicPlayerV2 = ({ title, songList, albumTitle, theme = 'dark' }) => {
                   className=' border-gray-lighter p-[16px] !py-[14px] text-left align-text-bottom text-[1.4rem] font-medium whitespace-nowrap cursor-pointer'
                   onClick={() => playOnClick(i)}
                 >
-                  {el?.name}
+                  {/* {el?.name} */}
                 </span>
                 <span
                   className=' border-gray-lighter p-[16px] !py-[14px] text-right align-text-bottom text-[1.4rem] font-medium cursor-pointer'

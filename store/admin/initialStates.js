@@ -39,7 +39,7 @@ export const raffleState = {
   activeDrawDetails: {
     campaignDetail: { typeOfDraw: '' },
     cycles: 0,
-    draw: 0 / 0,
+    draw: '0/0',
     iterations: [],
     nextTime: '',
   },
@@ -74,7 +74,7 @@ export const eventsState = {
 
 export const artistCatalogueState = {
   totalArtists: 0,
-  artistsJoinedToday: 0,
+  totalCatalogue: 0,
   artists: [],
   totalPages: 1,
   page: 1,
@@ -99,4 +99,18 @@ export const overviewState = {
   totalTicketsSold: 0,
   totalVendorTransactions: 0,
   vendors: 0,
+  totalUser: 0,
+
+  eventTicketTransactions: 0,
+
+  liveStreamTransactions: 0,
+  progressiveTokenTransaction: 0,
+  raffleTicketTransactions: 0,
+
+  totalArtists: 0,
+  totalCatalogue: 0,
+  totalJoinedToday: 0,
+
+  totalTransactions: 0,
+  totalUser: 0,
 };
